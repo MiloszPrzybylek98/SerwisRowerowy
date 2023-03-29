@@ -16,5 +16,17 @@ namespace SerwisRowerowy
         {
             InitializeComponent();
         }
+
+        private void btnUsunPracownika_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Pracownika?", "Potwierdź usunięcie Pracownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {     // kod do usunięcia pliku } else {     // kod do anulowania usuwania pliku }
+            }
+            else
+            {
+
+            }
+        }
     }
 }
