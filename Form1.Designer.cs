@@ -57,18 +57,34 @@
             this.label7 = new System.Windows.Forms.Label();
             this.GroupDaneNaprawy = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dgvObecneNaprawy = new System.Windows.Forms.DataGridView();
             this.btnDodaj = new System.Windows.Forms.Button();
             this.dgvZakonczoneNaprawy = new System.Windows.Forms.DataGridView();
+            this.radioNaprawa = new System.Windows.Forms.RadioButton();
+            this.radioPrzeglad = new System.Windows.Forms.RadioButton();
+            this.btnRozliczNaprawe = new System.Windows.Forms.Button();
+            this.groupPodusmowanie = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnDodajNaprawe = new System.Windows.Forms.Button();
+            this.dgvCzesci = new System.Windows.Forms.DataGridView();
+            this.btnUsunCzesc = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupCzesci = new System.Windows.Forms.GroupBox();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).BeginInit();
             this.GroupDaneKl.SuspendLayout();
@@ -76,6 +92,10 @@
             this.GroupDaneNaprawy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObecneNaprawy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZakonczoneNaprawy)).BeginInit();
+            this.groupPodusmowanie.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupCzesci.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -92,6 +112,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnDodajNaprawe);
             this.tabPage3.Controls.Add(this.listBox1);
             this.tabPage3.Controls.Add(this.GroupDaneNaprawy);
             this.tabPage3.Controls.Add(this.GroupDaneRoweru);
@@ -123,6 +144,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupPodusmowanie);
+            this.tabPage1.Controls.Add(this.btnRozliczNaprawe);
             this.tabPage1.Controls.Add(label10);
             this.tabPage1.Controls.Add(this.dgvZakonczoneNaprawy);
             this.tabPage1.Controls.Add(this.btnDodaj);
@@ -138,6 +161,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupCzesci);
+            this.tabPage2.Controls.Add(this.dgvCzesci);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
@@ -174,7 +199,7 @@
             this.btnDodajPracownika.Location = new System.Drawing.Point(714, 119);
             this.btnDodajPracownika.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDodajPracownika.Name = "btnDodajPracownika";
-            this.btnDodajPracownika.Size = new System.Drawing.Size(113, 19);
+            this.btnDodajPracownika.Size = new System.Drawing.Size(113, 24);
             this.btnDodajPracownika.TabIndex = 2;
             this.btnDodajPracownika.Text = "Dodaj Pracownika";
             this.btnDodajPracownika.UseVisualStyleBackColor = true;
@@ -342,9 +367,10 @@
             // 
             // GroupDaneNaprawy
             // 
+            this.GroupDaneNaprawy.Controls.Add(this.radioPrzeglad);
+            this.GroupDaneNaprawy.Controls.Add(this.radioNaprawa);
             this.GroupDaneNaprawy.Controls.Add(this.label8);
             this.GroupDaneNaprawy.Controls.Add(this.textBox1);
-            this.GroupDaneNaprawy.Controls.Add(this.checkedListBox1);
             this.GroupDaneNaprawy.Controls.Add(this.label6);
             this.GroupDaneNaprawy.Location = new System.Drawing.Point(25, 295);
             this.GroupDaneNaprawy.Name = "GroupDaneNaprawy";
@@ -363,14 +389,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Rodzaj usługi";
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(21, 49);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
-            this.checkedListBox1.TabIndex = 5;
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -388,7 +406,7 @@
             this.textBox1.Location = new System.Drawing.Point(163, 49);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(207, 94);
+            this.textBox1.Size = new System.Drawing.Size(258, 63);
             this.textBox1.TabIndex = 7;
             // 
             // label8
@@ -406,7 +424,7 @@
             this.dgvObecneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObecneNaprawy.Location = new System.Drawing.Point(19, 38);
             this.dgvObecneNaprawy.Name = "dgvObecneNaprawy";
-            this.dgvObecneNaprawy.Size = new System.Drawing.Size(459, 150);
+            this.dgvObecneNaprawy.Size = new System.Drawing.Size(597, 150);
             this.dgvObecneNaprawy.TabIndex = 0;
             // 
             // label9
@@ -420,7 +438,7 @@
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(19, 208);
+            this.btnDodaj.Location = new System.Drawing.Point(19, 217);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(151, 43);
             this.btnDodaj.TabIndex = 3;
@@ -432,7 +450,7 @@
             this.dgvZakonczoneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZakonczoneNaprawy.Location = new System.Drawing.Point(22, 350);
             this.dgvZakonczoneNaprawy.Name = "dgvZakonczoneNaprawy";
-            this.dgvZakonczoneNaprawy.Size = new System.Drawing.Size(459, 150);
+            this.dgvZakonczoneNaprawy.Size = new System.Drawing.Size(594, 150);
             this.dgvZakonczoneNaprawy.TabIndex = 4;
             // 
             // label10
@@ -443,6 +461,162 @@
             label10.Size = new System.Drawing.Size(110, 13);
             label10.TabIndex = 5;
             label10.Text = "Zakończone naprawy";
+            // 
+            // radioNaprawa
+            // 
+            this.radioNaprawa.AutoSize = true;
+            this.radioNaprawa.Location = new System.Drawing.Point(21, 95);
+            this.radioNaprawa.Name = "radioNaprawa";
+            this.radioNaprawa.Size = new System.Drawing.Size(68, 17);
+            this.radioNaprawa.TabIndex = 9;
+            this.radioNaprawa.TabStop = true;
+            this.radioNaprawa.Text = "Naprawa";
+            this.radioNaprawa.UseVisualStyleBackColor = true;
+            // 
+            // radioPrzeglad
+            // 
+            this.radioPrzeglad.AutoSize = true;
+            this.radioPrzeglad.Location = new System.Drawing.Point(21, 62);
+            this.radioPrzeglad.Name = "radioPrzeglad";
+            this.radioPrzeglad.Size = new System.Drawing.Size(66, 17);
+            this.radioPrzeglad.TabIndex = 10;
+            this.radioPrzeglad.TabStop = true;
+            this.radioPrzeglad.Text = "Przegląd";
+            this.radioPrzeglad.UseVisualStyleBackColor = true;
+            // 
+            // btnRozliczNaprawe
+            // 
+            this.btnRozliczNaprawe.Location = new System.Drawing.Point(641, 217);
+            this.btnRozliczNaprawe.Name = "btnRozliczNaprawe";
+            this.btnRozliczNaprawe.Size = new System.Drawing.Size(151, 43);
+            this.btnRozliczNaprawe.TabIndex = 6;
+            this.btnRozliczNaprawe.Text = "Zakończ i rozlicz naprawę";
+            this.btnRozliczNaprawe.UseVisualStyleBackColor = true;
+            // 
+            // groupPodusmowanie
+            // 
+            this.groupPodusmowanie.Controls.Add(this.label14);
+            this.groupPodusmowanie.Controls.Add(this.radioButton1);
+            this.groupPodusmowanie.Controls.Add(this.label13);
+            this.groupPodusmowanie.Controls.Add(this.label12);
+            this.groupPodusmowanie.Controls.Add(this.label11);
+            this.groupPodusmowanie.Location = new System.Drawing.Point(641, 19);
+            this.groupPodusmowanie.Name = "groupPodusmowanie";
+            this.groupPodusmowanie.Size = new System.Drawing.Size(200, 183);
+            this.groupPodusmowanie.TabIndex = 7;
+            this.groupPodusmowanie.TabStop = false;
+            this.groupPodusmowanie.Text = "Podsumowanie";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Koszt części:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(84, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Koszt robocizny:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 69);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(85, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Koszt całkowity:";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 94);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(77, 17);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Rabat 10%";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 126);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(90, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Koszt ostateczny:";
+            // 
+            // btnDodajNaprawe
+            // 
+            this.btnDodajNaprawe.Location = new System.Drawing.Point(694, 457);
+            this.btnDodajNaprawe.Name = "btnDodajNaprawe";
+            this.btnDodajNaprawe.Size = new System.Drawing.Size(137, 50);
+            this.btnDodajNaprawe.TabIndex = 6;
+            this.btnDodajNaprawe.Text = "Utwórz naprawę";
+            this.btnDodajNaprawe.UseVisualStyleBackColor = true;
+            // 
+            // dgvCzesci
+            // 
+            this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCzesci.Location = new System.Drawing.Point(18, 19);
+            this.dgvCzesci.Name = "dgvCzesci";
+            this.dgvCzesci.Size = new System.Drawing.Size(655, 295);
+            this.dgvCzesci.TabIndex = 0;
+            // 
+            // btnUsunCzesc
+            // 
+            this.btnUsunCzesc.Location = new System.Drawing.Point(134, 87);
+            this.btnUsunCzesc.Name = "btnUsunCzesc";
+            this.btnUsunCzesc.Size = new System.Drawing.Size(90, 23);
+            this.btnUsunCzesc.TabIndex = 1;
+            this.btnUsunCzesc.Text = "Usun części";
+            this.btnUsunCzesc.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Dodaj części";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(6, 47);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 3;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Ilość części";
+            // 
+            // groupCzesci
+            // 
+            this.groupCzesci.Controls.Add(this.label15);
+            this.groupCzesci.Controls.Add(this.btnUsunCzesc);
+            this.groupCzesci.Controls.Add(this.numericUpDown1);
+            this.groupCzesci.Controls.Add(this.button1);
+            this.groupCzesci.Location = new System.Drawing.Point(18, 331);
+            this.groupCzesci.Name = "groupCzesci";
+            this.groupCzesci.Size = new System.Drawing.Size(233, 134);
+            this.groupCzesci.TabIndex = 5;
+            this.groupCzesci.TabStop = false;
+            this.groupCzesci.Text = "Edycja stanu magazynowego";
             // 
             // Form1
             // 
@@ -456,6 +630,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).EndInit();
             this.GroupDaneKl.ResumeLayout(false);
@@ -466,6 +641,12 @@
             this.GroupDaneNaprawy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObecneNaprawy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZakonczoneNaprawy)).EndInit();
+            this.groupPodusmowanie.ResumeLayout(false);
+            this.groupPodusmowanie.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupCzesci.ResumeLayout(false);
+            this.groupCzesci.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -491,7 +672,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox GroupDaneNaprawy;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox GroupDaneRoweru;
         private System.Windows.Forms.TextBox txtKolor;
@@ -506,6 +686,22 @@
         private System.Windows.Forms.DataGridView dgvZakonczoneNaprawy;
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.DataGridView dgvObecneNaprawy;
+        private System.Windows.Forms.RadioButton radioPrzeglad;
+        private System.Windows.Forms.RadioButton radioNaprawa;
+        private System.Windows.Forms.GroupBox groupPodusmowanie;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnRozliczNaprawe;
+        private System.Windows.Forms.Button btnDodajNaprawe;
+        private System.Windows.Forms.GroupBox groupCzesci;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnUsunCzesc;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgvCzesci;
     }
 }
 

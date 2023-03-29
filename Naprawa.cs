@@ -16,5 +16,10 @@ namespace SerwisRowerowy
         {
             InitializeComponent();
         }
+
+        private void Naprawa_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
