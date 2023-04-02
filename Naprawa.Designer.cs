@@ -39,7 +39,7 @@
             this.lblMarka = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblOpisNaprawy = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.RadioListaUslug = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.radioPrzeglad = new System.Windows.Forms.RadioButton();
             this.radioNaprawa = new System.Windows.Forms.RadioButton();
@@ -174,31 +174,16 @@
             this.lblOpisNaprawy.TabIndex = 2;
             this.lblOpisNaprawy.Text = "00";
             // 
-            // checkedListBox1
+            // RadioListaUslug
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "11",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15"});
-            this.checkedListBox1.Location = new System.Drawing.Point(13, 181);
-            this.checkedListBox1.MultiColumn = true;
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(817, 109);
-            this.checkedListBox1.TabIndex = 2;
+            this.RadioListaUslug.CheckOnClick = true;
+            this.RadioListaUslug.ColumnWidth = 200;
+            this.RadioListaUslug.FormattingEnabled = true;
+            this.RadioListaUslug.Location = new System.Drawing.Point(13, 181);
+            this.RadioListaUslug.MultiColumn = true;
+            this.RadioListaUslug.Name = "RadioListaUslug";
+            this.RadioListaUslug.Size = new System.Drawing.Size(817, 109);
+            this.RadioListaUslug.TabIndex = 2;
             // 
             // label2
             // 
@@ -341,7 +326,7 @@
             this.Controls.Add(this.radioNaprawa);
             this.Controls.Add(this.radioPrzeglad);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.RadioListaUslug);
             this.Controls.Add(this.GroupDaneNaprawy);
             this.Name = "Naprawa";
             this.Text = "Naprawa";
@@ -371,7 +356,7 @@
         private System.Windows.Forms.Label lblMarka;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblOpisNaprawy;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox RadioListaUslug;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton radioPrzeglad;
         private System.Windows.Forms.RadioButton radioNaprawa;

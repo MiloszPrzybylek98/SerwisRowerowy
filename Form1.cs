@@ -42,5 +42,11 @@ namespace SerwisRowerowy
             GroupDaneRoweru.Visible = true;
             btnDodajNowyRower.Visible = false;
         }
+
+        private void btnNowaNaprawa_Click(object sender, EventArgs e)
+        {
+            Naprawa naprawa= new Naprawa();
+            naprawa.Show();
+        }
     }
 }

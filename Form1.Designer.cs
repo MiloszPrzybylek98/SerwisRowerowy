@@ -32,9 +32,16 @@
             System.Windows.Forms.Label label10;
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnDodajNowyRower = new System.Windows.Forms.Button();
+            this.txtFiltrKlienta = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dgvRowery = new System.Windows.Forms.DataGridView();
+            this.dgvKlienci = new System.Windows.Forms.DataGridView();
             this.btnDodajNaprawe = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.GroupDaneNaprawy = new System.Windows.Forms.GroupBox();
+            this.radioDarmowyPrzeglad = new System.Windows.Forms.RadioButton();
+            this.lblDarmowyPrzeglad = new System.Windows.Forms.Label();
             this.radioPrzeglad = new System.Windows.Forms.RadioButton();
             this.radioNaprawa = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,6 +65,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPodusmowanie = new System.Windows.Forms.GroupBox();
+            this.textKosztOstateczny = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -68,6 +76,7 @@
             this.btnDodaj = new System.Windows.Forms.Button();
             this.dgvObecneNaprawy = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupNowaCzesc = new System.Windows.Forms.GroupBox();
             this.groupCzesci = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.btnUsunCzesc = new System.Windows.Forms.Button();
@@ -75,25 +84,19 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dgvCzesci = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupModyfikDanePrac = new System.Windows.Forms.GroupBox();
+            this.groupDodajNowegoPrac = new System.Windows.Forms.GroupBox();
             this.btnModyfikujPracownika = new System.Windows.Forms.Button();
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
-            this.dgvKlienci = new System.Windows.Forms.DataGridView();
-            this.dgvRowery = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtFiltrKlienta = new System.Windows.Forms.TextBox();
-            this.btnDodajNowyRower = new System.Windows.Forms.Button();
-            this.groupNowaCzesc = new System.Windows.Forms.GroupBox();
-            this.groupDodajNowegoPrac = new System.Windows.Forms.GroupBox();
-            this.groupModyfikDanePrac = new System.Windows.Forms.GroupBox();
-            this.textKosztOstateczny = new System.Windows.Forms.TextBox();
-            this.lblDarmowyPrzeglad = new System.Windows.Forms.Label();
-            this.radioDarmowyPrzeglad = new System.Windows.Forms.RadioButton();
+            this.btnNowaNaprawa = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRowery)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKlienci)).BeginInit();
             this.GroupDaneNaprawy.SuspendLayout();
             this.GroupDaneRoweru.SuspendLayout();
             this.GroupDaneKl.SuspendLayout();
@@ -107,8 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvKlienci)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRowery)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -143,6 +144,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnNowaNaprawa);
             this.tabPage3.Controls.Add(this.btnDodajNowyRower);
             this.tabPage3.Controls.Add(this.txtFiltrKlienta);
             this.tabPage3.Controls.Add(this.label16);
@@ -159,6 +161,57 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Zgłoszenie naprawy";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnDodajNowyRower
+            // 
+            this.btnDodajNowyRower.Location = new System.Drawing.Point(188, 145);
+            this.btnDodajNowyRower.Name = "btnDodajNowyRower";
+            this.btnDodajNowyRower.Size = new System.Drawing.Size(136, 23);
+            this.btnDodajNowyRower.TabIndex = 14;
+            this.btnDodajNowyRower.Text = "Dodaj nowy rower";
+            this.btnDodajNowyRower.UseVisualStyleBackColor = true;
+            this.btnDodajNowyRower.Visible = false;
+            this.btnDodajNowyRower.Click += new System.EventHandler(this.btnDodajNowyRower_Click);
+            // 
+            // txtFiltrKlienta
+            // 
+            this.txtFiltrKlienta.Location = new System.Drawing.Point(348, 27);
+            this.txtFiltrKlienta.Name = "txtFiltrKlienta";
+            this.txtFiltrKlienta.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltrKlienta.TabIndex = 10;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(345, 11);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(146, 13);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "Wyszukaj istniejącego klienta";
+            // 
+            // dgvRowery
+            // 
+            this.dgvRowery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRowery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRowery.Location = new System.Drawing.Point(348, 282);
+            this.dgvRowery.MultiSelect = false;
+            this.dgvRowery.Name = "dgvRowery";
+            this.dgvRowery.ReadOnly = true;
+            this.dgvRowery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRowery.Size = new System.Drawing.Size(283, 225);
+            this.dgvRowery.TabIndex = 8;
+            // 
+            // dgvKlienci
+            // 
+            this.dgvKlienci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvKlienci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKlienci.Location = new System.Drawing.Point(348, 53);
+            this.dgvKlienci.MultiSelect = false;
+            this.dgvKlienci.Name = "dgvKlienci";
+            this.dgvKlienci.ReadOnly = true;
+            this.dgvKlienci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvKlienci.Size = new System.Drawing.Size(283, 205);
+            this.dgvKlienci.TabIndex = 7;
             // 
             // btnDodajNaprawe
             // 
@@ -197,6 +250,28 @@
             this.GroupDaneNaprawy.TabIndex = 4;
             this.GroupDaneNaprawy.TabStop = false;
             this.GroupDaneNaprawy.Text = "Parametry naprawy";
+            // 
+            // radioDarmowyPrzeglad
+            // 
+            this.radioDarmowyPrzeglad.AutoSize = true;
+            this.radioDarmowyPrzeglad.Location = new System.Drawing.Point(134, 62);
+            this.radioDarmowyPrzeglad.Name = "radioDarmowyPrzeglad";
+            this.radioDarmowyPrzeglad.Size = new System.Drawing.Size(112, 17);
+            this.radioDarmowyPrzeglad.TabIndex = 12;
+            this.radioDarmowyPrzeglad.TabStop = true;
+            this.radioDarmowyPrzeglad.Text = "Darmowy przegląd";
+            this.radioDarmowyPrzeglad.UseVisualStyleBackColor = true;
+            // 
+            // lblDarmowyPrzeglad
+            // 
+            this.lblDarmowyPrzeglad.AutoSize = true;
+            this.lblDarmowyPrzeglad.BackColor = System.Drawing.Color.Transparent;
+            this.lblDarmowyPrzeglad.ForeColor = System.Drawing.Color.Green;
+            this.lblDarmowyPrzeglad.Location = new System.Drawing.Point(131, 33);
+            this.lblDarmowyPrzeglad.Name = "lblDarmowyPrzeglad";
+            this.lblDarmowyPrzeglad.Size = new System.Drawing.Size(161, 13);
+            this.lblDarmowyPrzeglad.TabIndex = 11;
+            this.lblDarmowyPrzeglad.Text = "Klient posiada darmowy przegląd";
             // 
             // radioPrzeglad
             // 
@@ -439,6 +514,13 @@
             this.groupPodusmowanie.TabStop = false;
             this.groupPodusmowanie.Text = "Podsumowanie";
             // 
+            // textKosztOstateczny
+            // 
+            this.textKosztOstateczny.Location = new System.Drawing.Point(102, 123);
+            this.textKosztOstateczny.Name = "textKosztOstateczny";
+            this.textKosztOstateczny.Size = new System.Drawing.Size(77, 20);
+            this.textKosztOstateczny.TabIndex = 5;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -541,6 +623,15 @@
             this.tabPage2.Text = "Części";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupNowaCzesc
+            // 
+            this.groupNowaCzesc.Location = new System.Drawing.Point(288, 338);
+            this.groupNowaCzesc.Name = "groupNowaCzesc";
+            this.groupNowaCzesc.Size = new System.Drawing.Size(385, 134);
+            this.groupNowaCzesc.TabIndex = 6;
+            this.groupNowaCzesc.TabStop = false;
+            this.groupNowaCzesc.Text = "Dodawanie nowej części";
+            // 
             // groupCzesci
             // 
             this.groupCzesci.Controls.Add(this.label15);
@@ -615,6 +706,24 @@
             this.tabPage4.Text = "Pracownicy";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // groupModyfikDanePrac
+            // 
+            this.groupModyfikDanePrac.Location = new System.Drawing.Point(312, 289);
+            this.groupModyfikDanePrac.Name = "groupModyfikDanePrac";
+            this.groupModyfikDanePrac.Size = new System.Drawing.Size(301, 213);
+            this.groupModyfikDanePrac.TabIndex = 5;
+            this.groupModyfikDanePrac.TabStop = false;
+            this.groupModyfikDanePrac.Text = "Modyfikuj dane pracownika";
+            // 
+            // groupDodajNowegoPrac
+            // 
+            this.groupDodajNowegoPrac.Location = new System.Drawing.Point(18, 289);
+            this.groupDodajNowegoPrac.Name = "groupDodajNowegoPrac";
+            this.groupDodajNowegoPrac.Size = new System.Drawing.Size(258, 213);
+            this.groupDodajNowegoPrac.TabIndex = 4;
+            this.groupDodajNowegoPrac.TabStop = false;
+            this.groupDodajNowegoPrac.Text = "Dodaj nowego pracownika";
+            // 
             // btnModyfikujPracownika
             // 
             this.btnModyfikujPracownika.Location = new System.Drawing.Point(201, 233);
@@ -660,112 +769,15 @@
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
             // 
-            // dgvKlienci
+            // btnNowaNaprawa
             // 
-            this.dgvKlienci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvKlienci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKlienci.Location = new System.Drawing.Point(348, 53);
-            this.dgvKlienci.MultiSelect = false;
-            this.dgvKlienci.Name = "dgvKlienci";
-            this.dgvKlienci.ReadOnly = true;
-            this.dgvKlienci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKlienci.Size = new System.Drawing.Size(283, 205);
-            this.dgvKlienci.TabIndex = 7;
-            // 
-            // dgvRowery
-            // 
-            this.dgvRowery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvRowery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRowery.Location = new System.Drawing.Point(348, 282);
-            this.dgvRowery.MultiSelect = false;
-            this.dgvRowery.Name = "dgvRowery";
-            this.dgvRowery.ReadOnly = true;
-            this.dgvRowery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRowery.Size = new System.Drawing.Size(283, 225);
-            this.dgvRowery.TabIndex = 8;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(345, 11);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(146, 13);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Wyszukaj istniejącego klienta";
-            // 
-            // txtFiltrKlienta
-            // 
-            this.txtFiltrKlienta.Location = new System.Drawing.Point(348, 27);
-            this.txtFiltrKlienta.Name = "txtFiltrKlienta";
-            this.txtFiltrKlienta.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltrKlienta.TabIndex = 10;
-            // 
-            // btnDodajNowyRower
-            // 
-            this.btnDodajNowyRower.Location = new System.Drawing.Point(188, 145);
-            this.btnDodajNowyRower.Name = "btnDodajNowyRower";
-            this.btnDodajNowyRower.Size = new System.Drawing.Size(136, 23);
-            this.btnDodajNowyRower.TabIndex = 14;
-            this.btnDodajNowyRower.Text = "Dodaj nowy rower";
-            this.btnDodajNowyRower.UseVisualStyleBackColor = true;
-            this.btnDodajNowyRower.Visible = false;
-            this.btnDodajNowyRower.Click += new System.EventHandler(this.btnDodajNowyRower_Click);
-            // 
-            // groupNowaCzesc
-            // 
-            this.groupNowaCzesc.Location = new System.Drawing.Point(288, 338);
-            this.groupNowaCzesc.Name = "groupNowaCzesc";
-            this.groupNowaCzesc.Size = new System.Drawing.Size(385, 134);
-            this.groupNowaCzesc.TabIndex = 6;
-            this.groupNowaCzesc.TabStop = false;
-            this.groupNowaCzesc.Text = "Dodawanie nowej części";
-            // 
-            // groupDodajNowegoPrac
-            // 
-            this.groupDodajNowegoPrac.Location = new System.Drawing.Point(18, 289);
-            this.groupDodajNowegoPrac.Name = "groupDodajNowegoPrac";
-            this.groupDodajNowegoPrac.Size = new System.Drawing.Size(258, 213);
-            this.groupDodajNowegoPrac.TabIndex = 4;
-            this.groupDodajNowegoPrac.TabStop = false;
-            this.groupDodajNowegoPrac.Text = "Dodaj nowego pracownika";
-            // 
-            // groupModyfikDanePrac
-            // 
-            this.groupModyfikDanePrac.Location = new System.Drawing.Point(312, 289);
-            this.groupModyfikDanePrac.Name = "groupModyfikDanePrac";
-            this.groupModyfikDanePrac.Size = new System.Drawing.Size(301, 213);
-            this.groupModyfikDanePrac.TabIndex = 5;
-            this.groupModyfikDanePrac.TabStop = false;
-            this.groupModyfikDanePrac.Text = "Modyfikuj dane pracownika";
-            // 
-            // textKosztOstateczny
-            // 
-            this.textKosztOstateczny.Location = new System.Drawing.Point(102, 123);
-            this.textKosztOstateczny.Name = "textKosztOstateczny";
-            this.textKosztOstateczny.Size = new System.Drawing.Size(77, 20);
-            this.textKosztOstateczny.TabIndex = 5;
-            // 
-            // lblDarmowyPrzeglad
-            // 
-            this.lblDarmowyPrzeglad.AutoSize = true;
-            this.lblDarmowyPrzeglad.BackColor = System.Drawing.Color.Transparent;
-            this.lblDarmowyPrzeglad.ForeColor = System.Drawing.Color.Green;
-            this.lblDarmowyPrzeglad.Location = new System.Drawing.Point(131, 33);
-            this.lblDarmowyPrzeglad.Name = "lblDarmowyPrzeglad";
-            this.lblDarmowyPrzeglad.Size = new System.Drawing.Size(161, 13);
-            this.lblDarmowyPrzeglad.TabIndex = 11;
-            this.lblDarmowyPrzeglad.Text = "Klient posiada darmowy przegląd";
-            // 
-            // radioDarmowyPrzeglad
-            // 
-            this.radioDarmowyPrzeglad.AutoSize = true;
-            this.radioDarmowyPrzeglad.Location = new System.Drawing.Point(134, 62);
-            this.radioDarmowyPrzeglad.Name = "radioDarmowyPrzeglad";
-            this.radioDarmowyPrzeglad.Size = new System.Drawing.Size(112, 17);
-            this.radioDarmowyPrzeglad.TabIndex = 12;
-            this.radioDarmowyPrzeglad.TabStop = true;
-            this.radioDarmowyPrzeglad.Text = "Darmowy przegląd";
-            this.radioDarmowyPrzeglad.UseVisualStyleBackColor = true;
+            this.btnNowaNaprawa.Location = new System.Drawing.Point(671, 320);
+            this.btnNowaNaprawa.Name = "btnNowaNaprawa";
+            this.btnNowaNaprawa.Size = new System.Drawing.Size(137, 50);
+            this.btnNowaNaprawa.TabIndex = 15;
+            this.btnNowaNaprawa.Text = "Nowa naprawa";
+            this.btnNowaNaprawa.UseVisualStyleBackColor = true;
+            this.btnNowaNaprawa.Click += new System.EventHandler(this.btnNowaNaprawa_Click);
             // 
             // Form1
             // 
@@ -778,6 +790,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRowery)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKlienci)).EndInit();
             this.GroupDaneNaprawy.ResumeLayout(false);
             this.GroupDaneNaprawy.PerformLayout();
             this.GroupDaneRoweru.ResumeLayout(false);
@@ -797,8 +811,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvKlienci)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRowery)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -865,6 +877,7 @@
         private System.Windows.Forms.TextBox textKosztOstateczny;
         private System.Windows.Forms.RadioButton radioDarmowyPrzeglad;
         private System.Windows.Forms.Label lblDarmowyPrzeglad;
+        private System.Windows.Forms.Button btnNowaNaprawa;
     }
 }
 
