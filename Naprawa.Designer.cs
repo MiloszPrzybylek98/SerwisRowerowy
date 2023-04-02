@@ -30,15 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.GroupDaneNaprawy = new System.Windows.Forms.GroupBox();
-            this.lblOpisNaprawy = new System.Windows.Forms.Label();
-            this.lblMarka = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblModel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblNrSeryjny = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblKolor = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.lblNrSeryjny = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblModel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblMarka = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblOpisNaprawy = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.radioPrzeglad = new System.Windows.Forms.RadioButton();
@@ -46,12 +46,12 @@
             this.dgvCzesci = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupCzesci = new System.Windows.Forms.GroupBox();
-            this.btnDodajCzesci = new System.Windows.Forms.Button();
-            this.btnUsunCzesci = new System.Windows.Forms.Button();
-            this.numIleCzesci = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtFiltr = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numIleCzesci = new System.Windows.Forms.NumericUpDown();
+            this.btnUsunCzesci = new System.Windows.Forms.Button();
+            this.btnDodajCzesci = new System.Windows.Forms.Button();
             this.btnZapiszNaprawe = new System.Windows.Forms.Button();
             this.GroupDaneNaprawy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
@@ -88,53 +88,24 @@
             this.GroupDaneNaprawy.TabStop = false;
             this.GroupDaneNaprawy.Text = "Dane naprawy";
             // 
-            // lblOpisNaprawy
+            // lblKolor
             // 
-            this.lblOpisNaprawy.AutoSize = true;
-            this.lblOpisNaprawy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblOpisNaprawy.Location = new System.Drawing.Point(70, 25);
-            this.lblOpisNaprawy.Name = "lblOpisNaprawy";
-            this.lblOpisNaprawy.Size = new System.Drawing.Size(19, 13);
-            this.lblOpisNaprawy.TabIndex = 2;
-            this.lblOpisNaprawy.Text = "00";
+            this.lblKolor.AutoSize = true;
+            this.lblKolor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblKolor.Location = new System.Drawing.Point(629, 54);
+            this.lblKolor.Name = "lblKolor";
+            this.lblKolor.Size = new System.Drawing.Size(19, 13);
+            this.lblKolor.TabIndex = 10;
+            this.lblKolor.Text = "00";
             // 
-            // lblMarka
+            // label9
             // 
-            this.lblMarka.AutoSize = true;
-            this.lblMarka.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblMarka.Location = new System.Drawing.Point(58, 54);
-            this.lblMarka.Name = "lblMarka";
-            this.lblMarka.Size = new System.Drawing.Size(19, 13);
-            this.lblMarka.TabIndex = 4;
-            this.lblMarka.Text = "00";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Marka:";
-            // 
-            // lblModel
-            // 
-            this.lblModel.AutoSize = true;
-            this.lblModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblModel.Location = new System.Drawing.Point(239, 54);
-            this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(19, 13);
-            this.lblModel.TabIndex = 6;
-            this.lblModel.Text = "00";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(199, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Model:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(589, 54);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Kolor:";
             // 
             // lblNrSeryjny
             // 
@@ -155,24 +126,53 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Nr seryjny:";
             // 
-            // lblKolor
+            // lblModel
             // 
-            this.lblKolor.AutoSize = true;
-            this.lblKolor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblKolor.Location = new System.Drawing.Point(629, 54);
-            this.lblKolor.Name = "lblKolor";
-            this.lblKolor.Size = new System.Drawing.Size(19, 13);
-            this.lblKolor.TabIndex = 10;
-            this.lblKolor.Text = "00";
+            this.lblModel.AutoSize = true;
+            this.lblModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblModel.Location = new System.Drawing.Point(239, 54);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(19, 13);
+            this.lblModel.TabIndex = 6;
+            this.lblModel.Text = "00";
             // 
-            // label9
+            // label5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(589, 54);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 13);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Kolor:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(199, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Model:";
+            // 
+            // lblMarka
+            // 
+            this.lblMarka.AutoSize = true;
+            this.lblMarka.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblMarka.Location = new System.Drawing.Point(58, 54);
+            this.lblMarka.Name = "lblMarka";
+            this.lblMarka.Size = new System.Drawing.Size(19, 13);
+            this.lblMarka.TabIndex = 4;
+            this.lblMarka.Text = "00";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Marka:";
+            // 
+            // lblOpisNaprawy
+            // 
+            this.lblOpisNaprawy.AutoSize = true;
+            this.lblOpisNaprawy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblOpisNaprawy.Location = new System.Drawing.Point(70, 25);
+            this.lblOpisNaprawy.Name = "lblOpisNaprawy";
+            this.lblOpisNaprawy.Size = new System.Drawing.Size(19, 13);
+            this.lblOpisNaprawy.TabIndex = 2;
+            this.lblOpisNaprawy.Text = "00";
             // 
             // checkedListBox1
             // 
@@ -233,17 +233,25 @@
             // 
             // dgvCzesci
             // 
+            this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCzesci.Location = new System.Drawing.Point(9, 70);
+            this.dgvCzesci.MultiSelect = false;
             this.dgvCzesci.Name = "dgvCzesci";
+            this.dgvCzesci.ReadOnly = true;
+            this.dgvCzesci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCzesci.Size = new System.Drawing.Size(305, 204);
             this.dgvCzesci.TabIndex = 14;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(504, 70);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(305, 204);
             this.dataGridView1.TabIndex = 15;
             // 
@@ -264,39 +272,12 @@
             this.groupCzesci.TabStop = false;
             this.groupCzesci.Text = "Cześci do naprawy";
             // 
-            // btnDodajCzesci
+            // txtFiltr
             // 
-            this.btnDodajCzesci.Location = new System.Drawing.Point(390, 130);
-            this.btnDodajCzesci.Name = "btnDodajCzesci";
-            this.btnDodajCzesci.Size = new System.Drawing.Size(48, 23);
-            this.btnDodajCzesci.TabIndex = 16;
-            this.btnDodajCzesci.Text = ">>>";
-            this.btnDodajCzesci.UseVisualStyleBackColor = true;
-            // 
-            // btnUsunCzesci
-            // 
-            this.btnUsunCzesci.Location = new System.Drawing.Point(390, 159);
-            this.btnUsunCzesci.Name = "btnUsunCzesci";
-            this.btnUsunCzesci.Size = new System.Drawing.Size(48, 23);
-            this.btnUsunCzesci.TabIndex = 17;
-            this.btnUsunCzesci.Text = "<<<";
-            this.btnUsunCzesci.UseVisualStyleBackColor = true;
-            // 
-            // numIleCzesci
-            // 
-            this.numIleCzesci.Location = new System.Drawing.Point(348, 82);
-            this.numIleCzesci.Name = "numIleCzesci";
-            this.numIleCzesci.Size = new System.Drawing.Size(120, 20);
-            this.numIleCzesci.TabIndex = 18;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(345, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Ile części";
+            this.txtFiltr.Location = new System.Drawing.Point(9, 44);
+            this.txtFiltr.Name = "txtFiltr";
+            this.txtFiltr.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltr.TabIndex = 22;
             // 
             // label6
             // 
@@ -307,16 +288,43 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Wyszukaj część";
             // 
-            // txtFiltr
+            // label4
             // 
-            this.txtFiltr.Location = new System.Drawing.Point(9, 44);
-            this.txtFiltr.Name = "txtFiltr";
-            this.txtFiltr.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltr.TabIndex = 22;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(345, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Ile części";
+            // 
+            // numIleCzesci
+            // 
+            this.numIleCzesci.Location = new System.Drawing.Point(348, 82);
+            this.numIleCzesci.Name = "numIleCzesci";
+            this.numIleCzesci.Size = new System.Drawing.Size(120, 20);
+            this.numIleCzesci.TabIndex = 18;
+            // 
+            // btnUsunCzesci
+            // 
+            this.btnUsunCzesci.Location = new System.Drawing.Point(390, 159);
+            this.btnUsunCzesci.Name = "btnUsunCzesci";
+            this.btnUsunCzesci.Size = new System.Drawing.Size(48, 23);
+            this.btnUsunCzesci.TabIndex = 17;
+            this.btnUsunCzesci.Text = "<<<";
+            this.btnUsunCzesci.UseVisualStyleBackColor = true;
+            // 
+            // btnDodajCzesci
+            // 
+            this.btnDodajCzesci.Location = new System.Drawing.Point(390, 130);
+            this.btnDodajCzesci.Name = "btnDodajCzesci";
+            this.btnDodajCzesci.Size = new System.Drawing.Size(48, 23);
+            this.btnDodajCzesci.TabIndex = 16;
+            this.btnDodajCzesci.Text = ">>>";
+            this.btnDodajCzesci.UseVisualStyleBackColor = true;
             // 
             // btnZapiszNaprawe
             // 
-            this.btnZapiszNaprawe.Location = new System.Drawing.Point(13, 597);
+            this.btnZapiszNaprawe.Location = new System.Drawing.Point(21, 597);
             this.btnZapiszNaprawe.Name = "btnZapiszNaprawe";
             this.btnZapiszNaprawe.Size = new System.Drawing.Size(193, 32);
             this.btnZapiszNaprawe.TabIndex = 17;

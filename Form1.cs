@@ -29,5 +29,18 @@ namespace SerwisRowerowy
 
             }
         }
+
+        private void btnDodajNaprawe_Click(object sender, EventArgs e)
+        {
+            
+            btnDodajNowyRower.Visible = true;
+            GroupDaneRoweru.Visible = false;
+        }
+
+        private void btnDodajNowyRower_Click(object sender, EventArgs e)
+        {
+            GroupDaneRoweru.Visible = true;
+            btnDodajNowyRower.Visible = false;
+        }
     }
 }
