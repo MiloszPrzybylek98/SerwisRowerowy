@@ -54,7 +54,7 @@ namespace SerwisRowerowy
 
             string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
-            SqlDataAdapter adapter = new SqlDataAdapter("Select * from Uslugi", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter("Select * from uslugi", connection);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 

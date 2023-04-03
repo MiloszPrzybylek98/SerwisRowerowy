@@ -32,6 +32,7 @@
             System.Windows.Forms.Label label10;
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnNowaNaprawa = new System.Windows.Forms.Button();
             this.btnDodajNowyRower = new System.Windows.Forms.Button();
             this.txtFiltrKlienta = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -90,7 +91,6 @@
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
-            this.btnNowaNaprawa = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -162,6 +162,16 @@
             this.tabPage3.Text = "Zgłoszenie naprawy";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnNowaNaprawa
+            // 
+            this.btnNowaNaprawa.Location = new System.Drawing.Point(671, 320);
+            this.btnNowaNaprawa.Name = "btnNowaNaprawa";
+            this.btnNowaNaprawa.Size = new System.Drawing.Size(137, 50);
+            this.btnNowaNaprawa.TabIndex = 15;
+            this.btnNowaNaprawa.Text = "Nowa naprawa";
+            this.btnNowaNaprawa.UseVisualStyleBackColor = true;
+            this.btnNowaNaprawa.Click += new System.EventHandler(this.btnNowaNaprawa_Click);
+            // 
             // btnDodajNowyRower
             // 
             this.btnDodajNowyRower.Location = new System.Drawing.Point(188, 145);
@@ -179,6 +189,7 @@
             this.txtFiltrKlienta.Name = "txtFiltrKlienta";
             this.txtFiltrKlienta.Size = new System.Drawing.Size(100, 20);
             this.txtFiltrKlienta.TabIndex = 10;
+            this.txtFiltrKlienta.TextChanged += new System.EventHandler(this.txtFiltrKlienta_TextChanged);
             // 
             // label16
             // 
@@ -768,16 +779,6 @@
             this.dgvPracownik.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
-            // 
-            // btnNowaNaprawa
-            // 
-            this.btnNowaNaprawa.Location = new System.Drawing.Point(671, 320);
-            this.btnNowaNaprawa.Name = "btnNowaNaprawa";
-            this.btnNowaNaprawa.Size = new System.Drawing.Size(137, 50);
-            this.btnNowaNaprawa.TabIndex = 15;
-            this.btnNowaNaprawa.Text = "Nowa naprawa";
-            this.btnNowaNaprawa.UseVisualStyleBackColor = true;
-            this.btnNowaNaprawa.Click += new System.EventHandler(this.btnNowaNaprawa_Click);
             // 
             // Form1
             // 

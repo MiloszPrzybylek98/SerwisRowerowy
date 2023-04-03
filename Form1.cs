@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,19 @@ namespace SerwisRowerowy
         {
             Naprawa naprawa= new Naprawa();
             naprawa.Show();
+        }
+
+        private void txtFiltrKlienta_TextChanged(object sender, EventArgs e)
+        {
+            string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataAdapter adapter = new SqlDataAdapter("Select * from klienci", connection);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            dgvKlienci.DataSource = dt;
+            
+
+            
         }
     }
 }
