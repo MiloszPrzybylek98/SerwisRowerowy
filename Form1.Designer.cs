@@ -639,6 +639,7 @@
             this.dgvObecneNaprawy.MultiSelect = false;
             this.dgvObecneNaprawy.Name = "dgvObecneNaprawy";
             this.dgvObecneNaprawy.ReadOnly = true;
+            this.dgvObecneNaprawy.RowHeadersVisible = false;
             this.dgvObecneNaprawy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvObecneNaprawy.Size = new System.Drawing.Size(597, 150);
             this.dgvObecneNaprawy.TabIndex = 0;
