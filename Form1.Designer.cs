@@ -637,13 +637,12 @@
             // 
             // btnOtworzNaprawe
             // 
-            this.btnOtworzNaprawe.Location = new System.Drawing.Point(19, 217);
+            this.btnOtworzNaprawe.Location = new System.Drawing.Point(22, 217);
             this.btnOtworzNaprawe.Name = "btnOtworzNaprawe";
-            this.btnOtworzNaprawe.Size = new System.Drawing.Size(151, 43);
-            this.btnOtworzNaprawe.TabIndex = 3;
+            this.btnOtworzNaprawe.Size = new System.Drawing.Size(124, 36);
+            this.btnOtworzNaprawe.TabIndex = 8;
             this.btnOtworzNaprawe.Text = "Otwórz wybraną naprawę";
-            this.btnOtworzNaprawe.UseVisualStyleBackColor = true;
-            this.btnOtworzNaprawe.Click += new System.EventHandler(this.btnDodaj_Click);
+            this.btnOtworzNaprawe.Click += new System.EventHandler(this.btnOtworzNaprawe_Click);
             // 
             // dgvObecneNaprawy
             // 
