@@ -35,7 +35,6 @@
             this.btnNowaNaprawa = new System.Windows.Forms.Button();
             this.btnDodajNowyRower = new System.Windows.Forms.Button();
             this.txtFiltrKlienta = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.dgvRowery = new System.Windows.Forms.DataGridView();
             this.dgvKlienci = new System.Windows.Forms.DataGridView();
             this.btnDodajNaprawe = new System.Windows.Forms.Button();
@@ -91,6 +90,8 @@
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
+            this.groupWyszukiwanieKlienta = new System.Windows.Forms.GroupBox();
+            this.btnCzyszczenieOkienek = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -110,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).BeginInit();
+            this.groupWyszukiwanieKlienta.SuspendLayout();
             this.SuspendLayout();
             // 
             // label9
@@ -144,12 +146,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupWyszukiwanieKlienta);
             this.tabPage3.Controls.Add(this.btnNowaNaprawa);
             this.tabPage3.Controls.Add(this.btnDodajNowyRower);
-            this.tabPage3.Controls.Add(this.txtFiltrKlienta);
-            this.tabPage3.Controls.Add(this.label16);
-            this.tabPage3.Controls.Add(this.dgvRowery);
-            this.tabPage3.Controls.Add(this.dgvKlienci);
             this.tabPage3.Controls.Add(this.btnDodajNaprawe);
             this.tabPage3.Controls.Add(this.listBox1);
             this.tabPage3.Controls.Add(this.GroupDaneNaprawy);
@@ -185,44 +184,41 @@
             // 
             // txtFiltrKlienta
             // 
-            this.txtFiltrKlienta.Location = new System.Drawing.Point(348, 27);
+            this.txtFiltrKlienta.Location = new System.Drawing.Point(16, 31);
             this.txtFiltrKlienta.Name = "txtFiltrKlienta";
             this.txtFiltrKlienta.Size = new System.Drawing.Size(100, 20);
             this.txtFiltrKlienta.TabIndex = 10;
             this.txtFiltrKlienta.TextChanged += new System.EventHandler(this.txtFiltrKlienta_TextChanged);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(345, 11);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(146, 13);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Wyszukaj istniejącego klienta";
-            // 
             // dgvRowery
             // 
             this.dgvRowery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRowery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRowery.Location = new System.Drawing.Point(348, 282);
+            this.dgvRowery.Location = new System.Drawing.Point(16, 273);
             this.dgvRowery.MultiSelect = false;
             this.dgvRowery.Name = "dgvRowery";
             this.dgvRowery.ReadOnly = true;
             this.dgvRowery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRowery.Size = new System.Drawing.Size(283, 225);
+            this.dgvRowery.Size = new System.Drawing.Size(240, 199);
             this.dgvRowery.TabIndex = 8;
             // 
             // dgvKlienci
             // 
+            this.dgvKlienci.AllowUserToAddRows = false;
+            this.dgvKlienci.AllowUserToDeleteRows = false;
+            this.dgvKlienci.AllowUserToResizeColumns = false;
+            this.dgvKlienci.AllowUserToResizeRows = false;
             this.dgvKlienci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvKlienci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKlienci.Location = new System.Drawing.Point(348, 53);
+            this.dgvKlienci.Location = new System.Drawing.Point(16, 58);
             this.dgvKlienci.MultiSelect = false;
             this.dgvKlienci.Name = "dgvKlienci";
             this.dgvKlienci.ReadOnly = true;
+            this.dgvKlienci.RowHeadersVisible = false;
             this.dgvKlienci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKlienci.Size = new System.Drawing.Size(283, 205);
+            this.dgvKlienci.Size = new System.Drawing.Size(240, 190);
             this.dgvKlienci.TabIndex = 7;
+            this.dgvKlienci.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKlienci_CellClick);
             // 
             // btnDodajNaprawe
             // 
@@ -241,7 +237,7 @@
             "• Przegląd rowerowy: 150 PLN",
             "• Hamulce: 20-80 PLN",
             "• "});
-            this.listBox1.Location = new System.Drawing.Point(650, 33);
+            this.listBox1.Location = new System.Drawing.Point(671, 19);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(181, 225);
             this.listBox1.TabIndex = 5;
@@ -426,6 +422,7 @@
             // 
             // GroupDaneKl
             // 
+            this.GroupDaneKl.Controls.Add(this.btnCzyszczenieOkienek);
             this.GroupDaneKl.Controls.Add(this.txtNumerTelKl);
             this.GroupDaneKl.Controls.Add(this.label3);
             this.GroupDaneKl.Controls.Add(this.txtNazwiskoKl);
@@ -780,6 +777,28 @@
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
             // 
+            // groupWyszukiwanieKlienta
+            // 
+            this.groupWyszukiwanieKlienta.Controls.Add(this.dgvRowery);
+            this.groupWyszukiwanieKlienta.Controls.Add(this.dgvKlienci);
+            this.groupWyszukiwanieKlienta.Controls.Add(this.txtFiltrKlienta);
+            this.groupWyszukiwanieKlienta.Location = new System.Drawing.Point(360, 19);
+            this.groupWyszukiwanieKlienta.Name = "groupWyszukiwanieKlienta";
+            this.groupWyszukiwanieKlienta.Size = new System.Drawing.Size(275, 488);
+            this.groupWyszukiwanieKlienta.TabIndex = 16;
+            this.groupWyszukiwanieKlienta.TabStop = false;
+            this.groupWyszukiwanieKlienta.Text = "Wyszukaj klienta";
+            // 
+            // btnCzyszczenieOkienek
+            // 
+            this.btnCzyszczenieOkienek.Location = new System.Drawing.Point(6, 189);
+            this.btnCzyszczenieOkienek.Name = "btnCzyszczenieOkienek";
+            this.btnCzyszczenieOkienek.Size = new System.Drawing.Size(115, 23);
+            this.btnCzyszczenieOkienek.TabIndex = 17;
+            this.btnCzyszczenieOkienek.Text = "Wyczyść dane klienta";
+            this.btnCzyszczenieOkienek.UseVisualStyleBackColor = true;
+            this.btnCzyszczenieOkienek.Click += new System.EventHandler(this.btnCzyszczenieOkienek_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -788,9 +807,9 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Serwis";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRowery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKlienci)).EndInit();
             this.GroupDaneNaprawy.ResumeLayout(false);
@@ -812,6 +831,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).EndInit();
+            this.groupWyszukiwanieKlienta.ResumeLayout(false);
+            this.groupWyszukiwanieKlienta.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -868,7 +889,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvCzesci;
         private System.Windows.Forms.TextBox txtFiltrKlienta;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView dgvRowery;
         private System.Windows.Forms.DataGridView dgvKlienci;
         private System.Windows.Forms.Button btnDodajNowyRower;
@@ -879,6 +899,8 @@
         private System.Windows.Forms.RadioButton radioDarmowyPrzeglad;
         private System.Windows.Forms.Label lblDarmowyPrzeglad;
         private System.Windows.Forms.Button btnNowaNaprawa;
+        private System.Windows.Forms.GroupBox groupWyszukiwanieKlienta;
+        private System.Windows.Forms.Button btnCzyszczenieOkienek;
     }
 }
 
