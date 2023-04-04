@@ -261,7 +261,8 @@ namespace SerwisRowerowy
 
         private void btnOtworzNaprawe_Click(object sender, EventArgs e)
         {
-            Naprawa naprawa = new Naprawa();
+            int id_naprawy = 0;
+            Naprawa naprawa = new Naprawa(id_naprawy);
             naprawa.Show();
         }
     }

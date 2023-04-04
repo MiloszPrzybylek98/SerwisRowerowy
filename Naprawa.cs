@@ -14,9 +14,16 @@ namespace SerwisRowerowy
 {
     public partial class Naprawa : Form
     {
+        private int _id_naprawy;
+        public Naprawa(int id_naprawy)
+        {
+            InitializeComponent();
+            _id_naprawy = id_naprawy;
+        }
         public Naprawa()
         {
             InitializeComponent();
+            
         }
 
         private void Naprawa_Load(object sender, EventArgs e)
