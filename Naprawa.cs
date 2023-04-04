@@ -98,13 +98,29 @@ namespace SerwisRowerowy
             //    reader.Close();
             //}
 
-            
+            //OleDbDataAdapter adp = new OleDbDataAdapter();
+            //OleDbConnection con = new OleDbConnection();
 
-            //string connectionString = "Provider=SQLOLEDB;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+            //DataTable dt = new DataTable();
+
+            //con.ConnectionString = "Provider=SQLOLEDB;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+
+            //adp = new OleDbDataAdapter("SELECT nazwa FROM uslugi", con);
+            //adp.Fill(dt);
+
+            //foreach (DataRow row in dt.Rows)
+            //{
+            //    RadioListaUslug.Items.Add(row["nazwa"]);
+            //}
+
+            //OleDbConnection connection = new OleDbConnection();
+            //OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+            //string connectionString = "Provider=SQLNCLI10;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+
             //string query = "SELECT nazwa FROM uslugi";
 
-            //OleDbConnection connection = null;
-            //OleDbDataAdapter adapter = null;
+
             //DataTable dataTable = new DataTable();
 
             //try
@@ -117,7 +133,7 @@ namespace SerwisRowerowy
 
             //    foreach (DataRow row in dataTable.Rows)
             //    {
-            //        RadioListaUslug.Items.Add(row["nazwa"].ToString());
+            //        RadioListaUslug.Items.Add(row["nazwa"]);
             //    }
             //}
             //catch (Exception ex)
@@ -166,6 +182,11 @@ namespace SerwisRowerowy
                 dgvCzesci.Columns["id_czesci"].Visible = false;
 
             }
+        }
+
+        private void btnDodajCzesci_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

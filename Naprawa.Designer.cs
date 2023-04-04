@@ -83,9 +83,9 @@
             this.GroupDaneNaprawy.Controls.Add(this.lblOpisNaprawy);
             this.GroupDaneNaprawy.Controls.Add(this.label1);
             this.GroupDaneNaprawy.Location = new System.Drawing.Point(16, 15);
-            this.GroupDaneNaprawy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneNaprawy.Margin = new System.Windows.Forms.Padding(4);
             this.GroupDaneNaprawy.Name = "GroupDaneNaprawy";
-            this.GroupDaneNaprawy.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneNaprawy.Padding = new System.Windows.Forms.Padding(4);
             this.GroupDaneNaprawy.Size = new System.Drawing.Size(1091, 123);
             this.GroupDaneNaprawy.TabIndex = 1;
             this.GroupDaneNaprawy.TabStop = false;
@@ -192,7 +192,7 @@
             this.RadioListaUslug.ColumnWidth = 200;
             this.RadioListaUslug.FormattingEnabled = true;
             this.RadioListaUslug.Location = new System.Drawing.Point(17, 223);
-            this.RadioListaUslug.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RadioListaUslug.Margin = new System.Windows.Forms.Padding(4);
             this.RadioListaUslug.MultiColumn = true;
             this.RadioListaUslug.Name = "RadioListaUslug";
             this.RadioListaUslug.Size = new System.Drawing.Size(1088, 123);
@@ -212,7 +212,7 @@
             // 
             this.radioPrzeglad.AutoSize = true;
             this.radioPrzeglad.Location = new System.Drawing.Point(16, 161);
-            this.radioPrzeglad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioPrzeglad.Margin = new System.Windows.Forms.Padding(4);
             this.radioPrzeglad.Name = "radioPrzeglad";
             this.radioPrzeglad.Size = new System.Drawing.Size(79, 20);
             this.radioPrzeglad.TabIndex = 12;
@@ -224,7 +224,7 @@
             // 
             this.radioNaprawa.AutoSize = true;
             this.radioNaprawa.Location = new System.Drawing.Point(155, 161);
-            this.radioNaprawa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioNaprawa.Margin = new System.Windows.Forms.Padding(4);
             this.radioNaprawa.Name = "radioNaprawa";
             this.radioNaprawa.Size = new System.Drawing.Size(80, 20);
             this.radioNaprawa.TabIndex = 13;
@@ -237,7 +237,7 @@
             this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCzesci.Location = new System.Drawing.Point(12, 86);
-            this.dgvCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCzesci.MultiSelect = false;
             this.dgvCzesci.Name = "dgvCzesci";
             this.dgvCzesci.ReadOnly = true;
@@ -250,7 +250,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(672, 86);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -269,9 +269,9 @@
             this.groupCzesci.Controls.Add(this.dgvCzesci);
             this.groupCzesci.Controls.Add(this.dataGridView1);
             this.groupCzesci.Location = new System.Drawing.Point(16, 378);
-            this.groupCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.groupCzesci.Name = "groupCzesci";
-            this.groupCzesci.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupCzesci.Padding = new System.Windows.Forms.Padding(4);
             this.groupCzesci.Size = new System.Drawing.Size(1091, 350);
             this.groupCzesci.TabIndex = 16;
             this.groupCzesci.TabStop = false;
@@ -280,7 +280,7 @@
             // txtFiltr
             // 
             this.txtFiltr.Location = new System.Drawing.Point(12, 54);
-            this.txtFiltr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFiltr.Margin = new System.Windows.Forms.Padding(4);
             this.txtFiltr.Name = "txtFiltr";
             this.txtFiltr.Size = new System.Drawing.Size(132, 22);
             this.txtFiltr.TabIndex = 22;
@@ -309,7 +309,7 @@
             // numIleCzesci
             // 
             this.numIleCzesci.Location = new System.Drawing.Point(464, 101);
-            this.numIleCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numIleCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.numIleCzesci.Name = "numIleCzesci";
             this.numIleCzesci.Size = new System.Drawing.Size(160, 22);
             this.numIleCzesci.TabIndex = 18;
@@ -317,7 +317,7 @@
             // btnUsunCzesci
             // 
             this.btnUsunCzesci.Location = new System.Drawing.Point(520, 196);
-            this.btnUsunCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUsunCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsunCzesci.Name = "btnUsunCzesci";
             this.btnUsunCzesci.Size = new System.Drawing.Size(64, 28);
             this.btnUsunCzesci.TabIndex = 17;
@@ -327,17 +327,18 @@
             // btnDodajCzesci
             // 
             this.btnDodajCzesci.Location = new System.Drawing.Point(520, 160);
-            this.btnDodajCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDodajCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.btnDodajCzesci.Name = "btnDodajCzesci";
             this.btnDodajCzesci.Size = new System.Drawing.Size(64, 28);
             this.btnDodajCzesci.TabIndex = 16;
             this.btnDodajCzesci.Text = ">>>";
             this.btnDodajCzesci.UseVisualStyleBackColor = true;
+            this.btnDodajCzesci.Click += new System.EventHandler(this.btnDodajCzesci_Click);
             // 
             // btnZapiszNaprawe
             // 
             this.btnZapiszNaprawe.Location = new System.Drawing.Point(28, 735);
-            this.btnZapiszNaprawe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnZapiszNaprawe.Margin = new System.Windows.Forms.Padding(4);
             this.btnZapiszNaprawe.Name = "btnZapiszNaprawe";
             this.btnZapiszNaprawe.Size = new System.Drawing.Size(257, 39);
             this.btnZapiszNaprawe.TabIndex = 17;
@@ -356,7 +357,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.RadioListaUslug);
             this.Controls.Add(this.GroupDaneNaprawy);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Naprawa";
             this.Text = "Naprawa";
             this.Load += new System.EventHandler(this.Naprawa_Load);
