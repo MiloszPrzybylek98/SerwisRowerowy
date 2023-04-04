@@ -79,6 +79,14 @@
             this.dgvObecneNaprawy = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupNowaCzesc = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtCzesciCena = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtCzesciProducent = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtCzesciNrKatalogowy = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtCzesciNazwa = new System.Windows.Forms.TextBox();
             this.groupCzesci = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.btnUsunCzesc = new System.Windows.Forms.Button();
@@ -92,14 +100,6 @@
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
-            this.txtCzesciNazwa = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtCzesciNrKatalogowy = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtCzesciProducent = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtCzesciCena = new System.Windows.Forms.TextBox();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -150,7 +150,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(17, 16);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1177, 692);
@@ -167,7 +167,7 @@
             this.tabPage3.Controls.Add(this.GroupDaneRoweru);
             this.tabPage3.Controls.Add(this.GroupDaneKl);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1169, 663);
             this.tabPage3.TabIndex = 2;
@@ -180,9 +180,9 @@
             this.groupWyszukiwanieKlienta.Controls.Add(this.dgvKlienci);
             this.groupWyszukiwanieKlienta.Controls.Add(this.txtFiltrKlienta);
             this.groupWyszukiwanieKlienta.Location = new System.Drawing.Point(460, 23);
-            this.groupWyszukiwanieKlienta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupWyszukiwanieKlienta.Margin = new System.Windows.Forms.Padding(4);
             this.groupWyszukiwanieKlienta.Name = "groupWyszukiwanieKlienta";
-            this.groupWyszukiwanieKlienta.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupWyszukiwanieKlienta.Padding = new System.Windows.Forms.Padding(4);
             this.groupWyszukiwanieKlienta.Size = new System.Drawing.Size(425, 601);
             this.groupWyszukiwanieKlienta.TabIndex = 16;
             this.groupWyszukiwanieKlienta.TabStop = false;
@@ -195,7 +195,7 @@
             this.dgvRowery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRowery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRowery.Location = new System.Drawing.Point(8, 336);
-            this.dgvRowery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvRowery.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRowery.MultiSelect = false;
             this.dgvRowery.Name = "dgvRowery";
             this.dgvRowery.ReadOnly = true;
@@ -213,7 +213,7 @@
             this.dgvKlienci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvKlienci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKlienci.Location = new System.Drawing.Point(8, 71);
-            this.dgvKlienci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvKlienci.Margin = new System.Windows.Forms.Padding(4);
             this.dgvKlienci.MultiSelect = false;
             this.dgvKlienci.Name = "dgvKlienci";
             this.dgvKlienci.ReadOnly = true;
@@ -226,7 +226,7 @@
             // txtFiltrKlienta
             // 
             this.txtFiltrKlienta.Location = new System.Drawing.Point(21, 38);
-            this.txtFiltrKlienta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFiltrKlienta.Margin = new System.Windows.Forms.Padding(4);
             this.txtFiltrKlienta.Name = "txtFiltrKlienta";
             this.txtFiltrKlienta.Size = new System.Drawing.Size(132, 22);
             this.txtFiltrKlienta.TabIndex = 10;
@@ -235,7 +235,7 @@
             // btnNowaNaprawa
             // 
             this.btnNowaNaprawa.Location = new System.Drawing.Point(953, 379);
-            this.btnNowaNaprawa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNowaNaprawa.Margin = new System.Windows.Forms.Padding(4);
             this.btnNowaNaprawa.Name = "btnNowaNaprawa";
             this.btnNowaNaprawa.Size = new System.Drawing.Size(183, 62);
             this.btnNowaNaprawa.TabIndex = 15;
@@ -246,7 +246,7 @@
             // btnDodajNowyRower
             // 
             this.btnDodajNowyRower.Location = new System.Drawing.Point(251, 178);
-            this.btnDodajNowyRower.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDodajNowyRower.Margin = new System.Windows.Forms.Padding(4);
             this.btnDodajNowyRower.Name = "btnDodajNowyRower";
             this.btnDodajNowyRower.Size = new System.Drawing.Size(181, 28);
             this.btnDodajNowyRower.TabIndex = 14;
@@ -258,7 +258,7 @@
             // btnDodajNaprawe
             // 
             this.btnDodajNaprawe.Location = new System.Drawing.Point(953, 514);
-            this.btnDodajNaprawe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDodajNaprawe.Margin = new System.Windows.Forms.Padding(4);
             this.btnDodajNaprawe.Name = "btnDodajNaprawe";
             this.btnDodajNaprawe.Size = new System.Drawing.Size(183, 62);
             this.btnDodajNaprawe.TabIndex = 6;
@@ -275,7 +275,7 @@
             "• Hamulce: 20-80 PLN",
             "• "});
             this.listBox1.Location = new System.Drawing.Point(911, 23);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(224, 276);
             this.listBox1.TabIndex = 5;
@@ -290,9 +290,9 @@
             this.GroupDaneNaprawy.Controls.Add(this.textBox1);
             this.GroupDaneNaprawy.Controls.Add(this.label6);
             this.GroupDaneNaprawy.Location = new System.Drawing.Point(23, 338);
-            this.GroupDaneNaprawy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneNaprawy.Margin = new System.Windows.Forms.Padding(4);
             this.GroupDaneNaprawy.Name = "GroupDaneNaprawy";
-            this.GroupDaneNaprawy.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneNaprawy.Padding = new System.Windows.Forms.Padding(4);
             this.GroupDaneNaprawy.Size = new System.Drawing.Size(409, 286);
             this.GroupDaneNaprawy.TabIndex = 4;
             this.GroupDaneNaprawy.TabStop = false;
@@ -302,7 +302,7 @@
             // 
             this.radioDarmowyPrzeglad.AutoSize = true;
             this.radioDarmowyPrzeglad.Location = new System.Drawing.Point(179, 76);
-            this.radioDarmowyPrzeglad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioDarmowyPrzeglad.Margin = new System.Windows.Forms.Padding(4);
             this.radioDarmowyPrzeglad.Name = "radioDarmowyPrzeglad";
             this.radioDarmowyPrzeglad.Size = new System.Drawing.Size(138, 20);
             this.radioDarmowyPrzeglad.TabIndex = 12;
@@ -326,7 +326,7 @@
             // 
             this.radioPrzeglad.AutoSize = true;
             this.radioPrzeglad.Location = new System.Drawing.Point(35, 76);
-            this.radioPrzeglad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioPrzeglad.Margin = new System.Windows.Forms.Padding(4);
             this.radioPrzeglad.Name = "radioPrzeglad";
             this.radioPrzeglad.Size = new System.Drawing.Size(79, 20);
             this.radioPrzeglad.TabIndex = 10;
@@ -338,7 +338,7 @@
             // 
             this.radioNaprawa.AutoSize = true;
             this.radioNaprawa.Location = new System.Drawing.Point(35, 117);
-            this.radioNaprawa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioNaprawa.Margin = new System.Windows.Forms.Padding(4);
             this.radioNaprawa.Name = "radioNaprawa";
             this.radioNaprawa.Size = new System.Drawing.Size(80, 20);
             this.radioNaprawa.TabIndex = 9;
@@ -358,7 +358,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(35, 176);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(343, 77);
@@ -384,9 +384,9 @@
             this.GroupDaneRoweru.Controls.Add(this.txtModel);
             this.GroupDaneRoweru.Controls.Add(this.label5);
             this.GroupDaneRoweru.Location = new System.Drawing.Point(251, 23);
-            this.GroupDaneRoweru.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneRoweru.Margin = new System.Windows.Forms.Padding(4);
             this.GroupDaneRoweru.Name = "GroupDaneRoweru";
-            this.GroupDaneRoweru.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneRoweru.Padding = new System.Windows.Forms.Padding(4);
             this.GroupDaneRoweru.Size = new System.Drawing.Size(181, 308);
             this.GroupDaneRoweru.TabIndex = 3;
             this.GroupDaneRoweru.TabStop = false;
@@ -471,9 +471,9 @@
             this.GroupDaneKl.Controls.Add(this.txtImieKl);
             this.GroupDaneKl.Controls.Add(this.label1);
             this.GroupDaneKl.Location = new System.Drawing.Point(23, 23);
-            this.GroupDaneKl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneKl.Margin = new System.Windows.Forms.Padding(4);
             this.GroupDaneKl.Name = "GroupDaneKl";
-            this.GroupDaneKl.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupDaneKl.Padding = new System.Windows.Forms.Padding(4);
             this.GroupDaneKl.Size = new System.Drawing.Size(180, 308);
             this.GroupDaneKl.TabIndex = 2;
             this.GroupDaneKl.TabStop = false;
@@ -482,7 +482,7 @@
             // btnCzyszczenieOkienek
             // 
             this.btnCzyszczenieOkienek.Location = new System.Drawing.Point(8, 233);
-            this.btnCzyszczenieOkienek.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCzyszczenieOkienek.Margin = new System.Windows.Forms.Padding(4);
             this.btnCzyszczenieOkienek.Name = "btnCzyszczenieOkienek";
             this.btnCzyszczenieOkienek.Size = new System.Drawing.Size(153, 28);
             this.btnCzyszczenieOkienek.TabIndex = 17;
@@ -551,9 +551,9 @@
             this.tabPage1.Controls.Add(label9);
             this.tabPage1.Controls.Add(this.dgvObecneNaprawy);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1169, 663);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Naprawy";
@@ -568,9 +568,9 @@
             this.groupPodusmowanie.Controls.Add(this.label12);
             this.groupPodusmowanie.Controls.Add(this.label11);
             this.groupPodusmowanie.Location = new System.Drawing.Point(855, 23);
-            this.groupPodusmowanie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupPodusmowanie.Margin = new System.Windows.Forms.Padding(4);
             this.groupPodusmowanie.Name = "groupPodusmowanie";
-            this.groupPodusmowanie.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupPodusmowanie.Padding = new System.Windows.Forms.Padding(4);
             this.groupPodusmowanie.Size = new System.Drawing.Size(267, 225);
             this.groupPodusmowanie.TabIndex = 7;
             this.groupPodusmowanie.TabStop = false;
@@ -579,7 +579,7 @@
             // textKosztOstateczny
             // 
             this.textKosztOstateczny.Location = new System.Drawing.Point(136, 151);
-            this.textKosztOstateczny.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textKosztOstateczny.Margin = new System.Windows.Forms.Padding(4);
             this.textKosztOstateczny.Name = "textKosztOstateczny";
             this.textKosztOstateczny.Size = new System.Drawing.Size(101, 22);
             this.textKosztOstateczny.TabIndex = 5;
@@ -598,7 +598,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(8, 116);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(91, 20);
             this.radioButton1.TabIndex = 3;
@@ -639,7 +639,7 @@
             // btnRozliczNaprawe
             // 
             this.btnRozliczNaprawe.Location = new System.Drawing.Point(855, 267);
-            this.btnRozliczNaprawe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRozliczNaprawe.Margin = new System.Windows.Forms.Padding(4);
             this.btnRozliczNaprawe.Name = "btnRozliczNaprawe";
             this.btnRozliczNaprawe.Size = new System.Drawing.Size(201, 53);
             this.btnRozliczNaprawe.TabIndex = 6;
@@ -652,7 +652,7 @@
             this.dgvZakonczoneNaprawy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvZakonczoneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZakonczoneNaprawy.Location = new System.Drawing.Point(29, 431);
-            this.dgvZakonczoneNaprawy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvZakonczoneNaprawy.Margin = new System.Windows.Forms.Padding(4);
             this.dgvZakonczoneNaprawy.MultiSelect = false;
             this.dgvZakonczoneNaprawy.Name = "dgvZakonczoneNaprawy";
             this.dgvZakonczoneNaprawy.ReadOnly = true;
@@ -663,19 +663,20 @@
             // btnDodaj
             // 
             this.btnDodaj.Location = new System.Drawing.Point(25, 267);
-            this.btnDodaj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(201, 53);
             this.btnDodaj.TabIndex = 3;
             this.btnDodaj.Text = "Otwórz wybraną naprawę";
             this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
             // dgvObecneNaprawy
             // 
             this.dgvObecneNaprawy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvObecneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObecneNaprawy.Location = new System.Drawing.Point(25, 47);
-            this.dgvObecneNaprawy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvObecneNaprawy.Margin = new System.Windows.Forms.Padding(4);
             this.dgvObecneNaprawy.MultiSelect = false;
             this.dgvObecneNaprawy.Name = "dgvObecneNaprawy";
             this.dgvObecneNaprawy.ReadOnly = true;
@@ -690,9 +691,9 @@
             this.tabPage2.Controls.Add(this.groupCzesci);
             this.tabPage2.Controls.Add(this.dgvCzesci);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1169, 663);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Części";
@@ -709,13 +710,77 @@
             this.groupNowaCzesc.Controls.Add(this.label16);
             this.groupNowaCzesc.Controls.Add(this.txtCzesciNazwa);
             this.groupNowaCzesc.Location = new System.Drawing.Point(384, 416);
-            this.groupNowaCzesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupNowaCzesc.Margin = new System.Windows.Forms.Padding(4);
             this.groupNowaCzesc.Name = "groupNowaCzesc";
-            this.groupNowaCzesc.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupNowaCzesc.Padding = new System.Windows.Forms.Padding(4);
             this.groupNowaCzesc.Size = new System.Drawing.Size(513, 165);
             this.groupNowaCzesc.TabIndex = 6;
             this.groupNowaCzesc.TabStop = false;
             this.groupNowaCzesc.Text = "Dodawanie nowej części";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(202, 70);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(39, 16);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "Cena";
+            // 
+            // txtCzesciCena
+            // 
+            this.txtCzesciCena.Location = new System.Drawing.Point(202, 92);
+            this.txtCzesciCena.Name = "txtCzesciCena";
+            this.txtCzesciCena.Size = new System.Drawing.Size(100, 22);
+            this.txtCzesciCena.TabIndex = 6;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(202, 22);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(68, 16);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Producent";
+            // 
+            // txtCzesciProducent
+            // 
+            this.txtCzesciProducent.Location = new System.Drawing.Point(202, 44);
+            this.txtCzesciProducent.Name = "txtCzesciProducent";
+            this.txtCzesciProducent.Size = new System.Drawing.Size(100, 22);
+            this.txtCzesciProducent.TabIndex = 4;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 70);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(93, 16);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Nr katalogowy";
+            // 
+            // txtCzesciNrKatalogowy
+            // 
+            this.txtCzesciNrKatalogowy.Location = new System.Drawing.Point(7, 92);
+            this.txtCzesciNrKatalogowy.Name = "txtCzesciNrKatalogowy";
+            this.txtCzesciNrKatalogowy.Size = new System.Drawing.Size(100, 22);
+            this.txtCzesciNrKatalogowy.TabIndex = 2;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 16);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Nazwa";
+            // 
+            // txtCzesciNazwa
+            // 
+            this.txtCzesciNazwa.Location = new System.Drawing.Point(7, 44);
+            this.txtCzesciNazwa.Name = "txtCzesciNazwa";
+            this.txtCzesciNazwa.Size = new System.Drawing.Size(100, 22);
+            this.txtCzesciNazwa.TabIndex = 0;
             // 
             // groupCzesci
             // 
@@ -724,9 +789,9 @@
             this.groupCzesci.Controls.Add(this.numericUpDown1);
             this.groupCzesci.Controls.Add(this.button1);
             this.groupCzesci.Location = new System.Drawing.Point(24, 416);
-            this.groupCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.groupCzesci.Name = "groupCzesci";
-            this.groupCzesci.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupCzesci.Padding = new System.Windows.Forms.Padding(4);
             this.groupCzesci.Size = new System.Drawing.Size(311, 165);
             this.groupCzesci.TabIndex = 5;
             this.groupCzesci.TabStop = false;
@@ -745,7 +810,7 @@
             // btnUsunCzesc
             // 
             this.btnUsunCzesc.Location = new System.Drawing.Point(179, 107);
-            this.btnUsunCzesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUsunCzesc.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsunCzesc.Name = "btnUsunCzesc";
             this.btnUsunCzesc.Size = new System.Drawing.Size(120, 28);
             this.btnUsunCzesc.TabIndex = 1;
@@ -756,7 +821,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(8, 58);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(160, 22);
             this.numericUpDown1.TabIndex = 3;
@@ -764,7 +829,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(8, 107);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 28);
             this.button1.TabIndex = 2;
@@ -776,7 +841,7 @@
             this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCzesci.Location = new System.Drawing.Point(24, 23);
-            this.dgvCzesci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCzesci.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCzesci.MultiSelect = false;
             this.dgvCzesci.Name = "dgvCzesci";
             this.dgvCzesci.ReadOnly = true;
@@ -793,7 +858,7 @@
             this.tabPage4.Controls.Add(this.btnUsunPracownika);
             this.tabPage4.Controls.Add(this.dgvPracownik);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1169, 663);
             this.tabPage4.TabIndex = 3;
@@ -803,9 +868,9 @@
             // groupModyfikDanePrac
             // 
             this.groupModyfikDanePrac.Location = new System.Drawing.Point(416, 356);
-            this.groupModyfikDanePrac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupModyfikDanePrac.Margin = new System.Windows.Forms.Padding(4);
             this.groupModyfikDanePrac.Name = "groupModyfikDanePrac";
-            this.groupModyfikDanePrac.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupModyfikDanePrac.Padding = new System.Windows.Forms.Padding(4);
             this.groupModyfikDanePrac.Size = new System.Drawing.Size(401, 262);
             this.groupModyfikDanePrac.TabIndex = 5;
             this.groupModyfikDanePrac.TabStop = false;
@@ -814,9 +879,9 @@
             // groupDodajNowegoPrac
             // 
             this.groupDodajNowegoPrac.Location = new System.Drawing.Point(24, 356);
-            this.groupDodajNowegoPrac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupDodajNowegoPrac.Margin = new System.Windows.Forms.Padding(4);
             this.groupDodajNowegoPrac.Name = "groupDodajNowegoPrac";
-            this.groupDodajNowegoPrac.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupDodajNowegoPrac.Padding = new System.Windows.Forms.Padding(4);
             this.groupDodajNowegoPrac.Size = new System.Drawing.Size(344, 262);
             this.groupDodajNowegoPrac.TabIndex = 4;
             this.groupDodajNowegoPrac.TabStop = false;
@@ -867,77 +932,13 @@
             this.dgvPracownik.Size = new System.Drawing.Size(861, 198);
             this.dgvPracownik.TabIndex = 0;
             // 
-            // txtCzesciNazwa
-            // 
-            this.txtCzesciNazwa.Location = new System.Drawing.Point(7, 44);
-            this.txtCzesciNazwa.Name = "txtCzesciNazwa";
-            this.txtCzesciNazwa.Size = new System.Drawing.Size(100, 22);
-            this.txtCzesciNazwa.TabIndex = 0;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 22);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 16);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Nazwa";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 70);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(93, 16);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Nr katalogowy";
-            // 
-            // txtCzesciNrKatalogowy
-            // 
-            this.txtCzesciNrKatalogowy.Location = new System.Drawing.Point(7, 92);
-            this.txtCzesciNrKatalogowy.Name = "txtCzesciNrKatalogowy";
-            this.txtCzesciNrKatalogowy.Size = new System.Drawing.Size(100, 22);
-            this.txtCzesciNrKatalogowy.TabIndex = 2;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(202, 22);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(68, 16);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Producent";
-            // 
-            // txtCzesciProducent
-            // 
-            this.txtCzesciProducent.Location = new System.Drawing.Point(202, 44);
-            this.txtCzesciProducent.Name = "txtCzesciProducent";
-            this.txtCzesciProducent.Size = new System.Drawing.Size(100, 22);
-            this.txtCzesciProducent.TabIndex = 4;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(202, 70);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(39, 16);
-            this.label19.TabIndex = 7;
-            this.label19.Text = "Cena";
-            // 
-            // txtCzesciCena
-            // 
-            this.txtCzesciCena.Location = new System.Drawing.Point(202, 92);
-            this.txtCzesciCena.Name = "txtCzesciCena";
-            this.txtCzesciCena.Size = new System.Drawing.Size(100, 22);
-            this.txtCzesciCena.TabIndex = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 722);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Serwis";
             this.Load += new System.EventHandler(this.Form1_Load);

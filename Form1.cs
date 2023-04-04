@@ -187,5 +187,13 @@ namespace SerwisRowerowy
 
             }
         }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            Naprawa naprawa = new Naprawa();
+            naprawa.Show();
+
+
+        }
     }
 }
