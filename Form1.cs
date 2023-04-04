@@ -54,13 +54,9 @@ namespace SerwisRowerowy
             btnDodajNowyRower.Visible = true;
             GroupDaneRoweru.Visible = false;
 
-            string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionString);
-            string selectCommand = "SELECT * FROM klienci";
-            SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            dgvKlienci.DataSource = dt;
+            Connector connector = new Connector();
+            connector.PobiezWszystkieDaneZTabeli(dgvKlienci, "klienci");
+
             dgvKlienci.CurrentCell = null;
             dgvKlienci.Columns["id_klienta"].Visible = false;
 
