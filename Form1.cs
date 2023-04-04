@@ -156,6 +156,7 @@ namespace SerwisRowerowy
             txtNumerTelKl.Text = null;
             dgvKlienci.CurrentCell = null;
             txtFiltrKlienta.Text = null;
+            dgvRowery.DataSource = null;
         }
 
         private void btnUsunCzesc_Click(object sender, EventArgs e)
