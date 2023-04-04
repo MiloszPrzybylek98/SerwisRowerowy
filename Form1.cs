@@ -157,5 +157,31 @@ namespace SerwisRowerowy
             dgvKlienci.CurrentCell = null;
             txtFiltrKlienta.Text = null;
         }
+
+        private void btnUsunCzesc_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Część?", "Potwierdź usunięcie Części", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private void btnRozliczNaprawe_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz rozliczyć naprawę?", "Potwierdź aby rozliczyć", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }
