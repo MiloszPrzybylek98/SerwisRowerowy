@@ -14,6 +14,7 @@ namespace SerwisRowerowy
 {
     public partial class Form1 : Form
     {
+        string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
         public Form1()
         {
             InitializeComponent();
@@ -156,10 +157,29 @@ namespace SerwisRowerowy
             GroupDaneNaprawy.Enabled = false;
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
+            
+
+            
+
 
             Connector connector = new Connector();
             connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
             connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
+            dgvObecneNaprawy.CurrentCell = null;
+            dgvObecneNaprawy.Columns["id_naprawy"].Visible = false;
+            dgvObecneNaprawy.Columns["klient_id"].Visible = false;
+            dgvObecneNaprawy.Columns["rower_id"].Visible = false;
+            dgvObecneNaprawy.Columns["uwaga"].Visible = false;
+            dgvZakonczoneNaprawy.Columns["id_naprawy"].Visible = false;
+            dgvZakonczoneNaprawy.Columns["klient_id"].Visible = false;
+            dgvZakonczoneNaprawy.Columns["rower_id"].Visible = false;
+            dgvZakonczoneNaprawy.Columns["uwaga"].Visible = false;
+            dgvObecneNaprawy.ClearSelection();
+            
+
+
+
+
 
 
 
@@ -200,16 +220,52 @@ namespace SerwisRowerowy
                 DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
                 int idNaprawy = int.Parse(strID);
+                object[] values = selectedrow.ItemArray;
+                var koszt_calkowity = values[5].ToString();
+                double koszt_finalny = 0;
+                int nieaktywna = 0;
+
+                
 
                 DialogResult result = MessageBox.Show("Czy na pewno chcesz rozliczyć naprawę?", "Potwierdź aby rozliczyć", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    if (radioRabat10.Checked)
+                    {
+                        koszt_finalny = Double.Parse(koszt_calkowity) * 0.9;
+                        MessageBox.Show($"Po uwzględnieniu rabatu 10% klient musi zapłacić: {koszt_finalny.ToString()} PLN");
+                    }
+                    else
+                    {
+                        koszt_finalny = Double.Parse(koszt_calkowity);
+                        MessageBox.Show($"Klient musi zapłacić: {koszt_finalny.ToString()} PLN");
+                    }
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string selectQuery = $"SELECT * FROM naprawy where id_naprawy = {idNaprawy} ";
+                        SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        DataRow rowToUpdate = dt.Rows[0];
+                        rowToUpdate["czy_aktywna"] = nieaktywna;
+
+                        SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                        adapter.Update(dt);
+                    }
+
+                    Connector connector = new Connector();
+                    connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+                    connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
+
+
+
+
 
                 }
-                else
-                {
 
-                }
+
 
 
 

@@ -607,12 +607,17 @@
             // 
             // dgvZakonczoneNaprawy
             // 
+            this.dgvZakonczoneNaprawy.AllowUserToAddRows = false;
+            this.dgvZakonczoneNaprawy.AllowUserToDeleteRows = false;
+            this.dgvZakonczoneNaprawy.AllowUserToResizeColumns = false;
+            this.dgvZakonczoneNaprawy.AllowUserToResizeRows = false;
             this.dgvZakonczoneNaprawy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvZakonczoneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZakonczoneNaprawy.Location = new System.Drawing.Point(22, 350);
             this.dgvZakonczoneNaprawy.MultiSelect = false;
             this.dgvZakonczoneNaprawy.Name = "dgvZakonczoneNaprawy";
             this.dgvZakonczoneNaprawy.ReadOnly = true;
+            this.dgvZakonczoneNaprawy.RowHeadersVisible = false;
             this.dgvZakonczoneNaprawy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvZakonczoneNaprawy.Size = new System.Drawing.Size(594, 150);
             this.dgvZakonczoneNaprawy.TabIndex = 4;
@@ -628,6 +633,10 @@
             // 
             // dgvObecneNaprawy
             // 
+            this.dgvObecneNaprawy.AllowUserToAddRows = false;
+            this.dgvObecneNaprawy.AllowUserToDeleteRows = false;
+            this.dgvObecneNaprawy.AllowUserToResizeColumns = false;
+            this.dgvObecneNaprawy.AllowUserToResizeRows = false;
             this.dgvObecneNaprawy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvObecneNaprawy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObecneNaprawy.Location = new System.Drawing.Point(19, 38);
@@ -792,12 +801,17 @@
             // 
             // dgvCzesci
             // 
+            this.dgvCzesci.AllowUserToAddRows = false;
+            this.dgvCzesci.AllowUserToDeleteRows = false;
+            this.dgvCzesci.AllowUserToResizeColumns = false;
+            this.dgvCzesci.AllowUserToResizeRows = false;
             this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCzesci.Location = new System.Drawing.Point(18, 19);
             this.dgvCzesci.MultiSelect = false;
             this.dgvCzesci.Name = "dgvCzesci";
             this.dgvCzesci.ReadOnly = true;
+            this.dgvCzesci.RowHeadersVisible = false;
             this.dgvCzesci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCzesci.Size = new System.Drawing.Size(655, 295);
             this.dgvCzesci.TabIndex = 0;
@@ -868,13 +882,18 @@
             // 
             // dgvPracownik
             // 
+            this.dgvPracownik.AllowUserToAddRows = false;
+            this.dgvPracownik.AllowUserToDeleteRows = false;
+            this.dgvPracownik.AllowUserToResizeColumns = false;
+            this.dgvPracownik.AllowUserToResizeRows = false;
             this.dgvPracownik.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPracownik.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPracownik.Location = new System.Drawing.Point(18, 49);
+            this.dgvPracownik.Location = new System.Drawing.Point(18, 46);
             this.dgvPracownik.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPracownik.MultiSelect = false;
             this.dgvPracownik.Name = "dgvPracownik";
             this.dgvPracownik.ReadOnly = true;
+            this.dgvPracownik.RowHeadersVisible = false;
             this.dgvPracownik.RowTemplate.Height = 24;
             this.dgvPracownik.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);

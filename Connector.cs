@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,14 @@ namespace SerwisRowerowy
             adapter.Fill(dt);
             dgv.DataSource = dt;
         }
+
+        //public void UpdatePojedynczyRow(string tabela, string poleDoUpdate)
+        //{
+        //    SqlConnection connection = new SqlConnection(connectionString);
+        //    string selectCommand = $"UPDATE {tabela} SET {poleDoUpdate} WHERE {zmWarunkowa} = {warunek}";
+        //    SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
+
+        //}
 
 
     }
