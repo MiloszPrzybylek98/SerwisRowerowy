@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SerwisRowerowy
 {
@@ -55,12 +56,13 @@ namespace SerwisRowerowy
 
             string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
-            string selectCommand = "SELECT imie,nazwisko,telefon FROM klienci";
+            string selectCommand = "SELECT * FROM klienci";
             SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             dgvKlienci.DataSource = dt;
             dgvKlienci.CurrentCell = null;
+            dgvKlienci.Columns["id_klienta"].Visible = false;
 
         }
 
@@ -72,7 +74,7 @@ namespace SerwisRowerowy
             {
                 string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connectionString);
-                string selectCommand = "SELECT imie,nazwisko,telefon FROM klienci WHERE (imie LIKE @Imie) OR (nazwisko LIKE @Nazwisko) OR (telefon LIKE @telefon)";
+                string selectCommand = "SELECT * FROM klienci WHERE (imie LIKE @Imie) OR (nazwisko LIKE @Nazwisko) OR (telefon LIKE @telefon)";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
                 adapter.SelectCommand.Parameters.AddWithValue("@Imie", string.Format("{0}%", tekst));
                 adapter.SelectCommand.Parameters.AddWithValue("@Nazwisko", string.Format("{0}%", tekst));
@@ -81,18 +83,20 @@ namespace SerwisRowerowy
                 adapter.Fill(dt);
                 dgvKlienci.DataSource = dt;
                 dgvKlienci.CurrentCell = null;
+                dgvKlienci.Columns["id_klienta"].Visible = false;
 
             }
             else
             {
                 string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connectionString);
-                string selectCommand = "SELECT imie,nazwisko,telefon FROM klienci";
+                string selectCommand = "SELECT * FROM klienci";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 dgvKlienci.DataSource = dt;
                 dgvKlienci.CurrentCell = null;
+                dgvKlienci.Columns["id_klienta"].Visible = false;
 
             }
 
@@ -107,11 +111,33 @@ namespace SerwisRowerowy
         {
             if (dgvKlienci.SelectedRows.Count > 0)
             {
-                DataGridViewRow row = dgvKlienci.SelectedRows[0];
 
+                DataTable dt = (DataTable)dgvKlienci.DataSource;
+
+                DataRow selectedrow = ((DataRowView)dgvKlienci.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                int idKlienta = int.Parse(strID);
+
+                DataGridViewRow row = dgvKlienci.SelectedRows[0];
                 txtImieKl.Text = row.Cells[0].Value.ToString();
                 txtNazwiskoKl.Text = row.Cells[1].Value.ToString();
                 txtNumerTelKl.Text = row.Cells[2].Value.ToString();
+
+
+                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string selectCommand = "SELECT * FROM rowery WHERE klient_id = @klient_id";
+                SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@klient_id",idKlienta );
+
+                DataTable DtRowery = new DataTable();
+                adapter.Fill(DtRowery);
+                dgvRowery.DataSource = DtRowery;
+                dgvRowery.CurrentCell = null;
+                dgvRowery.Columns["klient_id"].Visible = false;
+                dgvRowery.Columns["id_roweru"].Visible = false;
+
+
 
             }
 
@@ -123,6 +149,7 @@ namespace SerwisRowerowy
             GroupDaneNaprawy.Enabled = false;
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
+            
 
         }
 

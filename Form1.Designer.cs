@@ -163,7 +163,7 @@
             // 
             // btnNowaNaprawa
             // 
-            this.btnNowaNaprawa.Location = new System.Drawing.Point(671, 320);
+            this.btnNowaNaprawa.Location = new System.Drawing.Point(715, 308);
             this.btnNowaNaprawa.Name = "btnNowaNaprawa";
             this.btnNowaNaprawa.Size = new System.Drawing.Size(137, 50);
             this.btnNowaNaprawa.TabIndex = 15;
@@ -192,14 +192,17 @@
             // 
             // dgvRowery
             // 
+            this.dgvRowery.AllowUserToAddRows = false;
+            this.dgvRowery.AllowUserToDeleteRows = false;
             this.dgvRowery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRowery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRowery.Location = new System.Drawing.Point(16, 273);
+            this.dgvRowery.Location = new System.Drawing.Point(6, 273);
             this.dgvRowery.MultiSelect = false;
             this.dgvRowery.Name = "dgvRowery";
             this.dgvRowery.ReadOnly = true;
+            this.dgvRowery.RowHeadersVisible = false;
             this.dgvRowery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRowery.Size = new System.Drawing.Size(240, 199);
+            this.dgvRowery.Size = new System.Drawing.Size(307, 199);
             this.dgvRowery.TabIndex = 8;
             // 
             // dgvKlienci
@@ -210,19 +213,19 @@
             this.dgvKlienci.AllowUserToResizeRows = false;
             this.dgvKlienci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvKlienci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKlienci.Location = new System.Drawing.Point(16, 58);
+            this.dgvKlienci.Location = new System.Drawing.Point(6, 58);
             this.dgvKlienci.MultiSelect = false;
             this.dgvKlienci.Name = "dgvKlienci";
             this.dgvKlienci.ReadOnly = true;
             this.dgvKlienci.RowHeadersVisible = false;
             this.dgvKlienci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKlienci.Size = new System.Drawing.Size(240, 190);
+            this.dgvKlienci.Size = new System.Drawing.Size(307, 190);
             this.dgvKlienci.TabIndex = 7;
             this.dgvKlienci.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKlienci_CellClick);
             // 
             // btnDodajNaprawe
             // 
-            this.btnDodajNaprawe.Location = new System.Drawing.Point(671, 457);
+            this.btnDodajNaprawe.Location = new System.Drawing.Point(715, 418);
             this.btnDodajNaprawe.Name = "btnDodajNaprawe";
             this.btnDodajNaprawe.Size = new System.Drawing.Size(137, 50);
             this.btnDodajNaprawe.TabIndex = 6;
@@ -237,9 +240,9 @@
             "• Przegląd rowerowy: 150 PLN",
             "• Hamulce: 20-80 PLN",
             "• "});
-            this.listBox1.Location = new System.Drawing.Point(671, 19);
+            this.listBox1.Location = new System.Drawing.Point(683, 19);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(181, 225);
+            this.listBox1.Size = new System.Drawing.Size(169, 225);
             this.listBox1.TabIndex = 5;
             // 
             // GroupDaneNaprawy
@@ -782,9 +785,9 @@
             this.groupWyszukiwanieKlienta.Controls.Add(this.dgvRowery);
             this.groupWyszukiwanieKlienta.Controls.Add(this.dgvKlienci);
             this.groupWyszukiwanieKlienta.Controls.Add(this.txtFiltrKlienta);
-            this.groupWyszukiwanieKlienta.Location = new System.Drawing.Point(360, 19);
+            this.groupWyszukiwanieKlienta.Location = new System.Drawing.Point(345, 19);
             this.groupWyszukiwanieKlienta.Name = "groupWyszukiwanieKlienta";
-            this.groupWyszukiwanieKlienta.Size = new System.Drawing.Size(275, 488);
+            this.groupWyszukiwanieKlienta.Size = new System.Drawing.Size(319, 488);
             this.groupWyszukiwanieKlienta.TabIndex = 16;
             this.groupWyszukiwanieKlienta.TabStop = false;
             this.groupWyszukiwanieKlienta.Text = "Wyszukaj klienta";
