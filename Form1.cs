@@ -237,10 +237,31 @@ namespace SerwisRowerowy
 
         private void dgvObecneNaprawy_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
+
+            if (dgvObecneNaprawy.SelectedRows.Count > 0)
+            {
+                radioRabat10.Checked = false;
+                DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
+                object[] values = selectedrow.ItemArray;
+                var koszt_czesci = values[3].ToString();
+                var koszt_uslugi = values[4].ToString();
+                var koszt_calkowity = values[5].ToString();
+                string strID = selectedrow[0].ToString();
+                int id_naprawy = int.Parse(strID);
+                lblKosztCzesci.Text = "Koszt częsci: "+ koszt_czesci;
+                lblKosztRobocizny.Text = "Koszt robocizny: "+ koszt_uslugi;
+                lblKosztCalkowity.Text ="Koszt całkowity: "+ koszt_calkowity;
+
+
+            }
         }
 
-        private void btnDodaj_Click(object sender, EventArgs e)
+
+
+        
+
+        private void btnOtworzNaprawe_Click(object sender, EventArgs e)
         {
             if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
@@ -249,21 +270,21 @@ namespace SerwisRowerowy
 
                 DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
-                int idNaprawy = int.Parse(strID);
+                int id_naprawy = int.Parse(strID);
+       
+                Naprawa naprawa = new Naprawa(id_naprawy);
+                naprawa.Show();
 
 
 
 
             }
+            
         }
 
-        
-
-        private void btnOtworzNaprawe_Click(object sender, EventArgs e)
+        private void radioRabat10_Click(object sender, EventArgs e)
         {
-            int id_naprawy = 0;
-            Naprawa naprawa = new Naprawa(id_naprawy);
-            naprawa.Show();
+            radioRabat10.Checked = !radioRabat10.Checked;
         }
     }
 }

@@ -67,12 +67,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPodusmowanie = new System.Windows.Forms.GroupBox();
-            this.textKosztOstateczny = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.radioRabat10 = new System.Windows.Forms.RadioButton();
+            this.lblKosztCalkowity = new System.Windows.Forms.Label();
+            this.lblKosztRobocizny = new System.Windows.Forms.Label();
+            this.lblKosztCzesci = new System.Windows.Forms.Label();
             this.btnRozliczNaprawe = new System.Windows.Forms.Button();
             this.dgvZakonczoneNaprawy = new System.Windows.Forms.DataGridView();
             this.btnOtworzNaprawe = new System.Windows.Forms.Button();
@@ -546,12 +544,10 @@
             // 
             // groupPodusmowanie
             // 
-            this.groupPodusmowanie.Controls.Add(this.textKosztOstateczny);
-            this.groupPodusmowanie.Controls.Add(this.label14);
-            this.groupPodusmowanie.Controls.Add(this.radioButton1);
-            this.groupPodusmowanie.Controls.Add(this.label13);
-            this.groupPodusmowanie.Controls.Add(this.label12);
-            this.groupPodusmowanie.Controls.Add(this.label11);
+            this.groupPodusmowanie.Controls.Add(this.radioRabat10);
+            this.groupPodusmowanie.Controls.Add(this.lblKosztCalkowity);
+            this.groupPodusmowanie.Controls.Add(this.lblKosztRobocizny);
+            this.groupPodusmowanie.Controls.Add(this.lblKosztCzesci);
             this.groupPodusmowanie.Location = new System.Drawing.Point(641, 19);
             this.groupPodusmowanie.Name = "groupPodusmowanie";
             this.groupPodusmowanie.Size = new System.Drawing.Size(200, 183);
@@ -559,59 +555,45 @@
             this.groupPodusmowanie.TabStop = false;
             this.groupPodusmowanie.Text = "Podsumowanie";
             // 
-            // textKosztOstateczny
+            // radioRabat10
             // 
-            this.textKosztOstateczny.Location = new System.Drawing.Point(102, 123);
-            this.textKosztOstateczny.Name = "textKosztOstateczny";
-            this.textKosztOstateczny.Size = new System.Drawing.Size(77, 20);
-            this.textKosztOstateczny.TabIndex = 5;
+            this.radioRabat10.AutoCheck = false;
+            this.radioRabat10.AutoSize = true;
+            this.radioRabat10.Location = new System.Drawing.Point(6, 94);
+            this.radioRabat10.Name = "radioRabat10";
+            this.radioRabat10.Size = new System.Drawing.Size(77, 17);
+            this.radioRabat10.TabIndex = 3;
+            this.radioRabat10.TabStop = true;
+            this.radioRabat10.Text = "Rabat 10%";
+            this.radioRabat10.UseVisualStyleBackColor = true;
+            this.radioRabat10.Click += new System.EventHandler(this.radioRabat10_Click);
             // 
-            // label14
+            // lblKosztCalkowity
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 126);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Koszt ostateczny:";
+            this.lblKosztCalkowity.AutoSize = true;
+            this.lblKosztCalkowity.Location = new System.Drawing.Point(6, 68);
+            this.lblKosztCalkowity.Name = "lblKosztCalkowity";
+            this.lblKosztCalkowity.Size = new System.Drawing.Size(85, 13);
+            this.lblKosztCalkowity.TabIndex = 2;
+            this.lblKosztCalkowity.Text = "Koszt całkowity:";
             // 
-            // radioButton1
+            // lblKosztRobocizny
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 94);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(77, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Rabat 10%";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.lblKosztRobocizny.AutoSize = true;
+            this.lblKosztRobocizny.Location = new System.Drawing.Point(7, 44);
+            this.lblKosztRobocizny.Name = "lblKosztRobocizny";
+            this.lblKosztRobocizny.Size = new System.Drawing.Size(84, 13);
+            this.lblKosztRobocizny.TabIndex = 1;
+            this.lblKosztRobocizny.Text = "Koszt robocizny:";
             // 
-            // label13
+            // lblKosztCzesci
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 68);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(85, 13);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Koszt całkowity:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 44);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(84, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Koszt robocizny:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Koszt części:";
+            this.lblKosztCzesci.AutoSize = true;
+            this.lblKosztCzesci.Location = new System.Drawing.Point(7, 20);
+            this.lblKosztCzesci.Name = "lblKosztCzesci";
+            this.lblKosztCzesci.Size = new System.Drawing.Size(69, 13);
+            this.lblKosztCzesci.TabIndex = 0;
+            this.lblKosztCzesci.Text = "Koszt części:";
             // 
             // btnRozliczNaprawe
             // 
@@ -976,11 +958,10 @@
         private System.Windows.Forms.RadioButton radioPrzeglad;
         private System.Windows.Forms.RadioButton radioNaprawa;
         private System.Windows.Forms.GroupBox groupPodusmowanie;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RadioButton radioRabat10;
+        private System.Windows.Forms.Label lblKosztCalkowity;
+        private System.Windows.Forms.Label lblKosztRobocizny;
+        private System.Windows.Forms.Label lblKosztCzesci;
         private System.Windows.Forms.Button btnRozliczNaprawe;
         private System.Windows.Forms.Button btnDodajNaprawe;
         private System.Windows.Forms.GroupBox groupCzesci;
@@ -996,7 +977,6 @@
         private System.Windows.Forms.GroupBox groupNowaCzesc;
         private System.Windows.Forms.GroupBox groupModyfikDanePrac;
         private System.Windows.Forms.GroupBox groupDodajNowegoPrac;
-        private System.Windows.Forms.TextBox textKosztOstateczny;
         private System.Windows.Forms.RadioButton radioDarmowyPrzeglad;
         private System.Windows.Forms.Label lblDarmowyPrzeglad;
         private System.Windows.Forms.Button btnNowaNaprawa;
