@@ -22,7 +22,7 @@ namespace SerwisRowerowy
         private void btnUsunPracownika_Click(object sender, EventArgs e)
         {
 
-            //komenatrz testowy
+            
             DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Pracownika?", "Potwierdź usunięcie Pracownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {  
@@ -36,6 +36,11 @@ namespace SerwisRowerowy
 
         private void btnDodajNaprawe_Click(object sender, EventArgs e)
         {
+            string marka = txtMarka.Text;
+            string model = txtModel.Text;
+            string nSeryjny = txtNrSeryjny.Text;
+            string kolor = txtKolor.Text;
+
             Naprawa naprawa = new Naprawa();
             naprawa.Show();
             
@@ -43,8 +48,12 @@ namespace SerwisRowerowy
 
         private void btnDodajNowyRower_Click(object sender, EventArgs e)
         {
+            
+            
+
             GroupDaneRoweru.Visible = true;
             btnDodajNowyRower.Visible = false;
+
         }
 
         private void btnNowaNaprawa_Click(object sender, EventArgs e)
@@ -147,7 +156,13 @@ namespace SerwisRowerowy
             GroupDaneNaprawy.Enabled = false;
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
-            
+
+            Connector connector = new Connector();
+            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+            connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
+
+
+
 
         }
 
@@ -177,13 +192,67 @@ namespace SerwisRowerowy
 
         private void btnRozliczNaprawe_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Czy na pewno chcesz rozliczyć naprawę?", "Potwierdź aby rozliczyć", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
 
+
+
+                DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                int idNaprawy = int.Parse(strID);
+
+                DialogResult result = MessageBox.Show("Czy na pewno chcesz rozliczyć naprawę?", "Potwierdź aby rozliczyć", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+
+                }
+
+
+
+
             }
-            else
+            
+        }
+
+        private void radioPrzeglad_Click(object sender, EventArgs e)
+        {
+            radioPrzeglad.Checked = !radioPrzeglad.Checked;
+        }
+
+        private void radioNaprawa_Click(object sender, EventArgs e)
+        {
+            radioNaprawa.Checked = !radioNaprawa.Checked;
+        }
+
+        private void radioDarmowyPrzeglad_Click(object sender, EventArgs e)
+        {
+            radioDarmowyPrzeglad.Checked = !radioDarmowyPrzeglad.Checked;
+
+
+        }
+
+        private void dgvObecneNaprawy_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
+
+
+
+                DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                int idNaprawy = int.Parse(strID);
+
+
+
 
             }
         }
