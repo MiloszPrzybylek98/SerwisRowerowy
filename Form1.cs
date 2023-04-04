@@ -21,6 +21,8 @@ namespace SerwisRowerowy
 
         private void btnUsunPracownika_Click(object sender, EventArgs e)
         {
+
+            //komenatrz testowy
             DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Pracownika?", "Potwierdź usunięcie Pracownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {  
