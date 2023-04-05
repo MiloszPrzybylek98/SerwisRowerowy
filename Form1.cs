@@ -42,6 +42,30 @@ namespace SerwisRowerowy
             string nSeryjny = txtNrSeryjny.Text;
             string kolor = txtKolor.Text;
 
+            //proba inserta
+
+            SqlConnection conn;
+            SqlDataAdapter adapter;
+            DataSet ds;
+            DataTable dt;
+            conn= new SqlConnection($"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("SELECT * FROM naprawy", conn);
+            adapter = new SqlDataAdapter(cmd);
+            ds= new DataSet();
+            adapter.Fill(ds);
+            dt = ds.Tables[0];
+            dt.PrimaryKey = new
+
+
+            if (dgvKlienci.SelectedRows.Count > 0)
+            {
+                DataRow selectedrow = ((DataRowView)dgvKlienci.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                int idKlienta = int.Parse(strID);
+
+            }
+
+
             Naprawa naprawa = new Naprawa();
             naprawa.Show();
             
@@ -127,9 +151,9 @@ namespace SerwisRowerowy
                 int idKlienta = int.Parse(strID);
 
                 DataGridViewRow row = dgvKlienci.SelectedRows[0];
-                txtImieKl.Text = row.Cells[0].Value.ToString();
-                txtNazwiskoKl.Text = row.Cells[1].Value.ToString();
-                txtNumerTelKl.Text = row.Cells[2].Value.ToString();
+                txtImieKl.Text = row.Cells[1].Value.ToString();
+                txtNazwiskoKl.Text = row.Cells[2].Value.ToString();
+                txtNumerTelKl.Text = row.Cells[3].Value.ToString();
 
 
                 string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
