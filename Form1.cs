@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using GroupBox = System.Windows.Forms.GroupBox;
 
 namespace SerwisRowerowy
 {
@@ -181,6 +183,8 @@ namespace SerwisRowerowy
             GroupDaneNaprawy.Enabled = false;
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
+
+            groupDodajNowegoPrac.Enabled = false;
             
 
             
@@ -199,9 +203,17 @@ namespace SerwisRowerowy
             dgvZakonczoneNaprawy.Columns["rower_id"].Visible = false;
             dgvZakonczoneNaprawy.Columns["uwaga"].Visible = false;
             dgvObecneNaprawy.ClearSelection();
-            
+
+            connector.PobiezWszystkieDaneZTabeli(dgvPracownik, "pracownicy");
+
+            dgvPracownik.CurrentCell = null;
+            dgvPracownik.Columns["id_pracownika"].Visible = false;
 
 
+            connector.PobiezWszystkieDaneZTabeli(dgvCzesci, "czesci");
+
+            dgvCzesci.CurrentCell = null;
+            dgvCzesci.Columns["id_czesci"].Visible = false;
 
 
 
@@ -362,9 +374,32 @@ namespace SerwisRowerowy
             
         }
 
+        private void ClearTextBoxesInGroupBox(GroupBox groupBox)
+        {
+            foreach (Control control in groupBox.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+            }
+        }
+
         private void radioRabat10_Click(object sender, EventArgs e)
         {
             radioRabat10.Checked = !radioRabat10.Checked;
+        }
+
+        private void btnDodajPracownika_Click(object sender, EventArgs e)
+        {
+            groupDodajNowegoPrac.Enabled = true;
+
+        }
+
+        private void btnAnulujDodawaniePrac_Click(object sender, EventArgs e)
+        {
+            groupDodajNowegoPrac.Enabled = false;
+            ClearTextBoxesInGroupBox(groupDodajNowegoPrac);
         }
     }
 }

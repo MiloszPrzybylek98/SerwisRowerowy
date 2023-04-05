@@ -92,12 +92,36 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dgvCzesci = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtFiltrPracownika = new System.Windows.Forms.TextBox();
             this.groupModyfikDanePrac = new System.Windows.Forms.GroupBox();
+            this.btnZatwierdzModyfikacjePrac = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupDodajNowegoPrac = new System.Windows.Forms.GroupBox();
+            this.btnZatwierdzDodawaniePrac = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnModyfikujPracownika = new System.Windows.Forms.Button();
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
+            this.btnAnulujDodawaniePrac = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -118,6 +142,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.groupModyfikDanePrac.SuspendLayout();
+            this.groupDodajNowegoPrac.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,7 +174,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(883, 562);
+            this.tabControl1.Size = new System.Drawing.Size(883, 629);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage3
@@ -163,7 +189,7 @@
             this.tabPage3.Controls.Add(this.GroupDaneKl);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(875, 536);
+            this.tabPage3.Size = new System.Drawing.Size(875, 565);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Zgłoszenie naprawy";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -537,7 +563,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(875, 536);
+            this.tabPage1.Size = new System.Drawing.Size(875, 565);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Naprawy";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -657,7 +683,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(875, 536);
+            this.tabPage2.Size = new System.Drawing.Size(875, 565);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Części";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -818,6 +844,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.txtFiltrPracownika);
             this.tabPage4.Controls.Add(this.groupModyfikDanePrac);
             this.tabPage4.Controls.Add(this.groupDodajNowegoPrac);
             this.tabPage4.Controls.Add(this.btnModyfikujPracownika);
@@ -826,28 +853,236 @@
             this.tabPage4.Controls.Add(this.dgvPracownik);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(875, 536);
+            this.tabPage4.Size = new System.Drawing.Size(875, 603);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Pracownicy";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // txtFiltrPracownika
+            // 
+            this.txtFiltrPracownika.Location = new System.Drawing.Point(18, 14);
+            this.txtFiltrPracownika.Name = "txtFiltrPracownika";
+            this.txtFiltrPracownika.Size = new System.Drawing.Size(172, 20);
+            this.txtFiltrPracownika.TabIndex = 6;
+            // 
             // groupModyfikDanePrac
             // 
+            this.groupModyfikDanePrac.Controls.Add(this.btnZatwierdzModyfikacjePrac);
+            this.groupModyfikDanePrac.Controls.Add(this.textBox7);
+            this.groupModyfikDanePrac.Controls.Add(this.label21);
+            this.groupModyfikDanePrac.Controls.Add(this.textBox8);
+            this.groupModyfikDanePrac.Controls.Add(this.label22);
+            this.groupModyfikDanePrac.Controls.Add(this.textBox9);
+            this.groupModyfikDanePrac.Controls.Add(this.label23);
+            this.groupModyfikDanePrac.Controls.Add(this.textBox10);
+            this.groupModyfikDanePrac.Controls.Add(this.label24);
+            this.groupModyfikDanePrac.Controls.Add(this.textBox11);
+            this.groupModyfikDanePrac.Controls.Add(this.label25);
             this.groupModyfikDanePrac.Location = new System.Drawing.Point(312, 289);
             this.groupModyfikDanePrac.Name = "groupModyfikDanePrac";
-            this.groupModyfikDanePrac.Size = new System.Drawing.Size(301, 213);
+            this.groupModyfikDanePrac.Size = new System.Drawing.Size(205, 291);
             this.groupModyfikDanePrac.TabIndex = 5;
             this.groupModyfikDanePrac.TabStop = false;
             this.groupModyfikDanePrac.Text = "Modyfikuj dane pracownika";
             // 
+            // btnZatwierdzModyfikacjePrac
+            // 
+            this.btnZatwierdzModyfikacjePrac.Location = new System.Drawing.Point(27, 236);
+            this.btnZatwierdzModyfikacjePrac.Name = "btnZatwierdzModyfikacjePrac";
+            this.btnZatwierdzModyfikacjePrac.Size = new System.Drawing.Size(111, 23);
+            this.btnZatwierdzModyfikacjePrac.TabIndex = 20;
+            this.btnZatwierdzModyfikacjePrac.Text = "Zatwierdź";
+            this.btnZatwierdzModyfikacjePrac.UseVisualStyleBackColor = true;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(15, 196);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(147, 20);
+            this.textBox7.TabIndex = 19;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 180);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(33, 13);
+            this.label21.TabIndex = 18;
+            this.label21.Text = "Pesel";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(15, 157);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(147, 20);
+            this.textBox8.TabIndex = 17;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 140);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Nr telefonu";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(15, 117);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(147, 20);
+            this.textBox9.TabIndex = 15;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 100);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(31, 13);
+            this.label23.TabIndex = 14;
+            this.label23.Text = "email";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(15, 75);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(147, 20);
+            this.textBox10.TabIndex = 13;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 58);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(53, 13);
+            this.label24.TabIndex = 12;
+            this.label24.Text = "Nazwisko";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(15, 37);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(147, 20);
+            this.textBox11.TabIndex = 11;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(12, 20);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(26, 13);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "Imię";
+            // 
             // groupDodajNowegoPrac
             // 
+            this.groupDodajNowegoPrac.Controls.Add(this.btnAnulujDodawaniePrac);
+            this.groupDodajNowegoPrac.Controls.Add(this.btnZatwierdzDodawaniePrac);
+            this.groupDodajNowegoPrac.Controls.Add(this.textBox6);
+            this.groupDodajNowegoPrac.Controls.Add(this.label20);
+            this.groupDodajNowegoPrac.Controls.Add(this.textBox5);
+            this.groupDodajNowegoPrac.Controls.Add(this.label14);
+            this.groupDodajNowegoPrac.Controls.Add(this.textBox4);
+            this.groupDodajNowegoPrac.Controls.Add(this.label13);
+            this.groupDodajNowegoPrac.Controls.Add(this.textBox3);
+            this.groupDodajNowegoPrac.Controls.Add(this.label12);
+            this.groupDodajNowegoPrac.Controls.Add(this.textBox2);
+            this.groupDodajNowegoPrac.Controls.Add(this.label11);
             this.groupDodajNowegoPrac.Location = new System.Drawing.Point(18, 289);
             this.groupDodajNowegoPrac.Name = "groupDodajNowegoPrac";
-            this.groupDodajNowegoPrac.Size = new System.Drawing.Size(258, 213);
+            this.groupDodajNowegoPrac.Size = new System.Drawing.Size(185, 291);
             this.groupDodajNowegoPrac.TabIndex = 4;
             this.groupDodajNowegoPrac.TabStop = false;
             this.groupDodajNowegoPrac.Text = "Dodaj nowego pracownika";
+            // 
+            // btnZatwierdzDodawaniePrac
+            // 
+            this.btnZatwierdzDodawaniePrac.Location = new System.Drawing.Point(28, 236);
+            this.btnZatwierdzDodawaniePrac.Name = "btnZatwierdzDodawaniePrac";
+            this.btnZatwierdzDodawaniePrac.Size = new System.Drawing.Size(111, 23);
+            this.btnZatwierdzDodawaniePrac.TabIndex = 10;
+            this.btnZatwierdzDodawaniePrac.Text = "Zatwierdź";
+            this.btnZatwierdzDodawaniePrac.UseVisualStyleBackColor = true;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(10, 196);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(147, 20);
+            this.textBox6.TabIndex = 9;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(7, 180);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(33, 13);
+            this.label20.TabIndex = 8;
+            this.label20.Text = "Pesel";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(10, 157);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(147, 20);
+            this.textBox5.TabIndex = 7;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 140);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 13);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Nr telefonu";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(10, 117);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(147, 20);
+            this.textBox4.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "email";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(10, 75);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(147, 20);
+            this.textBox3.TabIndex = 3;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 58);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Nazwisko";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(10, 37);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(147, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(26, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Imię";
             // 
             // btnModyfikujPracownika
             // 
@@ -868,6 +1103,7 @@
             this.btnDodajPracownika.TabIndex = 2;
             this.btnDodajPracownika.Text = "Dodaj nowego pracownika";
             this.btnDodajPracownika.UseVisualStyleBackColor = true;
+            this.btnDodajPracownika.Click += new System.EventHandler(this.btnDodajPracownika_Click);
             // 
             // btnUsunPracownika
             // 
@@ -899,11 +1135,21 @@
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
             // 
+            // btnAnulujDodawaniePrac
+            // 
+            this.btnAnulujDodawaniePrac.Location = new System.Drawing.Point(28, 265);
+            this.btnAnulujDodawaniePrac.Name = "btnAnulujDodawaniePrac";
+            this.btnAnulujDodawaniePrac.Size = new System.Drawing.Size(111, 23);
+            this.btnAnulujDodawaniePrac.TabIndex = 11;
+            this.btnAnulujDodawaniePrac.Text = "Anuluj";
+            this.btnAnulujDodawaniePrac.UseVisualStyleBackColor = true;
+            this.btnAnulujDodawaniePrac.Click += new System.EventHandler(this.btnAnulujDodawaniePrac_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 587);
+            this.ClientSize = new System.Drawing.Size(908, 679);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Serwis";
@@ -934,6 +1180,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.groupModyfikDanePrac.ResumeLayout(false);
+            this.groupModyfikDanePrac.PerformLayout();
+            this.groupDodajNowegoPrac.ResumeLayout(false);
+            this.groupDodajNowegoPrac.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPracownik)).EndInit();
             this.ResumeLayout(false);
 
@@ -1009,6 +1260,30 @@
         private System.Windows.Forms.TextBox txtCzesciNrKatalogowy;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtCzesciNazwa;
+        private System.Windows.Forms.Button btnZatwierdzModyfikacjePrac;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnZatwierdzDodawaniePrac;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtFiltrPracownika;
+        private System.Windows.Forms.Button btnAnulujDodawaniePrac;
     }
 }
 
