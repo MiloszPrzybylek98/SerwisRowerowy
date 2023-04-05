@@ -46,7 +46,7 @@
             this.radioPrzeglad = new System.Windows.Forms.RadioButton();
             this.radioNaprawa = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtOpisNaprawy = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.GroupDaneRoweru = new System.Windows.Forms.GroupBox();
             this.txtKolor = new System.Windows.Forms.TextBox();
@@ -106,6 +106,7 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.groupDodajNowegoPrac = new System.Windows.Forms.GroupBox();
+            this.btnAnulujDodawaniePrac = new System.Windows.Forms.Button();
             this.btnZatwierdzDodawaniePrac = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -121,7 +122,6 @@
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
-            this.btnAnulujDodawaniePrac = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -189,7 +189,7 @@
             this.tabPage3.Controls.Add(this.GroupDaneKl);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(875, 565);
+            this.tabPage3.Size = new System.Drawing.Size(875, 603);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Zgłoszenie naprawy";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -297,7 +297,7 @@
             this.GroupDaneNaprawy.Controls.Add(this.radioPrzeglad);
             this.GroupDaneNaprawy.Controls.Add(this.radioNaprawa);
             this.GroupDaneNaprawy.Controls.Add(this.label8);
-            this.GroupDaneNaprawy.Controls.Add(this.textBox1);
+            this.GroupDaneNaprawy.Controls.Add(this.txtOpisNaprawy);
             this.GroupDaneNaprawy.Controls.Add(this.label6);
             this.GroupDaneNaprawy.Location = new System.Drawing.Point(17, 275);
             this.GroupDaneNaprawy.Name = "GroupDaneNaprawy";
@@ -363,13 +363,13 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "Opis usługi";
             // 
-            // textBox1
+            // txtOpisNaprawy
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 143);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(258, 63);
-            this.textBox1.TabIndex = 7;
+            this.txtOpisNaprawy.Location = new System.Drawing.Point(26, 143);
+            this.txtOpisNaprawy.Multiline = true;
+            this.txtOpisNaprawy.Name = "txtOpisNaprawy";
+            this.txtOpisNaprawy.Size = new System.Drawing.Size(258, 63);
+            this.txtOpisNaprawy.TabIndex = 7;
             // 
             // label6
             // 
@@ -563,7 +563,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(875, 565);
+            this.tabPage1.Size = new System.Drawing.Size(875, 603);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Naprawy";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -683,7 +683,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(875, 565);
+            this.tabPage2.Size = new System.Drawing.Size(875, 603);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Części";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -995,6 +995,16 @@
             this.groupDodajNowegoPrac.TabStop = false;
             this.groupDodajNowegoPrac.Text = "Dodaj nowego pracownika";
             // 
+            // btnAnulujDodawaniePrac
+            // 
+            this.btnAnulujDodawaniePrac.Location = new System.Drawing.Point(28, 265);
+            this.btnAnulujDodawaniePrac.Name = "btnAnulujDodawaniePrac";
+            this.btnAnulujDodawaniePrac.Size = new System.Drawing.Size(111, 23);
+            this.btnAnulujDodawaniePrac.TabIndex = 11;
+            this.btnAnulujDodawaniePrac.Text = "Anuluj";
+            this.btnAnulujDodawaniePrac.UseVisualStyleBackColor = true;
+            this.btnAnulujDodawaniePrac.Click += new System.EventHandler(this.btnAnulujDodawaniePrac_Click);
+            // 
             // btnZatwierdzDodawaniePrac
             // 
             this.btnZatwierdzDodawaniePrac.Location = new System.Drawing.Point(28, 236);
@@ -1135,16 +1145,6 @@
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
             // 
-            // btnAnulujDodawaniePrac
-            // 
-            this.btnAnulujDodawaniePrac.Location = new System.Drawing.Point(28, 265);
-            this.btnAnulujDodawaniePrac.Name = "btnAnulujDodawaniePrac";
-            this.btnAnulujDodawaniePrac.Size = new System.Drawing.Size(111, 23);
-            this.btnAnulujDodawaniePrac.TabIndex = 11;
-            this.btnAnulujDodawaniePrac.Text = "Anuluj";
-            this.btnAnulujDodawaniePrac.UseVisualStyleBackColor = true;
-            this.btnAnulujDodawaniePrac.Click += new System.EventHandler(this.btnAnulujDodawaniePrac_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1210,7 +1210,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox GroupDaneNaprawy;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtOpisNaprawy;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox GroupDaneRoweru;
         private System.Windows.Forms.TextBox txtKolor;

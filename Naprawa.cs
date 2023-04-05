@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Reflection.Emit;
 
 namespace SerwisRowerowy
 {
@@ -79,24 +80,34 @@ namespace SerwisRowerowy
             //    RadioListaUslug.Items.Add(row["nazwa"].ToString() + "- " + row["cena"].ToString());
             //}
 
+            /// ten kod poniżej był odkomentowany eryku
 
             string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            string query = "SELECT * FROM uslugi";
+            //string query = "SELECT * FROM uslugi";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    SqlCommand command = new SqlCommand(query, connection);
+            //    connection.Open();
 
-                SqlDataReader reader = command.ExecuteReader();
+            //    SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    RadioListaUslug.Items.Add(reader["nazwa"].ToString() + "- " + reader["cena"].ToString());
-                }
+            //    while (reader.Read())
+            //    {
+            //        RadioListaUslug.Items.Add(reader["nazwa"].ToString() + "- " + reader["cena"].ToString());
+            //    }
 
-                reader.Close();
-            }
+            //    reader.Close();
+            //}
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            string selectCommand = $"SELECT zamowienia.*,klienci.* FROM naprawy WHERE id_naprawy = {_id_naprawy}";
+            SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
+
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            
 
             //OleDbDataAdapter adp = new OleDbDataAdapter();
             //OleDbConnection con = new OleDbConnection();

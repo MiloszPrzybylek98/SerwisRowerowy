@@ -43,32 +43,85 @@ namespace SerwisRowerowy
             string model = txtModel.Text;
             string nSeryjny = txtNrSeryjny.Text;
             string kolor = txtKolor.Text;
-
-            //proba inserta
-
-            SqlConnection conn;
-            SqlDataAdapter adapter;
-            DataSet ds;
-            DataTable dt;
-            conn= new SqlConnection($"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT * FROM naprawy", conn);
-            adapter = new SqlDataAdapter(cmd);
-            ds= new DataSet();
-            adapter.Fill(ds);
-            dt = ds.Tables[0];
-            //dt.PrimaryKey = new
+            int idKlienta;
+            int idNaprawy;
+            string opis = txtOpisNaprawy.Text;
 
 
-            if (dgvKlienci.SelectedRows.Count > 0)
+            if(dgvKlienci.SelectedRows.Count > 0)
             {
                 DataRow selectedrow = ((DataRowView)dgvKlienci.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
-                int idKlienta = int.Parse(strID);
+                idKlienta = int.Parse(strID);
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string selectQuery = "SELECT * FROM klienci; SELECT SCOPE_IDENTITY();";
+                    SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    DataRow newRow = dt.NewRow();
+                    newRow["imie"] = txtImieKl.Text;
+                    newRow["nazwisko"] = txtNazwiskoKl.Text;
+                    newRow["telefon"] = txtNumerTelKl.Text;
+                    newRow["darmowy_przeglad"] = 0;
+
+                    dt.Rows.Add(newRow);
+
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    adapter.Update(dt);
+
+                    
+                }
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT TOP 1 id_klienta FROM klienci ORDER BY id_klienta DESC";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    idKlienta = (int)cmd.ExecuteScalar();
+
+                }
 
             }
 
 
-            Naprawa naprawa = new Naprawa();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = "SELECT * FROM naprawy";
+                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                DataRow newRow = dt.NewRow();
+                newRow["data_serwisu"] = DateTime.Now;
+                newRow["rodzaj_serwisu"] = "przeglad";
+                newRow["klient_id"] = 1;
+                newRow["rower_id"] = 1;
+                newRow["uwaga"] = opis;
+                newRow["czy_aktywna"] = 1;
+                dt.Rows.Add(newRow);
+
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Update(dt);
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT TOP 1 id_naprawy FROM naprawy ORDER BY id_naprawy DESC";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                idNaprawy = (int)cmd.ExecuteScalar();
+
+            }
+
+
+
+
+
+
+            Naprawa naprawa = new Naprawa(idNaprawy);
             naprawa.Show();
             
         }
@@ -357,7 +410,7 @@ namespace SerwisRowerowy
         {
             if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
-
+                
 
 
                 DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
