@@ -54,7 +54,7 @@ namespace SerwisRowerowy
             ds= new DataSet();
             adapter.Fill(ds);
             dt = ds.Tables[0];
-            dt.PrimaryKey = new
+            //dt.PrimaryKey = new
 
 
             if (dgvKlienci.SelectedRows.Count > 0)
