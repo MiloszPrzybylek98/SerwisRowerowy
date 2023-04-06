@@ -89,7 +89,11 @@ namespace SerwisRowerowy
             
             connector.PobiezWszystkieDaneZTabeli(dgvListaUslug, "uslugi");
             dgvListaUslug.CurrentCell = null;
-            //dgvListaUslug.Columns["id_usugi"].Visible = false;
+            dgvListaUslug.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
+            //dgvListaUslug.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            
+
 
 
 

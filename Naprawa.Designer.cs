@@ -355,7 +355,7 @@
             this.dgvListaUslug.Location = new System.Drawing.Point(363, 145);
             this.dgvListaUslug.Name = "dgvListaUslug";
             this.dgvListaUslug.RowTemplate.Height = 24;
-            this.dgvListaUslug.Size = new System.Drawing.Size(479, 227);
+            this.dgvListaUslug.Size = new System.Drawing.Size(630, 227);
             this.dgvListaUslug.TabIndex = 20;
             // 
             // Naprawa
