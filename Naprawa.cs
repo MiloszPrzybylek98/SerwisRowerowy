@@ -86,6 +86,11 @@ namespace SerwisRowerowy
             lblKolor.Text = kolorRoweru;
             lblNrSeryjny.Text= NrSerRoweru;
 
+            
+            connector.PobiezWszystkieDaneZTabeli(dgvListaUslug, "uslugi");
+            dgvListaUslug.CurrentCell = null;
+            //dgvListaUslug.Columns["id_usugi"].Visible = false;
+
 
 
             //    OleDbDataAdapter adapter;
