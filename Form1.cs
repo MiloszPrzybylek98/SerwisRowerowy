@@ -45,6 +45,7 @@ namespace SerwisRowerowy
             string kolor = txtKolor.Text;
             int idKlienta;
             int idNaprawy;
+            int idRoweru;
             string opis = txtOpisNaprawy.Text;
 
             if (true)//dodac walidacje czy wszystkie dane sa wypełnione ale nie wiem czy w tym miejscu
@@ -91,6 +92,46 @@ namespace SerwisRowerowy
 
             }
 
+            if (dgvRowery.SelectedRows.Count > 0)
+            {
+                DataRow selectedrow = ((DataRowView)dgvRowery.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                idRoweru = int.Parse(strID);
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string selectQuery = "SELECT * FROM rowery; SELECT SCOPE_IDENTITY();";
+                    SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    DataRow newRow = dt.NewRow();
+                    newRow["marka"] = marka;
+                    newRow["model"] = model;
+                    newRow["kolor"] = kolor;
+                    newRow["numer_seryjny"] = nSeryjny;
+                    newRow["klient_id"] = idKlienta;
+
+                    dt.Rows.Add(newRow);
+
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    adapter.Update(dt);
+
+
+                }
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT TOP 1 id_roweru FROM rowery ORDER BY id_roweru DESC";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    idRoweru = (int)cmd.ExecuteScalar();
+
+                }
+
+            }
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -102,8 +143,8 @@ namespace SerwisRowerowy
                 DataRow newRow = dt.NewRow();
                 newRow["data_serwisu"] = DateTime.Now;
                 newRow["rodzaj_serwisu"] = "przeglad";
-                newRow["klient_id"] = 1;
-                newRow["rower_id"] = 1;
+                newRow["klient_id"] = idKlienta;
+                newRow["rower_id"] = idRoweru;
                 newRow["uwaga"] = opis;
                 newRow["czy_aktywna"] = 1;
                 dt.Rows.Add(newRow);
@@ -206,6 +247,7 @@ namespace SerwisRowerowy
         {
             if (dgvKlienci.SelectedRows.Count > 0)
             {
+                radioDarmowyPrzeglad.Checked = false;
                 btnDodajKlienta.Enabled = false;
                 GroupDaneKl.Visible= false;
                 btnDodajKlienta.Visible = true;
@@ -245,7 +287,7 @@ namespace SerwisRowerowy
                     {
                         DataRow row1 = dt1.Rows[0];
 
-                        // odczytaj wartość z kolumny Email i przypisz ją do zmiennej
+                        
                         string Czy_darmowy = row1["darmowy_przeglad"].ToString();
 
                         
@@ -253,11 +295,13 @@ namespace SerwisRowerowy
                         {
                             lblDarmowyPrzeglad.Visible = true;
                             radioDarmowyPrzeglad.Enabled=true;
+                            radioPrzeglad.Enabled = false;
                         }
                         else
                         {
                             lblDarmowyPrzeglad.Visible = false;
                             radioDarmowyPrzeglad.Enabled = false;
+                            radioPrzeglad.Enabled = true;
                         }
                     }
                 }
@@ -517,6 +561,20 @@ namespace SerwisRowerowy
             btnDodajKlienta.Visible = false;
             GroupDaneRoweru.Visible= false;
             
+        }
+
+        private void radioDarmowyPrzeglad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioDarmowyPrzeglad.Checked)
+            {
+                radioPrzeglad.Checked = false;
+                radioPrzeglad.Enabled= false;
+            }
+            else
+            {
+                radioPrzeglad.Checked = false;
+                radioPrzeglad.Enabled = true;
+            }
         }
     }
 }

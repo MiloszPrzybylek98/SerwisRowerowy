@@ -321,6 +321,7 @@
             this.radioDarmowyPrzeglad.TabIndex = 12;
             this.radioDarmowyPrzeglad.Text = "Darmowy przegląd";
             this.radioDarmowyPrzeglad.UseVisualStyleBackColor = true;
+            this.radioDarmowyPrzeglad.CheckedChanged += new System.EventHandler(this.radioDarmowyPrzeglad_CheckedChanged);
             this.radioDarmowyPrzeglad.Click += new System.EventHandler(this.radioDarmowyPrzeglad_Click);
             // 
             // lblDarmowyPrzeglad
