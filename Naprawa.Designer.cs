@@ -52,7 +52,7 @@
             this.btnUsunCzesci = new System.Windows.Forms.Button();
             this.btnDodajCzesci = new System.Windows.Forms.Button();
             this.btnZapiszNaprawe = new System.Windows.Forms.Button();
-            this.checkedUslugi = new System.Windows.Forms.CheckedListBox();
+            this.listUslugi = new System.Windows.Forms.ListBox();
             this.GroupDaneNaprawy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -308,21 +308,23 @@
             this.btnZapiszNaprawe.UseVisualStyleBackColor = true;
             this.btnZapiszNaprawe.Click += new System.EventHandler(this.btnZapiszNaprawe_Click);
             // 
-            // checkedUslugi
+            // listUslugi
             // 
-            this.checkedUslugi.FormattingEnabled = true;
-            this.checkedUslugi.Location = new System.Drawing.Point(15, 181);
-            this.checkedUslugi.MultiColumn = true;
-            this.checkedUslugi.Name = "checkedUslugi";
-            this.checkedUslugi.Size = new System.Drawing.Size(815, 109);
-            this.checkedUslugi.TabIndex = 18;
+            this.listUslugi.ColumnWidth = 150;
+            this.listUslugi.FormattingEnabled = true;
+            this.listUslugi.Location = new System.Drawing.Point(12, 181);
+            this.listUslugi.MultiColumn = true;
+            this.listUslugi.Name = "listUslugi";
+            this.listUslugi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listUslugi.Size = new System.Drawing.Size(809, 108);
+            this.listUslugi.TabIndex = 19;
             // 
             // Naprawa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(842, 652);
-            this.Controls.Add(this.checkedUslugi);
+            this.Controls.Add(this.listUslugi);
             this.Controls.Add(this.btnZapiszNaprawe);
             this.Controls.Add(this.groupCzesci);
             this.Controls.Add(this.radioNaprawa);
@@ -370,6 +372,6 @@
         private System.Windows.Forms.TextBox txtFiltr;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnZapiszNaprawe;
-        private System.Windows.Forms.CheckedListBox checkedUslugi;
+        private System.Windows.Forms.ListBox listUslugi;
     }
 }

@@ -138,25 +138,26 @@ namespace SerwisRowerowy
 
             //
 
-            
-            //SqlConnection connection1 = new SqlConnection(connectionString);
-            //string selectCommand1 = "SELECT * FROM uslugi";
-            //SqlDataAdapter adapter1 = new SqlDataAdapter(selectCommand1, connection1);
- 
+
+            SqlConnection connection1 = new SqlConnection(connectionString);
+            string selectCommand1 = "SELECT * FROM uslugi";
+            SqlDataAdapter adapter1 = new SqlDataAdapter(selectCommand1, connection1);
+
             
             //adapter1.Fill(dt1);
+
             //foreach (DataRow row in dt1.Rows)
             //{
             //    string nazwaUslugi = row["nazwa"].ToString();
             //    decimal cenaUslugi = (decimal)row["cena"];
             //    int idUslugi = (int)row["id_uslugi"];
-            //    CheckedListBoxItem item = new CheckedListBoxItem(nazwaUslugi + " - " + cenaUslugi.ToString(), idUslugi);
-            //    checkedListBox1.Items.Add(item);
+                
+            //    listUslugi.Items.Add(idUslugi+". "+ nazwaUslugi +"- "+ cenaUslugi);
+            //    listUslugi.Items.
             //}
-            //foreach (DataRow row in dt1.Rows)
-            //{
-            //    checkedUslugi.Items.Add(new CheckedListBoxItem((int)row["id"], row["name"].ToString()));
-            //}
+
+            
+
 
 
             //to też było odkomentowane
@@ -268,22 +269,18 @@ namespace SerwisRowerowy
             //dt.Columns.Add("naprawaId", typeof(int));
             //dt.Columns.Add("uslugaId", typeof(int));
 
-            //// Przechodzenie przez wszystkie elementy w kontrolce RadioButtonList i dodawanie zaznaczonych elementów do tabeli
-            //foreach (ListItem item in RadioListaUslug.Items)
+            //foreach (var item in listUslugi.SelectedItems)
             //{
-            //    if (item.Selected)
-            //    {
 
-            //        DataRow row = dt.NewRow();
-            //        row["nazwa_uslugi"] = item.Text;
-            //        row["cena"] = decimal.Parse(item.Value);
+            //    DataRow row = dt.NewRow();
 
-            //        // Dodawanie nowego wiersza do tabeli
-            //        dt.Rows.Add(row);
-            //    }
+            //    row["naprawaId"] = _id_naprawy;
+            //    row["uslugaId"] = item.ToString();
             //}
 
-            
+
+
+
             //DataTable selectedUslugiTable = new DataTable();
 
             //selectedUslugiTable.Columns.Add("naprawaId", typeof(int));
@@ -297,20 +294,20 @@ namespace SerwisRowerowy
             //    int tagvalue = (int)rb.Row["tag"];
             //    selectedTags.Add(tagvalue);
 
-                    //DataRow row = selectedUslugiTable.NewRow();
+            //DataRow row = selectedUslugiTable.NewRow();
 
-                    //row["naprawaId"] = _id_naprawy;
-                    //row["uslugaId"] = rb.Tag;
-                    //selectedUslugiTable.Rows.Add(row);
+            //row["naprawaId"] = _id_naprawy;
+            //row["uslugaId"] = rb.Tag;
+            //selectedUslugiTable.Rows.Add(row);
 
-                    //DataRowView drv = (DataRowView)rb.Tag;
-                    //DataRow row = drv.Row;
+            //DataRowView drv = (DataRowView)rb.Tag;
+            //DataRow row = drv.Row;
 
-                    //DataRow newRow = selectedUslugiTable.NewRow();
-                    //newRow["uslugaId"] = row["id_uslugi"];
-                    //newRow["naprawaId"] = _id_naprawy;
-                    //selectedUslugiTable.Rows.Add(newRow);
-                
+            //DataRow newRow = selectedUslugiTable.NewRow();
+            //newRow["uslugaId"] = row["id_uslugi"];
+            //newRow["naprawaId"] = _id_naprawy;
+            //selectedUslugiTable.Rows.Add(newRow);
+
             //}
 
 
