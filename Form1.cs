@@ -47,8 +47,12 @@ namespace SerwisRowerowy
             int idNaprawy;
             string opis = txtOpisNaprawy.Text;
 
+            if (true)//dodac walidacje czy wszystkie dane sa wypełnione ale nie wiem czy w tym miejscu
+            {
 
-            if(dgvKlienci.SelectedRows.Count > 0)
+            }
+
+            if (dgvKlienci.SelectedRows.Count > 0)
             {
                 DataRow selectedrow = ((DataRowView)dgvKlienci.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
@@ -123,6 +127,7 @@ namespace SerwisRowerowy
 
             Naprawa naprawa = new Naprawa(idNaprawy);
             naprawa.Show();
+            btnDodajNaprawe.Enabled = false;
             
         }
 
@@ -143,6 +148,7 @@ namespace SerwisRowerowy
             groupWyszukiwanieKlienta.Enabled = true;
             GroupDaneRoweru.Enabled = true;
             btnDodajNowyRower.Visible = true;
+            btnDodajKlienta.Visible= true;
             GroupDaneRoweru.Visible = false;
 
             Connector connector = new Connector();
@@ -150,6 +156,8 @@ namespace SerwisRowerowy
 
             dgvKlienci.CurrentCell = null;
             dgvKlienci.Columns["id_klienta"].Visible = false;
+
+            
 
         }
 
@@ -198,7 +206,9 @@ namespace SerwisRowerowy
         {
             if (dgvKlienci.SelectedRows.Count > 0)
             {
-
+                btnDodajKlienta.Enabled = false;
+                GroupDaneKl.Visible= false;
+                btnDodajKlienta.Visible = true;
                 DataTable dt = (DataTable)dgvKlienci.DataSource;
 
                 DataRow selectedrow = ((DataRowView)dgvKlienci.SelectedRows[0].DataBoundItem).Row;
@@ -206,9 +216,7 @@ namespace SerwisRowerowy
                 int idKlienta = int.Parse(strID);
 
                 DataGridViewRow row = dgvKlienci.SelectedRows[0];
-                txtImieKl.Text = row.Cells[1].Value.ToString();
-                txtNazwiskoKl.Text = row.Cells[2].Value.ToString();
-                txtNumerTelKl.Text = row.Cells[3].Value.ToString();
+
 
 
                 string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
@@ -224,6 +232,37 @@ namespace SerwisRowerowy
                 dgvRowery.Columns["klient_id"].Visible = false;
                 dgvRowery.Columns["id_roweru"].Visible = false;
 
+                using (SqlConnection connection1 = new SqlConnection(connectionString))
+                {
+                    string selectQuery = "SELECT darmowy_przeglad FROM klienci WHERE id_klienta = @id_klienta";
+                    SqlDataAdapter adapter1 = new SqlDataAdapter(selectQuery, connection1);
+                    adapter1.SelectCommand.Parameters.AddWithValue("@id_klienta", idKlienta); 
+
+                    DataTable dt1 = new DataTable();
+                    adapter1.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+                        DataRow row1 = dt1.Rows[0];
+
+                        // odczytaj wartość z kolumny Email i przypisz ją do zmiennej
+                        string Czy_darmowy = row1["darmowy_przeglad"].ToString();
+
+                        
+                        if(Czy_darmowy=="True")
+                        {
+                            lblDarmowyPrzeglad.Visible = true;
+                            radioDarmowyPrzeglad.Enabled=true;
+                        }
+                        else
+                        {
+                            lblDarmowyPrzeglad.Visible = false;
+                            radioDarmowyPrzeglad.Enabled = false;
+                        }
+                    }
+                }
+
+
 
 
             }
@@ -236,7 +275,8 @@ namespace SerwisRowerowy
             GroupDaneNaprawy.Enabled = false;
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
-
+            lblDarmowyPrzeglad.Visible = false;
+            radioDarmowyPrzeglad.Enabled = false;
             groupDodajNowegoPrac.Enabled = false;
             
 
@@ -284,6 +324,11 @@ namespace SerwisRowerowy
             txtFiltrKlienta.Text = null;
             dgvRowery.DataSource = null;
             dgvRowery.CurrentCell = null;
+            btnDodajKlienta.Enabled = true;
+            btnDodajNowyRower.Enabled = true;
+            GroupDaneRoweru.Visible = false;
+            btnDodajNowyRower.Visible = true;
+            
         }
 
         private void btnUsunCzesc_Click(object sender, EventArgs e)
@@ -453,6 +498,25 @@ namespace SerwisRowerowy
         {
             groupDodajNowegoPrac.Enabled = false;
             ClearTextBoxesInGroupBox(groupDodajNowegoPrac);
+        }
+
+        private void dgvRowery_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvRowery.SelectedRows.Count >0)
+            {
+                GroupDaneRoweru.Visible = false;
+                btnDodajNowyRower.Visible = true;
+                btnDodajNowyRower.Enabled = false;
+                
+            }
+        }
+
+        private void btnDodajKlienta_Click(object sender, EventArgs e)
+        {
+            GroupDaneKl.Visible = true;
+            btnDodajKlienta.Visible = false;
+            GroupDaneRoweru.Visible= false;
+            
         }
     }
 }

@@ -122,6 +122,7 @@
             this.btnDodajPracownika = new System.Windows.Forms.Button();
             this.btnUsunPracownika = new System.Windows.Forms.Button();
             this.dgvPracownik = new System.Windows.Forms.DataGridView();
+            this.btnDodajKlienta = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -179,6 +180,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnDodajKlienta);
             this.tabPage3.Controls.Add(this.groupWyszukiwanieKlienta);
             this.tabPage3.Controls.Add(this.btnNowaNaprawa);
             this.tabPage3.Controls.Add(this.btnDodajNowyRower);
@@ -196,6 +198,7 @@
             // 
             // groupWyszukiwanieKlienta
             // 
+            this.groupWyszukiwanieKlienta.Controls.Add(this.btnCzyszczenieOkienek);
             this.groupWyszukiwanieKlienta.Controls.Add(this.dgvRowery);
             this.groupWyszukiwanieKlienta.Controls.Add(this.dgvKlienci);
             this.groupWyszukiwanieKlienta.Controls.Add(this.txtFiltrKlienta);
@@ -220,6 +223,7 @@
             this.dgvRowery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRowery.Size = new System.Drawing.Size(307, 199);
             this.dgvRowery.TabIndex = 8;
+            this.dgvRowery.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRowery_CellClick);
             // 
             // dgvKlienci
             // 
@@ -270,6 +274,7 @@
             // 
             // btnDodajNaprawe
             // 
+            this.btnDodajNaprawe.Enabled = false;
             this.btnDodajNaprawe.Location = new System.Drawing.Point(715, 418);
             this.btnDodajNaprawe.Name = "btnDodajNaprawe";
             this.btnDodajNaprawe.Size = new System.Drawing.Size(137, 50);
@@ -473,27 +478,27 @@
             // 
             // GroupDaneKl
             // 
-            this.GroupDaneKl.Controls.Add(this.btnCzyszczenieOkienek);
             this.GroupDaneKl.Controls.Add(this.txtNumerTelKl);
             this.GroupDaneKl.Controls.Add(this.label3);
             this.GroupDaneKl.Controls.Add(this.txtNazwiskoKl);
             this.GroupDaneKl.Controls.Add(this.label2);
             this.GroupDaneKl.Controls.Add(this.txtImieKl);
             this.GroupDaneKl.Controls.Add(this.label1);
-            this.GroupDaneKl.Location = new System.Drawing.Point(17, 19);
+            this.GroupDaneKl.Location = new System.Drawing.Point(27, 17);
             this.GroupDaneKl.Name = "GroupDaneKl";
             this.GroupDaneKl.Size = new System.Drawing.Size(135, 250);
             this.GroupDaneKl.TabIndex = 2;
             this.GroupDaneKl.TabStop = false;
             this.GroupDaneKl.Text = "Dane Klienta";
+            this.GroupDaneKl.Visible = false;
             // 
             // btnCzyszczenieOkienek
             // 
-            this.btnCzyszczenieOkienek.Location = new System.Drawing.Point(6, 189);
+            this.btnCzyszczenieOkienek.Location = new System.Drawing.Point(154, 29);
             this.btnCzyszczenieOkienek.Name = "btnCzyszczenieOkienek";
-            this.btnCzyszczenieOkienek.Size = new System.Drawing.Size(115, 23);
+            this.btnCzyszczenieOkienek.Size = new System.Drawing.Size(136, 23);
             this.btnCzyszczenieOkienek.TabIndex = 17;
-            this.btnCzyszczenieOkienek.Text = "Wyczyść dane klienta";
+            this.btnCzyszczenieOkienek.Text = "Wyczyść zaznaczenie";
             this.btnCzyszczenieOkienek.UseVisualStyleBackColor = true;
             this.btnCzyszczenieOkienek.Click += new System.EventHandler(this.btnCzyszczenieOkienek_Click);
             // 
@@ -1145,6 +1150,17 @@
             this.dgvPracownik.Size = new System.Drawing.Size(646, 161);
             this.dgvPracownik.TabIndex = 0;
             // 
+            // btnDodajKlienta
+            // 
+            this.btnDodajKlienta.Location = new System.Drawing.Point(26, 145);
+            this.btnDodajKlienta.Name = "btnDodajKlienta";
+            this.btnDodajKlienta.Size = new System.Drawing.Size(136, 23);
+            this.btnDodajKlienta.TabIndex = 17;
+            this.btnDodajKlienta.Text = "Dodaj nowego klienta";
+            this.btnDodajKlienta.UseVisualStyleBackColor = true;
+            this.btnDodajKlienta.Visible = false;
+            this.btnDodajKlienta.Click += new System.EventHandler(this.btnDodajKlienta_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1284,6 +1300,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtFiltrPracownika;
         private System.Windows.Forms.Button btnAnulujDodawaniePrac;
+        private System.Windows.Forms.Button btnDodajKlienta;
     }
 }
 
