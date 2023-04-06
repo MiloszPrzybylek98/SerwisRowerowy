@@ -166,7 +166,7 @@ namespace SerwisRowerowy
 
 
 
-            Naprawa naprawa = new Naprawa(idNaprawy);
+            Naprawa naprawa = new Naprawa(idNaprawy, idKlienta, idRoweru);
             naprawa.Show();
             btnDodajNaprawe.Enabled = false;
             
@@ -197,6 +197,7 @@ namespace SerwisRowerowy
 
             dgvKlienci.CurrentCell = null;
             dgvKlienci.Columns["id_klienta"].Visible = false;
+            btnDodajNaprawe.Enabled = true;
 
             
 
@@ -499,14 +500,29 @@ namespace SerwisRowerowy
         {
             if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
-                
+                object id_klienta;
+                object id_roweru;
 
 
                 DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
                 int id_naprawy = int.Parse(strID);
-       
-                Naprawa naprawa = new Naprawa(id_naprawy);
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string selectQuery = $"SELECT * FROM naprawy where id_naprawy = {id_naprawy} ";
+                    SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    id_klienta = dt.Rows[0]["klient_id"];
+                    id_roweru = dt.Rows[0]["rower_id"];
+
+                    
+                }
+
+
+                Naprawa naprawa = new Naprawa(id_naprawy, (int)id_klienta, (int)id_roweru);
                 naprawa.Show();
 
 

@@ -10,16 +10,23 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Reflection.Emit;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SerwisRowerowy
 {
     public partial class Naprawa : Form
     {
         private int _id_naprawy;
-        public Naprawa(int id_naprawy)
+        private int _id_klienta;
+        private int _id_roweru;
+        DataTable dt1 = new DataTable();
+        string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+        public Naprawa(int id_naprawy, int id_klienta, int id_roweru)
         {
             InitializeComponent();
             _id_naprawy = id_naprawy;
+            _id_klienta = id_klienta;
+            _id_roweru = id_roweru;
         }
         public Naprawa()
         {
@@ -29,11 +36,57 @@ namespace SerwisRowerowy
 
         private void Naprawa_Load(object sender, EventArgs e)
         {
+            string uwaga;
+            string imieKlienta;
+            string nazwiskoKlienta;
+
+            
+            string markaRoweru;
+            string modelRoweru;
+            string kolorRoweru;
+            string NrSerRoweru;
+
+            string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
             Connector connector = new Connector();
             connector.PobiezWszystkieDaneZTabeli(dgvCzesci, "czesci");
 
             dgvCzesci.CurrentCell = null;
             dgvCzesci.Columns["id_czesci"].Visible = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = @"SELECT n.uwaga, k.*, r.* FROM naprawy n 
+                                    INNER JOIN klienci k ON n.klient_id = k.id_klienta 
+                                    INNER JOIN rowery r ON n.rower_id = r.id_roweru WHERE n.id_naprawy = @id_naprawy";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                //dane o naprawie
+                uwaga = dt.Rows[0].Field<string>("uwaga");
+
+                // dane o kliencie dla danej naprawy
+                imieKlienta = dt.Rows[0].Field<string>("imie");
+                nazwiskoKlienta = dt.Rows[0].Field<string>("nazwisko");
+
+                // dane o rowerze dla danej naprawy
+                markaRoweru = dt.Rows[0].Field<string>("marka");
+                modelRoweru = dt.Rows[0].Field<string>("model");
+                kolorRoweru = dt.Rows[0].Field<string>("kolor");
+                NrSerRoweru = dt.Rows[0].Field<string>("numer_seryjny");
+
+            }
+
+            lblOpisNaprawy.Text = uwaga;
+            lblMarka.Text = markaRoweru;
+            lblModel.Text = modelRoweru;
+            lblKolor.Text = kolorRoweru;
+            lblNrSeryjny.Text= NrSerRoweru;
+
+
 
             //    OleDbDataAdapter adapter;
             //    DataTable dt = new DataTable();
@@ -82,32 +135,40 @@ namespace SerwisRowerowy
 
             /// ten kod poniżej był odkomentowany eryku
 
-            string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            //string query = "SELECT * FROM uslugi";
 
-            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //
+
+            
+            //SqlConnection connection1 = new SqlConnection(connectionString);
+            //string selectCommand1 = "SELECT * FROM uslugi";
+            //SqlDataAdapter adapter1 = new SqlDataAdapter(selectCommand1, connection1);
+ 
+            
+            //adapter1.Fill(dt1);
+            //foreach (DataRow row in dt1.Rows)
             //{
-            //    SqlCommand command = new SqlCommand(query, connection);
-            //    connection.Open();
-
-            //    SqlDataReader reader = command.ExecuteReader();
-
-            //    while (reader.Read())
-            //    {
-            //        RadioListaUslug.Items.Add(reader["nazwa"].ToString() + "- " + reader["cena"].ToString());
-            //    }
-
-            //    reader.Close();
+            //    string nazwaUslugi = row["nazwa"].ToString();
+            //    decimal cenaUslugi = (decimal)row["cena"];
+            //    int idUslugi = (int)row["id_uslugi"];
+            //    CheckedListBoxItem item = new CheckedListBoxItem(nazwaUslugi + " - " + cenaUslugi.ToString(), idUslugi);
+            //    checkedListBox1.Items.Add(item);
+            //}
+            //foreach (DataRow row in dt1.Rows)
+            //{
+            //    checkedUslugi.Items.Add(new CheckedListBoxItem((int)row["id"], row["name"].ToString()));
             //}
 
-            SqlConnection connection = new SqlConnection(connectionString);
-            string selectCommand = $"SELECT zamowienia.*,klienci.* FROM naprawy WHERE id_naprawy = {_id_naprawy}";
-            SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
+
+            //to też było odkomentowane
+
+            //SqlConnection connection = new SqlConnection(connectionString);
+            //string selectCommand = $"SELECT zamowienia.*,klienci.* FROM naprawy WHERE id_naprawy = {_id_naprawy}";
+            //SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
 
 
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            
+            //DataTable dt = new DataTable();
+            //adapter.Fill(dt);
+
 
             //OleDbDataAdapter adp = new OleDbDataAdapter();
             //OleDbConnection con = new OleDbConnection();
@@ -197,6 +258,78 @@ namespace SerwisRowerowy
 
         private void btnDodajCzesci_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnZapiszNaprawe_Click(object sender, EventArgs e)
+        {
+            // Tworzenie nowej tabeli o nazwie "wybrane_uslugi" z kolumnami "nazwa_uslugi" i "cena"
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("naprawaId", typeof(int));
+            //dt.Columns.Add("uslugaId", typeof(int));
+
+            //// Przechodzenie przez wszystkie elementy w kontrolce RadioButtonList i dodawanie zaznaczonych elementów do tabeli
+            //foreach (ListItem item in RadioListaUslug.Items)
+            //{
+            //    if (item.Selected)
+            //    {
+
+            //        DataRow row = dt.NewRow();
+            //        row["nazwa_uslugi"] = item.Text;
+            //        row["cena"] = decimal.Parse(item.Value);
+
+            //        // Dodawanie nowego wiersza do tabeli
+            //        dt.Rows.Add(row);
+            //    }
+            //}
+
+            
+            //DataTable selectedUslugiTable = new DataTable();
+
+            //selectedUslugiTable.Columns.Add("naprawaId", typeof(int));
+            //selectedUslugiTable.Columns.Add("uslugaId", typeof(int));
+
+            //List<int> selectedTags = new List<int>();
+
+            //foreach (var rb in checkedUslugi.CheckedItems.Cast<DataRowView>())
+            //{
+
+            //    int tagvalue = (int)rb.Row["tag"];
+            //    selectedTags.Add(tagvalue);
+
+                    //DataRow row = selectedUslugiTable.NewRow();
+
+                    //row["naprawaId"] = _id_naprawy;
+                    //row["uslugaId"] = rb.Tag;
+                    //selectedUslugiTable.Rows.Add(row);
+
+                    //DataRowView drv = (DataRowView)rb.Tag;
+                    //DataRow row = drv.Row;
+
+                    //DataRow newRow = selectedUslugiTable.NewRow();
+                    //newRow["uslugaId"] = row["id_uslugi"];
+                    //newRow["naprawaId"] = _id_naprawy;
+                    //selectedUslugiTable.Rows.Add(newRow);
+                
+            //}
+
+
+            // Aktualizacja bazy danych za pomocą adaptera SqlDataAdapter
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    string insertQuery = "INSERT INTO Worek_na_uslugi (naprawaId, uslugaId) VALUES (@id_naprawy, @id_uslugi)";
+            //    SqlDataAdapter adapter = new SqlDataAdapter(insertQuery, connection);
+
+            //    // Dodanie parametrów do adaptera
+            //    adapter.InsertCommand.Parameters.Add("@nazwa_uslugi", SqlDbType.NVarChar, 50, "nazwa_uslugi");
+            //    adapter.InsertCommand.Parameters.Add("@cena", SqlDbType.Decimal, 0, "cena");
+
+            //    // Ustawienie właściwości SqlCommandBuilder dla adaptera
+            //    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+
+            //    // Aktualizacja danych w bazie danych
+            //    adapter.Update(dt);
+            //}
 
         }
     }
