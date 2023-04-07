@@ -26,6 +26,17 @@ namespace SerwisRowerowy
 
             
         }
+        public DataTable PobiezWszystkieDaneZTabeliDoDt(string tabela)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            string selectCommand = $"SELECT * FROM {tabela}";
+            SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            return dt;
+
+
+        }
 
 
         public void PobierzDoDgvZWarunkiem(DataGridView dgv,string daneDoPobrania, string tabela, string zmWarunkowa, string warunek)
@@ -41,28 +52,6 @@ namespace SerwisRowerowy
             dgv.DataSource = dt;
         }
 
-        //public void UpdatePojedynczyRow(string tabela, string poleDoUpdate)
-        //{
-        //    SqlConnection connection = new SqlConnection(connectionString);
-        //    string selectCommand = $"UPDATE {tabela} SET {poleDoUpdate} WHERE {zmWarunkowa} = {warunek}";
-        //    SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
-
-        //}
-
-        //public void DodanieNowejNaprawy()
-        //{
-            
-        //    SqlConnection connection = new SqlConnection(connectionString);
-        //    string insertQuery = "INSERT INTO Customers (FirstName, LastName, Email) VALUES (@FirstName, @LastName, @Email)";
-        //    SqlCommand command = new SqlCommand(insertQuery, connection);
-        //    command.Parameters.AddWithValue("@FirstName", "John");
-        //    command.Parameters.AddWithValue("@LastName", "Doe");
-        //    command.Parameters.AddWithValue("@Email", "john.doe@example.com");
-        //    connection.Open();
-        //    int rowsAffected = command.ExecuteNonQuery();
-        //    connection.Close();
-
-        //}
 
         public void DodanieNowejNaprawy()
         {
@@ -91,6 +80,10 @@ namespace SerwisRowerowy
             }
 
         }
+
+
+
+
 
 
 

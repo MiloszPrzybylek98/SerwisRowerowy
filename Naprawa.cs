@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Reflection.Emit;
 using static System.Net.Mime.MediaTypeNames;
+using System.Data.Common;
 
 namespace SerwisRowerowy
 {
@@ -20,7 +21,9 @@ namespace SerwisRowerowy
         private int _id_klienta;
         private int _id_roweru;
         DataTable dt1 = new DataTable();
+        DataTable dtUslugi = new DataTable();
         string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+
         public Naprawa(int id_naprawy, int id_klienta, int id_roweru)
         {
             InitializeComponent();
@@ -36,11 +39,11 @@ namespace SerwisRowerowy
 
         private void Naprawa_Load(object sender, EventArgs e)
         {
+
             string uwaga;
             string imieKlienta;
             string nazwiskoKlienta;
-
-            
+           
             string markaRoweru;
             string modelRoweru;
             string kolorRoweru;
@@ -90,6 +93,7 @@ namespace SerwisRowerowy
             connector.PobiezWszystkieDaneZTabeli(dgvListaUslug, "uslugi");
             dgvListaUslug.CurrentCell = null;
             dgvListaUslug.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvListaUslug.Columns["id_uslugi"].Visible= false;
             
             //dgvListaUslug.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             
@@ -257,9 +261,10 @@ namespace SerwisRowerowy
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM czesci";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dgvCzesci.DataSource = dt;
+                
+                adapter.Fill(dtUslugi);
+                dgvCzesci.DataSource = dtUslugi;
+
                 dgvCzesci.CurrentCell = null;
                 dgvCzesci.Columns["id_czesci"].Visible = false;
 
@@ -337,6 +342,153 @@ namespace SerwisRowerowy
             //    adapter.Update(dt);
             //}
 
+        }
+
+        private void btnDodajUslugi_Click(object sender, EventArgs e)
+        {
+            if(dgvListaUslug.SelectedRows.Count > 0)
+            {
+                DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                int idUslugi = int.Parse(strID);
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    connection.Open();
+
+
+                    string query = $"INSERT INTO Worek_na_uslugi (naprawaId, uslugaId) VALUES ({_id_naprawy}, {idUslugi})";
+
+ 
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.ExecuteNonQuery();
+                }
+
+                using (SqlConnection connection2 = new SqlConnection(connectionString))
+                {
+
+                    connection2.Open();
+
+
+                    string query = $"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = {_id_naprawy}";
+
+ 
+                    SqlDataAdapter adapter1 = new SqlDataAdapter(query, connection2);
+                    DataTable dataTable = new DataTable();
+                    adapter1.Fill(dataTable);
+                    dgvUslugiWorek.DataSource = dataTable;
+
+
+                }
+
+
+
+            }
+
+        }
+
+        private void btnOdejmijUslugi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvUslugiWorek.SelectedRows.Count > 0)
+                {
+                    DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row;
+                    string strID = selectedrow[0].ToString();
+                    int idUslugi = int.Parse(strID);
+
+
+                    string query = $"DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId AND uslugaId = @uslugaId";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                        command.Parameters.AddWithValue("@uslugaId", idUslugi);
+
+                        command.ExecuteNonQuery();
+
+
+
+                    }
+
+                    //ładny adapter
+                    //using (SqlConnection connection = new SqlConnection(connectionString))
+                    //{
+                    //    string querySelect = "SELECT * FROM Worek_na_uslugi";
+
+                    //    SqlDataAdapter adapter = new SqlDataAdapter(querySelect, connection);
+                    //    DataTable dt = new DataTable();
+                    //    adapter.Fill(dt);
+
+                    //    // to nie dział
+                    //    //foreach (DataRow row in dt.Rows)
+                    //    //{
+                    //    //    if ((int)row["naprawaId"] == 98 && (int)row["uslugaId"] == 1)
+                    //    //    {
+                    //    //        row["naprawaId"] = 97;
+                    //    //        row["uslugaId"] = 5;
+
+                    //    //    }
+                    //    //}
+
+                    //    //tym dodajemy nowego rowa
+                    //    //DataRow dr = dt.NewRow();
+                    //    //dr["naprawaId"] = 98;
+                    //    //dr["uslugaId"] = 1;
+                    //    //dt.Rows.Add(dr);
+
+                    //    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    //    adapter.AcceptChangesDuringUpdate= true;
+                    //    adapter.Update(dt);
+
+
+
+                    //}
+
+
+
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
+            if (dgvUslugiWorek.Rows.Count < 2)
+            {
+                string query = $"DELETE FROM Worek_na_uslugi WHERE naprawaID = {_id_naprawy}"; 
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            using (SqlConnection connection2 = new SqlConnection(connectionString))
+            {
+
+                connection2.Open();
+
+
+                string querySelect = $"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = {_id_naprawy}";
+
+
+                SqlDataAdapter adapter1 = new SqlDataAdapter(querySelect, connection2);
+                DataTable dataTable = new DataTable();
+                adapter1.Fill(dataTable);
+                dgvUslugiWorek.DataSource = dataTable;
+
+
+            }
+            dgvListaUslug.CurrentCell = null;
         }
     }
 }

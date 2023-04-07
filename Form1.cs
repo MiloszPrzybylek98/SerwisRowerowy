@@ -48,10 +48,7 @@ namespace SerwisRowerowy
             int idRoweru;
             string opis = txtOpisNaprawy.Text;
 
-            if (true)//dodac walidacje czy wszystkie dane sa wypełnione ale nie wiem czy w tym miejscu
-            {
 
-            }
 
             if (dgvKlienci.SelectedRows.Count > 0)
             {
@@ -83,10 +80,14 @@ namespace SerwisRowerowy
                 }
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
+
                     string query = "SELECT TOP 1 id_klienta FROM klienci ORDER BY id_klienta DESC";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-                    idKlienta = (int)cmd.ExecuteScalar();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    idKlienta = dt.Rows[0].Field<int>(0);
+                    
 
                 }
 
@@ -123,10 +124,18 @@ namespace SerwisRowerowy
                 }
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
                     string query = "SELECT TOP 1 id_roweru FROM rowery ORDER BY id_roweru DESC";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-                    idRoweru = (int)cmd.ExecuteScalar();
+
+                    //metoda połączeniowa
+
+                    //connection.Open();
+                    //SqlCommand cmd = new SqlCommand(query, connection);
+                    //idRoweru = (int)cmd.ExecuteScalar();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    idRoweru = dt.Rows[0].Field<int>(0);
 
                 }
 
@@ -148,16 +157,21 @@ namespace SerwisRowerowy
                 newRow["uwaga"] = opis;
                 newRow["czy_aktywna"] = 1;
                 dt.Rows.Add(newRow);
+                
 
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
                 adapter.Update(dt);
             }
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
+                
                 string query = "SELECT TOP 1 id_naprawy FROM naprawy ORDER BY id_naprawy DESC";
-                SqlCommand cmd = new SqlCommand(query, connection);
-                idNaprawy = (int)cmd.ExecuteScalar();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                idNaprawy = dt.Rows[0].Field<int>(0);
+
 
             }
 
@@ -342,7 +356,7 @@ namespace SerwisRowerowy
             dgvZakonczoneNaprawy.Columns["uwaga"].Visible = false;
             dgvObecneNaprawy.ClearSelection();
 
-            connector.PobiezWszystkieDaneZTabeli(dgvPracownik, "pracownicy");
+            dgvPracownik.DataSource= connector.PobiezWszystkieDaneZTabeliDoDt("pracownicy");
 
             dgvPracownik.CurrentCell = null;
             dgvPracownik.Columns["id_pracownika"].Visible = false;
