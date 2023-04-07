@@ -195,7 +195,6 @@
             // 
             this.dgvCzesci.AllowUserToAddRows = false;
             this.dgvCzesci.AllowUserToDeleteRows = false;
-            this.dgvCzesci.AllowUserToResizeColumns = false;
             this.dgvCzesci.AllowUserToResizeRows = false;
             this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -212,7 +211,6 @@
             // 
             this.dgvCzesciWorek.AllowUserToAddRows = false;
             this.dgvCzesciWorek.AllowUserToDeleteRows = false;
-            this.dgvCzesciWorek.AllowUserToResizeColumns = false;
             this.dgvCzesciWorek.AllowUserToResizeRows = false;
             this.dgvCzesciWorek.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesciWorek.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

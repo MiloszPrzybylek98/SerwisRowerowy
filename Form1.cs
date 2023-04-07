@@ -60,6 +60,8 @@ namespace SerwisRowerowy
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    #region SELECT klientów
+
                     string selectQuery = "SELECT * FROM klienci; SELECT SCOPE_IDENTITY();";
                     SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
                     DataTable dt = new DataTable();
@@ -75,19 +77,19 @@ namespace SerwisRowerowy
 
                     SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
                     adapter.Update(dt);
+                    #endregion
 
-                    
                 }
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-
+                    #region Wyciągnięcie dodanego klienta
                     string query = "SELECT TOP 1 id_klienta FROM klienci ORDER BY id_klienta DESC";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     idKlienta = dt.Rows[0].Field<int>(0);
-                    
+                    #endregion
 
                 }
 
@@ -126,11 +128,6 @@ namespace SerwisRowerowy
                 {
                     string query = "SELECT TOP 1 id_roweru FROM rowery ORDER BY id_roweru DESC";
 
-                    //metoda połączeniowa
-
-                    //connection.Open();
-                    //SqlCommand cmd = new SqlCommand(query, connection);
-                    //idRoweru = (int)cmd.ExecuteScalar();
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dt = new DataTable();

@@ -252,7 +252,77 @@ namespace SerwisRowerowy
 
         private void btnDodajCzesci_Click(object sender, EventArgs e)
         {
+            if (dgvCzesci.SelectedRows.Count > 0)
+            {
+                DataRow selectedrow = ((DataRowView)dgvCzesci.SelectedRows[0].DataBoundItem).Row;
+                string strID = selectedrow[0].ToString();
+                string cena = selectedrow[4].ToString();
+                string ilosc = selectedrow[5].ToString();
+                int idCzesci = int.Parse(strID);
+                int cena1Czesci = int.Parse(cena);
+                int iloscCzesci = int.Parse(ilosc);
 
+                if(iloscCzesci < numIleCzesci.Value)
+                {
+                    MessageBox.Show("Brak wymaganej ilości części w magazynie");
+                    numIleCzesci.Value = 0m;
+                    return;
+                }
+
+                if (numIleCzesci.Value > 0) 
+                {
+                    int CenaCzesciRazem = cena1Czesci * iloscCzesci;
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+
+
+                        #region Prawidłowy INSERT używając adaptera
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci", connection);
+                        adapter.InsertCommand = new SqlCommand("INSERT INTO worek_na_czesci(naprawaId, czescId, ilosc, cena_calkowita) VALUES(@naprawaId, @czescId, @ilosc, @cena)", connection);
+                        adapter.InsertCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                        adapter.InsertCommand.Parameters.AddWithValue("@czescId", idCzesci);
+                        adapter.InsertCommand.Parameters.AddWithValue("@ilosc", iloscCzesci);
+                        adapter.InsertCommand.Parameters.AddWithValue("@cena", CenaCzesciRazem);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        DataRow dr = dt.NewRow();
+                        dr["naprawaId"] = _id_naprawy;
+                        dr["czescId"] = idCzesci;
+                        dr["ilosc"] = iloscCzesci;
+                        dr["cena_calkowita"] = CenaCzesciRazem;
+                        dt.Rows.Add(dr);
+                        adapter.Update(dt);
+                        #endregion
+
+
+                    }
+
+                    using (SqlConnection connection2 = new SqlConnection(connectionString))
+                    {
+
+                        #region Ładny SELECT adapter
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand($"SELECT czesci.nazwa, czesci.cena, worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
+                        adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dgvCzesciWorek.DataSource = dataTable;
+                        #endregion
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Podaj liczbę części");
+                }
+                
+
+
+
+            }
         }
 
         private void btnZapiszNaprawe_Click(object sender, EventArgs e)
