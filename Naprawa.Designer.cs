@@ -281,6 +281,7 @@
             this.btnUsunCzesci.TabIndex = 17;
             this.btnUsunCzesci.Text = "<<<";
             this.btnUsunCzesci.UseVisualStyleBackColor = true;
+            this.btnUsunCzesci.Click += new System.EventHandler(this.btnUsunCzesci_Click);
             // 
             // btnDodajCzesci
             // 

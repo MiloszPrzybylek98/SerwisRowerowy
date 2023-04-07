@@ -272,6 +272,7 @@ namespace SerwisRowerowy
                 if (numIleCzesci.Value > 0) 
                 {
                     int CenaCzesciRazem = cena1Czesci * iloscCzesci;
+                    int ileDoPrzerzucenia = iloscCzesci-   (int)numIleCzesci.Value;
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
@@ -299,13 +300,42 @@ namespace SerwisRowerowy
 
 
                     }
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+
+
+                        #region Prawidłowy UPDATE używając adaptera
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
+                        adapter.UpdateCommand = new SqlCommand("UPDATE czesci set ilosc =  @ilosc WHERE id_czesci = @id_czesci", connection);
+                        adapter.UpdateCommand.Parameters.AddWithValue("@id_czesci", idCzesci);
+                        adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileDoPrzerzucenia);
+
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            if ((int)row["id_czesci"] == idCzesci)
+                            {
+                                row["ilosc"] = ileDoPrzerzucenia;
+                                break;
+
+                            }
+                        }     
+                        adapter.Update(dt);
+                        #endregion
+
+
+                    }
 
                     using (SqlConnection connection2 = new SqlConnection(connectionString))
                     {
 
                         #region Ładny SELECT adapter
                         SqlDataAdapter adapter = new SqlDataAdapter();
-                        adapter.SelectCommand = new SqlCommand($"SELECT czesci.nazwa, czesci.cena, worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
+                        adapter.SelectCommand = new SqlCommand($"SELECT czesci.nazwa, czesci.cena, czesci.producent worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
                         adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -466,6 +496,100 @@ namespace SerwisRowerowy
                 
             }
             
+            if (dgvUslugiWorek.Rows.Count < 2)
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    #region Prawidłowy DELETE używając adaptera
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand("Select * from Worek_na_uslugi", connection);
+                    adapter.DeleteCommand = new SqlCommand("DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId", connection);
+                    adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if ((int)row["naprawaId"] == _id_naprawy)
+                        {
+                            row.Delete();
+                            break;
+                        }
+                    }
+
+                    adapter.Update(dt);
+                    #endregion
+
+                }
+            }
+            using (SqlConnection connection2 = new SqlConnection(connectionString))
+            {
+
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = @id_naprawy", connection2);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dgvUslugiWorek.DataSource = dataTable;
+                #endregion
+
+            }
+            dgvListaUslug.CurrentCell = null;
+        }
+
+        private void btnUsunCzesci_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvCzesciWorek.SelectedRows.Count > 0)
+                {
+                    DataRow selectedrow = ((DataRowView)dgvCzesciWorek.SelectedRows[0].DataBoundItem).Row;
+                    string strID = selectedrow[0].ToString();
+                    int idCzesci = int.Parse(strID);
+                    
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+
+
+                        #region Prawidłowy DELETE używając adaptera
+
+                        //SqlDataAdapter adapter = new SqlDataAdapter();
+                        //adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci", connection);
+                        //adapter.DeleteCommand = new SqlCommand("DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId AND uslugaId = @uslugaId", connection);
+                        //adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                        //adapter.DeleteCommand.Parameters.AddWithValue("@uslugaId", idUslugi);
+                        //DataTable dt = new DataTable();
+                        //adapter.Fill(dt);
+
+                        //foreach (DataRow row in dt.Rows)
+                        //{
+                        //    if ((int)row["naprawaId"] == _id_naprawy && (int)row["uslugaId"] == idUslugi)
+                        //    {
+                        //        row.Delete();
+                        //        break;
+                        //    }
+                        //}
+
+                        //adapter.Update(dt);
+                        #endregion
+
+
+                    }
+
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+
             if (dgvUslugiWorek.Rows.Count < 2)
             {
 
