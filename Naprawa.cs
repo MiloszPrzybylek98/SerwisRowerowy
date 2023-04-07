@@ -22,6 +22,7 @@ namespace SerwisRowerowy
         private int _id_roweru;
         DataTable dt1 = new DataTable();
         DataTable dtUslugi = new DataTable();
+        DataTable dtCzesci = new DataTable();
         string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
 
         public Naprawa(int id_naprawy, int id_klienta, int id_roweru)
@@ -50,8 +51,8 @@ namespace SerwisRowerowy
             string NrSerRoweru;
 
             string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            Connector connector = new Connector();
-            connector.PobiezWszystkieDaneZTabeli(dgvCzesci, "czesci");
+            Connector connector = new Connector();           
+            dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
 
             dgvCzesci.CurrentCell = null;
             dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -240,8 +241,8 @@ namespace SerwisRowerowy
                 string selectCommand = "SELECT * FROM czesci";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
                 
-                adapter.Fill(dtUslugi);
-                dgvCzesci.DataSource = dtUslugi;
+                adapter.Fill(dtCzesci);
+                dgvCzesci.DataSource = dtCzesci;
 
                 dgvCzesci.CurrentCell = null;
                 dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -252,7 +253,7 @@ namespace SerwisRowerowy
 
         private void btnDodajCzesci_Click(object sender, EventArgs e)
         {
-            if (dgvCzesci.SelectedRows.Count > 0)
+            if (dgvCzesci.SelectedRows.Count > 0) // dodac tu, że jeśli już mamy dodana ta czesc to update i jeśli już brak jej w magazynie to nie pokazujemy w częściach
             {
                 DataRow selectedrow = ((DataRowView)dgvCzesci.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
@@ -261,18 +262,19 @@ namespace SerwisRowerowy
                 int idCzesci = int.Parse(strID);
                 int cena1Czesci = int.Parse(cena);
                 int iloscCzesci = int.Parse(ilosc);
+                int ileCzesciChcemy = (int)numIleCzesci.Value;
 
-                if(iloscCzesci < numIleCzesci.Value)
+                if(iloscCzesci < ileCzesciChcemy)
                 {
                     MessageBox.Show("Brak wymaganej ilości części w magazynie");
                     numIleCzesci.Value = 0m;
                     return;
                 }
 
-                if (numIleCzesci.Value > 0) 
+                if (ileCzesciChcemy > 0) 
                 {
-                    int CenaCzesciRazem = cena1Czesci * iloscCzesci;
-                    int ileDoPrzerzucenia = iloscCzesci-   (int)numIleCzesci.Value;
+                    int CenaCzesciRazem = cena1Czesci * ileCzesciChcemy;
+                    int ileDoPrzerzucenia = iloscCzesci - ileCzesciChcemy;
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
@@ -285,14 +287,14 @@ namespace SerwisRowerowy
                         adapter.InsertCommand = new SqlCommand("INSERT INTO worek_na_czesci(naprawaId, czescId, ilosc, cena_calkowita) VALUES(@naprawaId, @czescId, @ilosc, @cena)", connection);
                         adapter.InsertCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
                         adapter.InsertCommand.Parameters.AddWithValue("@czescId", idCzesci);
-                        adapter.InsertCommand.Parameters.AddWithValue("@ilosc", iloscCzesci);
+                        adapter.InsertCommand.Parameters.AddWithValue("@ilosc", ileCzesciChcemy);
                         adapter.InsertCommand.Parameters.AddWithValue("@cena", CenaCzesciRazem);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
                         DataRow dr = dt.NewRow();
                         dr["naprawaId"] = _id_naprawy;
                         dr["czescId"] = idCzesci;
-                        dr["ilosc"] = iloscCzesci;
+                        dr["ilosc"] = ileCzesciChcemy;
                         dr["cena_calkowita"] = CenaCzesciRazem;
                         dt.Rows.Add(dr);
                         adapter.Update(dt);
@@ -335,7 +337,7 @@ namespace SerwisRowerowy
 
                         #region Ładny SELECT adapter
                         SqlDataAdapter adapter = new SqlDataAdapter();
-                        adapter.SelectCommand = new SqlCommand($"SELECT czesci.nazwa, czesci.cena, czesci.producent worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
+                        adapter.SelectCommand = new SqlCommand($"SELECT worek_na_czesci.czescId, worek_na_czesci.naprawaId, czesci.nazwa, czesci.cena, czesci.producent, worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
                         adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -343,6 +345,14 @@ namespace SerwisRowerowy
                         #endregion
 
                     }
+                    Connector connector = new Connector();
+                    dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+
+                    dgvCzesci.CurrentCell = null;
+                    dgvCzesci.Columns["id_czesci"].Visible = false;
+                    dgvCzesciWorek.Columns["czescId"].Visible = false;
+                    dgvCzesciWorek.Columns["naprawaId"].Visible = false;
+
                 }
                 else
                 {
@@ -398,7 +408,7 @@ namespace SerwisRowerowy
 
         private void btnDodajUslugi_Click(object sender, EventArgs e)
         {
-            if(dgvListaUslug.SelectedRows.Count > 0)
+            if(dgvListaUslug.SelectedRows.Count > 0) // tutaj jest cos pojebane, złe id jest
             {
                 DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
@@ -454,7 +464,7 @@ namespace SerwisRowerowy
             {
                 if (dgvUslugiWorek.SelectedRows.Count > 0)
                 {
-                    DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row;
+                    DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row; // tu tez bedzie jakis blad z id
                     string strID = selectedrow[0].ToString();
                     int idUslugi = int.Parse(strID);
 
@@ -545,12 +555,137 @@ namespace SerwisRowerowy
         {
             try
             {
+                DataTable dtCzesci = new DataTable();
+                int iloscZWorka = 0;
+                int IleDoUsuniecia = (int)numIleCzesci.Value;
+                
+
                 if (dgvCzesciWorek.SelectedRows.Count > 0)
                 {
-                    DataRow selectedrow = ((DataRowView)dgvCzesciWorek.SelectedRows[0].DataBoundItem).Row;
-                    string strID = selectedrow[0].ToString();
-                    int idCzesci = int.Parse(strID);
+                    if (IleDoUsuniecia < 1)
+                    {
+                        MessageBox.Show("Podaj liczbę części do usunięcia ");
+                        return;
+                    }
                     
+
+                    DataRow selectedrow = ((DataRowView)dgvCzesciWorek.SelectedRows[0].DataBoundItem).Row;
+                    string strCzescId = selectedrow[0].ToString();
+
+                    int idCzesci = int.Parse(strCzescId);
+                    
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        #region SELECT pobierający cześć do usunięcia z worka
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci ", connection);
+
+
+                        adapter.Fill(dtCzesci);
+
+
+                        #endregion
+                    }
+
+                    foreach (DataRow row in dtCzesci.Rows)
+                    {
+                        if((int)row["czescId"] == idCzesci  && (int)row["naprawaId"] == _id_naprawy)
+                        {
+                            iloscZWorka = (int)row["ilosc"];
+                        }
+                    }
+
+                    if (IleDoUsuniecia > iloscZWorka)
+                    {
+                        MessageBox.Show("Podaj mniejsza ilość części do usunięcia");
+                        return;
+                    }
+                    if (IleDoUsuniecia == iloscZWorka) //tu dajemy delete i update
+                    {
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+
+                            #region Prawidłowy DELETE używając adaptera
+
+                            SqlDataAdapter adapter = new SqlDataAdapter();
+                            adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci ", connection);
+                            adapter.DeleteCommand = new SqlCommand("DELETE FROM worek_na_czesci WHERE naprawaId = @naprawaId AND czescId = @czescId", connection);
+                            adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                            adapter.DeleteCommand.Parameters.AddWithValue("@czescId", idCzesci);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                if ((int)row["czescId"] == idCzesci && (int)row["naprawaId"] == _id_naprawy)
+                                {
+                                    row.Delete();
+                                    break;
+                                }
+                            }
+
+
+                            adapter.Update(dt);
+                            #endregion
+
+                        }
+                        using (SqlConnection connection = new SqlConnection(connectionString)) // to rozkminic jutro jaka tu ma byc matematyka
+                        {
+                            int ileMaByc = 0;
+
+                            #region Prawidłowy UPDATE używając adaptera
+
+                            SqlDataAdapter adapter = new SqlDataAdapter();
+                            adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
+                            adapter.UpdateCommand = new SqlCommand("UPDATE czesci set ilosc =  @ilosc WHERE id_czesci = @id_czesci", connection);
+                            adapter.UpdateCommand.Parameters.AddWithValue("@id_czesci", idCzesci);
+                            adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileMaByc);
+
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                if ((int)row["id_czesci"] == idCzesci)
+                                {
+                                    ileMaByc = (int)row["ilosc"] + IleDoUsuniecia;
+                                    break;
+
+                                }
+                            }
+                            adapter.Update(dt);
+                            #endregion
+
+
+                        }
+                        Connector connector = new Connector();
+                        dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+
+
+                    }
+                    if(IleDoUsuniecia <iloscZWorka) // tu dajemy update i update
+                    {
+
+                    }
+                    using (SqlConnection connection2 = new SqlConnection(connectionString))
+                    {
+
+                        #region Ładny SELECT adapter
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand($"SELECT worek_na_czesci.czescId, worek_na_czesci.naprawaId, czesci.nazwa, czesci.cena, czesci.producent, worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
+                        adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dgvCzesciWorek.DataSource = dataTable;
+                        #endregion
+
+                    }
+
+
+
+
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
