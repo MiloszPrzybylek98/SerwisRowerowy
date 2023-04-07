@@ -193,26 +193,36 @@
             // 
             // dgvCzesci
             // 
+            this.dgvCzesci.AllowUserToAddRows = false;
+            this.dgvCzesci.AllowUserToDeleteRows = false;
+            this.dgvCzesci.AllowUserToResizeColumns = false;
+            this.dgvCzesci.AllowUserToResizeRows = false;
             this.dgvCzesci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCzesci.Location = new System.Drawing.Point(9, 70);
             this.dgvCzesci.MultiSelect = false;
             this.dgvCzesci.Name = "dgvCzesci";
             this.dgvCzesci.ReadOnly = true;
+            this.dgvCzesci.RowHeadersVisible = false;
             this.dgvCzesci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCzesci.Size = new System.Drawing.Size(305, 204);
+            this.dgvCzesci.Size = new System.Drawing.Size(330, 204);
             this.dgvCzesci.TabIndex = 14;
             // 
             // dgvCzesciWorek
             // 
+            this.dgvCzesciWorek.AllowUserToAddRows = false;
+            this.dgvCzesciWorek.AllowUserToDeleteRows = false;
+            this.dgvCzesciWorek.AllowUserToResizeColumns = false;
+            this.dgvCzesciWorek.AllowUserToResizeRows = false;
             this.dgvCzesciWorek.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCzesciWorek.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCzesciWorek.Location = new System.Drawing.Point(504, 70);
+            this.dgvCzesciWorek.Location = new System.Drawing.Point(474, 70);
             this.dgvCzesciWorek.MultiSelect = false;
             this.dgvCzesciWorek.Name = "dgvCzesciWorek";
             this.dgvCzesciWorek.ReadOnly = true;
+            this.dgvCzesciWorek.RowHeadersVisible = false;
             this.dgvCzesciWorek.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCzesciWorek.Size = new System.Drawing.Size(305, 204);
+            this.dgvCzesciWorek.Size = new System.Drawing.Size(335, 204);
             this.dgvCzesciWorek.TabIndex = 15;
             // 
             // groupCzesci
@@ -267,7 +277,7 @@
             // 
             // btnUsunCzesci
             // 
-            this.btnUsunCzesci.Location = new System.Drawing.Point(390, 159);
+            this.btnUsunCzesci.Location = new System.Drawing.Point(379, 165);
             this.btnUsunCzesci.Name = "btnUsunCzesci";
             this.btnUsunCzesci.Size = new System.Drawing.Size(48, 23);
             this.btnUsunCzesci.TabIndex = 17;
@@ -276,7 +286,7 @@
             // 
             // btnDodajCzesci
             // 
-            this.btnDodajCzesci.Location = new System.Drawing.Point(390, 130);
+            this.btnDodajCzesci.Location = new System.Drawing.Point(379, 136);
             this.btnDodajCzesci.Name = "btnDodajCzesci";
             this.btnDodajCzesci.Size = new System.Drawing.Size(48, 23);
             this.btnDodajCzesci.TabIndex = 16;
@@ -311,12 +321,12 @@
             this.dgvListaUslug.RowHeadersVisible = false;
             this.dgvListaUslug.RowTemplate.Height = 24;
             this.dgvListaUslug.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaUslug.Size = new System.Drawing.Size(182, 169);
+            this.dgvListaUslug.Size = new System.Drawing.Size(228, 169);
             this.dgvListaUslug.TabIndex = 20;
             // 
             // btnOdejmijUslugi
             // 
-            this.btnOdejmijUslugi.Location = new System.Drawing.Point(226, 96);
+            this.btnOdejmijUslugi.Location = new System.Drawing.Point(293, 93);
             this.btnOdejmijUslugi.Name = "btnOdejmijUslugi";
             this.btnOdejmijUslugi.Size = new System.Drawing.Size(48, 23);
             this.btnOdejmijUslugi.TabIndex = 24;
@@ -326,7 +336,7 @@
             // 
             // btnDodajUslugi
             // 
-            this.btnDodajUslugi.Location = new System.Drawing.Point(226, 67);
+            this.btnDodajUslugi.Location = new System.Drawing.Point(293, 64);
             this.btnDodajUslugi.Name = "btnDodajUslugi";
             this.btnDodajUslugi.Size = new System.Drawing.Size(48, 23);
             this.btnDodajUslugi.TabIndex = 23;
@@ -342,7 +352,7 @@
             this.groupUslugi.Controls.Add(this.btnOdejmijUslugi);
             this.groupUslugi.Location = new System.Drawing.Point(203, 118);
             this.groupUslugi.Name = "groupUslugi";
-            this.groupUslugi.Size = new System.Drawing.Size(519, 190);
+            this.groupUslugi.Size = new System.Drawing.Size(627, 190);
             this.groupUslugi.TabIndex = 25;
             this.groupUslugi.TabStop = false;
             this.groupUslugi.Text = "Usługi";
@@ -356,7 +366,7 @@
             this.dgvUslugiWorek.AllowUserToResizeRows = false;
             this.dgvUslugiWorek.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUslugiWorek.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUslugiWorek.Location = new System.Drawing.Point(313, 14);
+            this.dgvUslugiWorek.Location = new System.Drawing.Point(394, 14);
             this.dgvUslugiWorek.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUslugiWorek.MultiSelect = false;
             this.dgvUslugiWorek.Name = "dgvUslugiWorek";
@@ -364,7 +374,7 @@
             this.dgvUslugiWorek.RowHeadersVisible = false;
             this.dgvUslugiWorek.RowTemplate.Height = 24;
             this.dgvUslugiWorek.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUslugiWorek.Size = new System.Drawing.Size(182, 169);
+            this.dgvUslugiWorek.Size = new System.Drawing.Size(228, 169);
             this.dgvUslugiWorek.TabIndex = 25;
             // 
             // lblDarmowyPrzeglad
