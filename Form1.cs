@@ -199,7 +199,7 @@ namespace SerwisRowerowy
         private void btnNowaNaprawa_Click(object sender, EventArgs e)
         {
             GroupDaneKl.Enabled = true;
-            GroupDaneNaprawy.Enabled = true;
+
             groupWyszukiwanieKlienta.Enabled = true;
             GroupDaneRoweru.Enabled = true;
             btnDodajNowyRower.Visible = true;
@@ -262,7 +262,7 @@ namespace SerwisRowerowy
         {
             if (dgvKlienci.SelectedRows.Count > 0)
             {
-                radioDarmowyPrzeglad.Checked = false;
+
                 btnDodajKlienta.Enabled = false;
                 GroupDaneKl.Visible= false;
                 btnDodajKlienta.Visible = true;
@@ -289,37 +289,7 @@ namespace SerwisRowerowy
                 dgvRowery.Columns["klient_id"].Visible = false;
                 dgvRowery.Columns["id_roweru"].Visible = false;
 
-                using (SqlConnection connection1 = new SqlConnection(connectionString))
-                {
-                    string selectQuery = "SELECT darmowy_przeglad FROM klienci WHERE id_klienta = @id_klienta";
-                    SqlDataAdapter adapter1 = new SqlDataAdapter(selectQuery, connection1);
-                    adapter1.SelectCommand.Parameters.AddWithValue("@id_klienta", idKlienta); 
-
-                    DataTable dt1 = new DataTable();
-                    adapter1.Fill(dt1);
-
-                    if (dt1.Rows.Count > 0)
-                    {
-                        DataRow row1 = dt1.Rows[0];
-
-                        
-                        string Czy_darmowy = row1["darmowy_przeglad"].ToString();
-
-                        
-                        if(Czy_darmowy=="True")
-                        {
-                            lblDarmowyPrzeglad.Visible = true;
-                            radioDarmowyPrzeglad.Enabled=true;
-                            radioPrzeglad.Enabled = false;
-                        }
-                        else
-                        {
-                            lblDarmowyPrzeglad.Visible = false;
-                            radioDarmowyPrzeglad.Enabled = false;
-                            radioPrzeglad.Enabled = true;
-                        }
-                    }
-                }
+                
 
 
 
@@ -331,11 +301,9 @@ namespace SerwisRowerowy
         private void Form1_Load(object sender, EventArgs e)
         {
             GroupDaneKl.Enabled = false;
-            GroupDaneNaprawy.Enabled = false;
+
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
-            lblDarmowyPrzeglad.Visible = false;
-            radioDarmowyPrzeglad.Enabled = false;
             groupDodajNowegoPrac.Enabled = false;
             
 
@@ -467,22 +435,9 @@ namespace SerwisRowerowy
             
         }
 
-        private void radioPrzeglad_Click(object sender, EventArgs e)
-        {
-            radioPrzeglad.Checked = !radioPrzeglad.Checked;
-        }
-
-        private void radioNaprawa_Click(object sender, EventArgs e)
-        {
-            radioNaprawa.Checked = !radioNaprawa.Checked;
-        }
-
-        private void radioDarmowyPrzeglad_Click(object sender, EventArgs e)
-        {
-            radioDarmowyPrzeglad.Checked = !radioDarmowyPrzeglad.Checked;
 
 
-        }
+
 
         private void dgvObecneNaprawy_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -593,18 +548,6 @@ namespace SerwisRowerowy
             
         }
 
-        private void radioDarmowyPrzeglad_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioDarmowyPrzeglad.Checked)
-            {
-                radioPrzeglad.Checked = false;
-                radioPrzeglad.Enabled= false;
-            }
-            else
-            {
-                radioPrzeglad.Checked = false;
-                radioPrzeglad.Enabled = true;
-            }
-        }
+
     }
 }

@@ -56,6 +56,38 @@ namespace SerwisRowerowy
             dgvCzesci.CurrentCell = null;
             dgvCzesci.Columns["id_czesci"].Visible = false;
 
+            #region Pobranie danych o darmowym przegladzie
+            using (SqlConnection connection2 = new SqlConnection(connectionString))
+            {
+                string selectQuery = "SELECT darmowy_przeglad FROM klienci WHERE id_klienta = @id_klienta";
+                SqlDataAdapter adapter2 = new SqlDataAdapter(selectQuery, connection2);
+                adapter2.SelectCommand.Parameters.AddWithValue("@id_klienta", _id_klienta);
+
+                DataTable dt1 = new DataTable();
+                adapter2.Fill(dt1);
+
+                if (dt1.Rows.Count > 0)
+                {
+                    DataRow row1 = dt1.Rows[0];
+
+
+                    string Czy_darmowy = row1["darmowy_przeglad"].ToString();
+
+
+                    if (Czy_darmowy == "True")
+                    {
+                        lblDarmowyPrzeglad.Visible = true;
+                        radioPrzegladDarmowy.Enabled = true;
+                    }
+                    else
+                    {
+                        lblDarmowyPrzeglad.Visible = false;
+                        radioPrzegladDarmowy.Enabled = false;
+                    }
+                }
+            }
+            #endregion
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string selectQuery = @"SELECT n.uwaga, k.*, r.* FROM naprawy n 
@@ -95,68 +127,13 @@ namespace SerwisRowerowy
             dgvListaUslug.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvListaUslug.Columns["id_uslugi"].Visible= false;
             
-            //dgvListaUslug.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            
-
-
-
-
-            //    OleDbDataAdapter adapter;
-            //    DataTable dt = new DataTable();
-            //    OleDbConnection con = new OleDbConnection();
-
-
-            //     con.ConnectionString = $"Provider=SQLOLEDB;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-
-            //    try
-            //    {
-            //        adapter = new OleDbDataAdapter("Select * from Uslugi", con);
-            //        adapter.Fill(dt);
-            //        RadioListaUslug.Items.Add(dt);
-            //    }
-            //    catch (Exception)
-            //    {
-
-
-            //    }
-
-
-
-            //string connectionString = $"Provider=SQLOLEDB;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            //OleDbConnection connection = new OleDbConnection(connectionString);
-
-            //string query = "SELECT * FROM Uslugi";
-            //OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, connection);
-
-            //DataTable dataTable = new DataTable();
-            //dataAdapter.Fill(dataTable);
-
-
-            //To jest dla testu!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-            //string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            //SqlConnection connection = new SqlConnection(connectionString);
-            //SqlDataAdapter adapter = new SqlDataAdapter("Select * from uslugi", connection);
-            //DataTable dt = new DataTable();
-            //adapter.Fill(dt);
-
-            //foreach (DataRow row in dt.Rows)
-            //{
-            //    RadioListaUslug.Items.Add(row["nazwa"].ToString() + "- " + row["cena"].ToString());
-            //}
-
-            /// ten kod poniżej był odkomentowany eryku
-
-
-            //
 
 
             SqlConnection connection1 = new SqlConnection(connectionString);
             string selectCommand1 = "SELECT * FROM uslugi";
             SqlDataAdapter adapter1 = new SqlDataAdapter(selectCommand1, connection1);
 
-            
+            #region Jakis zakomentowany kod 
             //adapter1.Fill(dt1);
 
             //foreach (DataRow row in dt1.Rows)
@@ -164,12 +141,12 @@ namespace SerwisRowerowy
             //    string nazwaUslugi = row["nazwa"].ToString();
             //    decimal cenaUslugi = (decimal)row["cena"];
             //    int idUslugi = (int)row["id_uslugi"];
-                
+
             //    listUslugi.Items.Add(idUslugi+". "+ nazwaUslugi +"- "+ cenaUslugi);
             //    listUslugi.Items.
             //}
 
-            
+
 
 
 
@@ -231,12 +208,13 @@ namespace SerwisRowerowy
             //    if (adapter != null) adapter.Dispose();
             //    if (connection != null) connection.Close();
             //}
-
+            #endregion
 
         }
 
         private void txtFiltr_TextChanged(object sender, EventArgs e)
         {
+            #region Filtorwanie czesci
             string tekst = txtFiltr.Text;
 
             if (tekst.Length > 0)
@@ -269,6 +247,7 @@ namespace SerwisRowerowy
                 dgvCzesci.Columns["id_czesci"].Visible = false;
 
             }
+            #endregion
         }
 
         private void btnDodajCzesci_Click(object sender, EventArgs e)
@@ -295,34 +274,7 @@ namespace SerwisRowerowy
 
 
 
-            //DataTable selectedUslugiTable = new DataTable();
-
-            //selectedUslugiTable.Columns.Add("naprawaId", typeof(int));
-            //selectedUslugiTable.Columns.Add("uslugaId", typeof(int));
-
-            //List<int> selectedTags = new List<int>();
-
-            //foreach (var rb in checkedUslugi.CheckedItems.Cast<DataRowView>())
-            //{
-
-            //    int tagvalue = (int)rb.Row["tag"];
-            //    selectedTags.Add(tagvalue);
-
-            //DataRow row = selectedUslugiTable.NewRow();
-
-            //row["naprawaId"] = _id_naprawy;
-            //row["uslugaId"] = rb.Tag;
-            //selectedUslugiTable.Rows.Add(row);
-
-            //DataRowView drv = (DataRowView)rb.Tag;
-            //DataRow row = drv.Row;
-
-            //DataRow newRow = selectedUslugiTable.NewRow();
-            //newRow["uslugaId"] = row["id_uslugi"];
-            //newRow["naprawaId"] = _id_naprawy;
-            //selectedUslugiTable.Rows.Add(newRow);
-
-            //}
+ 
 
 
             // Aktualizacja bazy danych za pomocą adaptera SqlDataAdapter
@@ -356,30 +308,37 @@ namespace SerwisRowerowy
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
 
-                    connection.Open();
+
+                    #region Prawidłowy INSERT używając adaptera
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand("Select * from Worek_na_uslugi", connection);
+                    adapter.InsertCommand = new SqlCommand("INSERT INTO Worek_na_uslugi(naprawaId, uslugaId) VALUES(@naprawaId, @uslugaId)", connection);
+                    adapter.InsertCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                    adapter.InsertCommand.Parameters.AddWithValue("@uslugaId", idUslugi);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    DataRow dr = dt.NewRow();
+                    dr["naprawaId"] = _id_naprawy;
+                    dr["uslugaId"] = idUslugi;
+                    dt.Rows.Add(dr);
+                    adapter.Update(dt);
+                    #endregion
 
 
-                    string query = $"INSERT INTO Worek_na_uslugi (naprawaId, uslugaId) VALUES ({_id_naprawy}, {idUslugi})";
-
- 
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.ExecuteNonQuery();
                 }
 
                 using (SqlConnection connection2 = new SqlConnection(connectionString))
                 {
 
-                    connection2.Open();
-
-
-                    string query = $"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = {_id_naprawy}";
-
- 
-                    SqlDataAdapter adapter1 = new SqlDataAdapter(query, connection2);
+                    #region Ładny SELECT adapter
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand($"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = @id_naprawy",connection2);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
                     DataTable dataTable = new DataTable();
-                    adapter1.Fill(dataTable);
+                    adapter.Fill(dataTable);
                     dgvUslugiWorek.DataSource = dataTable;
-
+                    #endregion
 
                 }
 
@@ -399,57 +358,34 @@ namespace SerwisRowerowy
                     string strID = selectedrow[0].ToString();
                     int idUslugi = int.Parse(strID);
 
-
-                    string query = $"DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId AND uslugaId = @uslugaId";
-
                     using (SqlConnection connection = new SqlConnection(connectionString))
-                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        connection.Open();
-                        command.Parameters.AddWithValue("@naprawaId", _id_naprawy);
-                        command.Parameters.AddWithValue("@uslugaId", idUslugi);
 
-                        command.ExecuteNonQuery();
 
+                        #region Prawidłowy DELETE używając adaptera
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand("Select * from Worek_na_uslugi", connection);
+                        adapter.DeleteCommand = new SqlCommand("DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId AND uslugaId = @uslugaId", connection);
+                        adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                        adapter.DeleteCommand.Parameters.AddWithValue("@uslugaId", idUslugi);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            if ((int)row["naprawaId"] == _id_naprawy && (int)row["uslugaId"] == idUslugi)
+                            {
+                                row.Delete();
+                                break;
+                            }
+                        }
+                        
+                        adapter.Update(dt);
+                        #endregion
 
 
                     }
-
-                    //ładny adapter
-                    //using (SqlConnection connection = new SqlConnection(connectionString))
-                    //{
-                    //    string querySelect = "SELECT * FROM Worek_na_uslugi";
-
-                    //    SqlDataAdapter adapter = new SqlDataAdapter(querySelect, connection);
-                    //    DataTable dt = new DataTable();
-                    //    adapter.Fill(dt);
-
-                    //    // to nie dział
-                    //    //foreach (DataRow row in dt.Rows)
-                    //    //{
-                    //    //    if ((int)row["naprawaId"] == 98 && (int)row["uslugaId"] == 1)
-                    //    //    {
-                    //    //        row["naprawaId"] = 97;
-                    //    //        row["uslugaId"] = 5;
-
-                    //    //    }
-                    //    //}
-
-                    //    //tym dodajemy nowego rowa
-                    //    //DataRow dr = dt.NewRow();
-                    //    //dr["naprawaId"] = 98;
-                    //    //dr["uslugaId"] = 1;
-                    //    //dt.Rows.Add(dr);
-
-                    //    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                    //    adapter.AcceptChangesDuringUpdate= true;
-                    //    adapter.Update(dt);
-
-
-
-                    //}
-
-
 
 
                 }
@@ -457,35 +393,49 @@ namespace SerwisRowerowy
             }
             catch (Exception)
             {
-
                 
             }
             
             if (dgvUslugiWorek.Rows.Count < 2)
             {
-                string query = $"DELETE FROM Worek_na_uslugi WHERE naprawaID = {_id_naprawy}"; 
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
-                    command.ExecuteNonQuery();
+
+                    #region Prawidłowy DELETE używając adaptera
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand("Select * from Worek_na_uslugi", connection);
+                    adapter.DeleteCommand = new SqlCommand("DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId", connection);
+                    adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if ((int)row["naprawaId"] == _id_naprawy)
+                        {
+                            row.Delete();
+                            break;
+                        }
+                    }
+
+                    adapter.Update(dt);
+                    #endregion
+
                 }
             }
             using (SqlConnection connection2 = new SqlConnection(connectionString))
             {
 
-                connection2.Open();
-
-
-                string querySelect = $"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = {_id_naprawy}";
-
-
-                SqlDataAdapter adapter1 = new SqlDataAdapter(querySelect, connection2);
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = @id_naprawy", connection2);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
                 DataTable dataTable = new DataTable();
-                adapter1.Fill(dataTable);
+                adapter.Fill(dataTable);
                 dgvUslugiWorek.DataSource = dataTable;
-
+                #endregion
 
             }
             dgvListaUslug.CurrentCell = null;
