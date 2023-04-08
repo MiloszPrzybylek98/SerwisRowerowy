@@ -178,7 +178,7 @@ namespace SerwisRowerowy
 
 
             Naprawa naprawa = new Naprawa(idNaprawy, idKlienta, idRoweru);
-            naprawa.Show();
+            naprawa.ShowDialog();
             btnDodajNaprawe.Enabled = false;
 
             Connector connector = new Connector();
@@ -427,7 +427,7 @@ namespace SerwisRowerowy
                 }
 
 
-                int klientID = (int)dgvObecneNaprawy.SelectedRows[0].Cells["klient_id"].Value;
+                int klientID = int.Parse(selectedrow[6].ToString());
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
