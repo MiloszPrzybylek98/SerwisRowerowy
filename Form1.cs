@@ -180,7 +180,10 @@ namespace SerwisRowerowy
             Naprawa naprawa = new Naprawa(idNaprawy, idKlienta, idRoweru);
             naprawa.Show();
             btnDodajNaprawe.Enabled = false;
-            
+
+            Connector connector = new Connector();
+            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+
         }
 
         private void btnDodajNowyRower_Click(object sender, EventArgs e)
@@ -646,8 +649,7 @@ namespace SerwisRowerowy
                 MessageBox.Show("Zaktualizowano ilość części w bazie danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            Connector connector = new Connector();
-            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+            
         }
     }
 }
