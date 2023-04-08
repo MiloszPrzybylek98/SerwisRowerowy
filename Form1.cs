@@ -304,7 +304,7 @@ namespace SerwisRowerowy
 
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
-            groupDodajNowegoPrac.Enabled = false;
+            
             
 
             
@@ -324,10 +324,7 @@ namespace SerwisRowerowy
             dgvZakonczoneNaprawy.Columns["uwaga"].Visible = false;
             dgvObecneNaprawy.ClearSelection();
 
-            dgvPracownik.DataSource= connector.PobiezWszystkieDaneZTabeliDoDt("pracownicy");
-
-            dgvPracownik.CurrentCell = null;
-            dgvPracownik.Columns["id_pracownika"].Visible = false;
+            
 
 
             connector.PobiezWszystkieDaneZTabeli(dgvCzesci, "czesci");
@@ -555,17 +552,9 @@ namespace SerwisRowerowy
             radioRabat10.Checked = !radioRabat10.Checked;
         }
 
-        private void btnDodajPracownika_Click(object sender, EventArgs e)
-        {
-            groupDodajNowegoPrac.Enabled = true;
+        
 
-        }
-
-        private void btnAnulujDodawaniePrac_Click(object sender, EventArgs e)
-        {
-            groupDodajNowegoPrac.Enabled = false;
-            ClearTextBoxesInGroupBox(groupDodajNowegoPrac);
-        }
+        
 
         private void dgvRowery_CellClick(object sender, DataGridViewCellEventArgs e)
         {
