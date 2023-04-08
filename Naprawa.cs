@@ -372,12 +372,89 @@ namespace SerwisRowerowy
             //_id_naprawy = id_naprawy;
             //_id_klienta = id_klienta;
             //_id_roweru = id_roweru;
-            
+
             //TO DO
             //zapisanie dodanych uslug
             //zapisanie dodanych czesci
             //zapisanie czy klient zuzył darmowy przeglad
             //
+            DataTable dtCenaCzesci = new DataTable();
+            DataTable dtCenaUslug = new DataTable();
+            int CenaZaUslugi = 0;
+            int CenaZaCzesci = 0;
+            int CenaCalkowita = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                #region SELECT CENA CZESCI
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT cena_calkowita FROM worek_na_czesci where naprawaId = @id_naprawy", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                adapter.Fill(dtCenaCzesci);
+
+                #endregion
+            }
+            foreach (DataRow row in dtCenaCzesci.Rows)
+            {
+                CenaZaCzesci += (int)row["cena_calkowita"];
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                #region SELECT CENA USLUG
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT uslugi.cena FROM uslugi JOIN Worek_na_uslugi ON Worek_na_uslugi.uslugaId = uslugi.id_uslugi WHERE Worek_na_uslugi.naprawaId = @id_naprawy", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                adapter.Fill(dtCenaUslug);
+
+                #endregion
+            }
+            foreach (DataRow row in dtCenaUslug.Rows)
+            {
+                CenaZaUslugi += (int)row["cena"];
+            }
+            CenaCalkowita = CenaZaUslugi + CenaZaCzesci;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                #region Prawidłowy UPDATE używając adaptera
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand("Select * from naprawy", connection);
+                adapter.UpdateCommand = new SqlCommand("UPDATE naprawy SET koszt_czesci = @koszt_czesci, koszt_uslugi = @koszt_uslugi, koszt_calkowity = @koszt_calkowity WHERE Id_naprawy = @id_naprawy", connection);
+                adapter.UpdateCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if ((int)row["id_naprawy"] == _id_naprawy)
+                    {
+                        row["koszt_czesci"] = CenaZaCzesci;
+                        row["koszt_uslugi"] = CenaZaUslugi;
+                        row["koszt_calkowity"] = CenaCalkowita;
+                        adapter.UpdateCommand.Parameters.AddWithValue("@koszt_czesci", CenaZaCzesci);
+                        adapter.UpdateCommand.Parameters.AddWithValue("@koszt_uslugi", CenaZaUslugi);
+                        adapter.UpdateCommand.Parameters.AddWithValue("@koszt_calkowity", CenaCalkowita);
+                        break;
+
+                    }
+                }
+
+
+                adapter.Update(dt);
+                #endregion
+
+
+            }
+
+
+
+
+
 
 
         }
