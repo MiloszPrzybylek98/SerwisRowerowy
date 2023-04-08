@@ -450,6 +450,7 @@ namespace SerwisRowerowy
 
 
             }
+            this.Close();
 
 
 
