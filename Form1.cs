@@ -424,7 +424,55 @@ namespace SerwisRowerowy
                 }
 
 
+                //int klientID = '1';//(int)dgvObecneNaprawy.SelectedRows[0].Cells["klient_id"].Value;
 
+
+                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //{
+
+                //    SqlCommand command = new SqlCommand("SELECT koszt_calkowity FROM naprawy WHERE klient_id = @KlientID", connection);
+                //    command.Parameters.AddWithValue("@KlientID", klientID);
+
+
+                //    if (koszt_finalny > 1000)
+                //    {
+                //        // zmień wartość pola "darmowy_przeglad" na 1 dla danego klienta
+                //        SqlCommand updateCommand = new SqlCommand("UPDATE klienci SET darmowy_przeglad = 1 WHERE klient_id = @KlientID", connection);
+                //        updateCommand.Parameters.AddWithValue("@KlientID", klientID);
+                //        updateCommand.ExecuteNonQuery();
+
+                //        MessageBox.Show($"Następny przegląd darmowy ");
+                //    }
+                //}
+                //string connectionString = "Data Source=(local);Initial Catalog=MojaBazaDanych;Integrated Security=True";
+                int klientID = (int)dgvObecneNaprawy.SelectedRows[0].Cells["klient_id"].Value; // pobierz ID klienta z wybranej przez użytkownika listy lub innej kontrolki
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // pobierz koszt całkowity naprawy dla danego klienta
+                    SqlCommand command = new SqlCommand("SELECT koszt_calkowity FROM naprawy WHERE klient_id = @KlientID", connection);
+                    command.Parameters.AddWithValue("@KlientID", klientID);
+                    object result1 = command.ExecuteScalar();
+
+                    if (result1 != null && result1 != DBNull.Value)
+                    {
+                        int kosztCalkowity = (int)result1;
+                        if (kosztCalkowity > 1000)
+                        {
+                            // zmień wartość pola "darmowy_przeglad" na 1 dla danego klienta
+                            SqlCommand updateCommand = new SqlCommand("UPDATE klienci SET darmowy_przeglad = 1 WHERE id_klienta = @KlientID", connection);
+                            updateCommand.Parameters.AddWithValue("@KlientID", klientID);
+                            updateCommand.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        // obsłuż błąd - koszt całkowity nie został znaleziony dla danego klienta
+                        MessageBox.Show("Nie można pobrać kosztu całkowitego dla wybranego klienta.");
+                    }
+                }
 
 
 
