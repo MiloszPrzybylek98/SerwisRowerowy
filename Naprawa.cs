@@ -736,7 +736,7 @@ namespace SerwisRowerowy
                             #endregion
 
                         }
-                        using (SqlConnection connection = new SqlConnection(connectionString)) // to rozkminic jutro jaka tu ma byc matematyka
+                        using (SqlConnection connection = new SqlConnection(connectionString)) 
                         {
                             int ileMaByc;
 
@@ -777,6 +777,73 @@ namespace SerwisRowerowy
                     }
                     if(IleDoUsuniecia <iloscZWorka) // tu dajemy update i update
                     {
+                        int ileMaZostacWWorku = iloscZWorka - IleDoUsuniecia;
+
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            
+
+                            #region Prawidłowy UPDATE używając adaptera
+
+                            SqlDataAdapter adapter = new SqlDataAdapter();
+                            adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci ", connection);
+                            adapter.UpdateCommand = new SqlCommand("UPDATE worek_na_czesci set ilosc = @ilosc WHERE naprawaId = @naprawaId AND czescId = @czescId", connection);
+                            adapter.UpdateCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
+                            adapter.UpdateCommand.Parameters.AddWithValue("@czescId", idCzesci);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                if ((int)row["czescId"] == idCzesci && (int)row["naprawaId"] == _id_naprawy)
+                                {
+                                    row["ilosc"] = ileMaZostacWWorku;
+                                    adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileMaZostacWWorku);
+                                    break;
+                                }
+                            }
+
+
+                            adapter.Update(dt);
+                            #endregion
+
+                        }
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            int ileMaByc;
+
+                            #region Prawidłowy UPDATE używając adaptera
+
+                            SqlDataAdapter adapter = new SqlDataAdapter();
+                            adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
+                            adapter.UpdateCommand = new SqlCommand("UPDATE czesci set ilosc =  @ilosc WHERE id_czesci = @id_czesci", connection);
+                            adapter.UpdateCommand.Parameters.AddWithValue("@id_czesci", idCzesci);
+
+
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                if ((int)row["id_czesci"] == idCzesci)
+                                {
+                                    ileMaByc = (int)row["ilosc"] + IleDoUsuniecia;
+                                    row["ilosc"] = ileMaByc;
+                                    adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileMaByc);
+
+                                    break;
+
+                                }
+                            }
+
+
+                            adapter.Update(dt);
+                            #endregion
+
+
+                        }
+                        Connector connector = new Connector();
+                        dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
 
                     }
                     using (SqlConnection connection2 = new SqlConnection(connectionString))
@@ -795,36 +862,6 @@ namespace SerwisRowerowy
 
 
 
-
-
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-
-
-                        #region Prawidłowy DELETE używając adaptera
-
-                        //SqlDataAdapter adapter = new SqlDataAdapter();
-                        //adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci", connection);
-                        //adapter.DeleteCommand = new SqlCommand("DELETE FROM Worek_na_uslugi WHERE naprawaId = @naprawaId AND uslugaId = @uslugaId", connection);
-                        //adapter.DeleteCommand.Parameters.AddWithValue("@naprawaId", _id_naprawy);
-                        //adapter.DeleteCommand.Parameters.AddWithValue("@uslugaId", idUslugi);
-                        //DataTable dt = new DataTable();
-                        //adapter.Fill(dt);
-
-                        //foreach (DataRow row in dt.Rows)
-                        //{
-                        //    if ((int)row["naprawaId"] == _id_naprawy && (int)row["uslugaId"] == idUslugi)
-                        //    {
-                        //        row.Delete();
-                        //        break;
-                        //    }
-                        //}
-
-                        //adapter.Update(dt);
-                        #endregion
-
-
-                    }
 
 
                 }
