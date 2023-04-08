@@ -647,7 +647,7 @@ namespace SerwisRowerowy
             }
 
             Connector connector = new Connector();
-            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1";
+            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
         }
     }
 }
