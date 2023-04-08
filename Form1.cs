@@ -393,10 +393,10 @@ namespace SerwisRowerowy
                 DialogResult result = MessageBox.Show("Czy na pewno chcesz rozliczyć naprawę?", "Potwierdź aby rozliczyć", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    if (radioRabat10.Checked)
+                    if((Double.Parse(koszt_calkowity)) >= 500)
                     {
                         koszt_finalny = Double.Parse(koszt_calkowity) * 0.9;
-                        MessageBox.Show($"Po uwzględnieniu rabatu 10% klient musi zapłacić: {koszt_finalny.ToString()} PLN");
+                        MessageBox.Show($"Wartość zamówienia przekracza 500 PLN. Uwzględniono rabat 10%, klient musi zapłacić: {koszt_finalny.ToString()} PLN");
                     }
                     else
                     {
@@ -456,11 +456,11 @@ namespace SerwisRowerowy
                             command.Parameters.AddWithValue("@KlientID", klientID);
                             command.ExecuteNonQuery();
                         }
-                        else
-                        {
-                            // obsłuż błąd - koszt całkowity nie przekracza 1000
-                            MessageBox.Show("Koszt całkowity naprawy nie przekracza 1000.");
-                        }
+                        //else
+                        //{
+                        //    // obsłuż błąd - koszt całkowity nie przekracza 1000
+                        //    MessageBox.Show("Koszt całkowity naprawy nie przekracza 1000.");
+                        //}
                     }
                     else
                     {
@@ -485,7 +485,7 @@ namespace SerwisRowerowy
 
             if (dgvObecneNaprawy.SelectedRows.Count > 0)
             {
-                radioRabat10.Checked = false;
+                
                 DataRow selectedrow = ((DataRowView)dgvObecneNaprawy.SelectedRows[0].DataBoundItem).Row;
                 object[] values = selectedrow.ItemArray;
                 var koszt_czesci = values[3].ToString();
@@ -532,7 +532,7 @@ namespace SerwisRowerowy
 
 
                 Naprawa naprawa = new Naprawa(id_naprawy, (int)id_klienta, (int)id_roweru);
-                naprawa.Show();
+                naprawa.ShowDialog();
 
 
 
@@ -552,10 +552,7 @@ namespace SerwisRowerowy
             }
         }
 
-        private void radioRabat10_Click(object sender, EventArgs e)
-        {
-            radioRabat10.Checked = !radioRabat10.Checked;
-        }
+
 
         
 

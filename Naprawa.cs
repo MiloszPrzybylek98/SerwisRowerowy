@@ -136,82 +136,32 @@ namespace SerwisRowerowy
             string selectCommand1 = "SELECT * FROM uslugi";
             SqlDataAdapter adapter1 = new SqlDataAdapter(selectCommand1, connection1);
 
-            #region Jakis zakomentowany kod 
-            //adapter1.Fill(dt1);
+            using (SqlConnection connection2 = new SqlConnection(connectionString))
+            {
 
-            //foreach (DataRow row in dt1.Rows)
-            //{
-            //    string nazwaUslugi = row["nazwa"].ToString();
-            //    decimal cenaUslugi = (decimal)row["cena"];
-            //    int idUslugi = (int)row["id_uslugi"];
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT uslugi.nazwa, uslugi.cena FROM uslugi INNER JOIN Worek_na_uslugi ON uslugi.id_uslugi = Worek_na_uslugi.uslugaId WHERE Worek_na_uslugi.naprawaId = @id_naprawy", connection2);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dgvUslugiWorek.DataSource = dataTable;
+                #endregion
 
-            //    listUslugi.Items.Add(idUslugi+". "+ nazwaUslugi +"- "+ cenaUslugi);
-            //    listUslugi.Items.
-            //}
+            }
+            using (SqlConnection connection2 = new SqlConnection(connectionString))
+            {
 
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT worek_na_czesci.czescId, worek_na_czesci.naprawaId, czesci.nazwa, czesci.cena, czesci.producent, worek_na_czesci.ilosc, worek_na_czesci.cena_calkowita FROM czesci INNER JOIN worek_na_czesci ON czesci.id_czesci = worek_na_czesci.czescId WHERE worek_na_czesci.naprawaId = @id_naprawy", connection2);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dgvCzesciWorek.DataSource = dataTable;
+                #endregion
 
-
-
-
-            //to też było odkomentowane
-
-            //SqlConnection connection = new SqlConnection(connectionString);
-            //string selectCommand = $"SELECT zamowienia.*,klienci.* FROM naprawy WHERE id_naprawy = {_id_naprawy}";
-            //SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
-
-
-            //DataTable dt = new DataTable();
-            //adapter.Fill(dt);
-
-
-            //OleDbDataAdapter adp = new OleDbDataAdapter();
-            //OleDbConnection con = new OleDbConnection();
-
-            //DataTable dt = new DataTable();
-
-            //con.ConnectionString = "Provider=SQLOLEDB;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-
-            //adp = new OleDbDataAdapter("SELECT nazwa FROM uslugi", con);
-            //adp.Fill(dt);
-
-            //foreach (DataRow row in dt.Rows)
-            //{
-            //    RadioListaUslug.Items.Add(row["nazwa"]);
-            //}
-
-            //OleDbConnection connection = new OleDbConnection();
-            //OleDbDataAdapter adapter = new OleDbDataAdapter();
-
-            //string connectionString = "Provider=SQLNCLI10;Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-
-            //string query = "SELECT nazwa FROM uslugi";
-
-
-            //DataTable dataTable = new DataTable();
-
-            //try
-            //{
-            //    connection = new OleDbConnection(connectionString);
-            //    connection.Open();
-
-            //    adapter = new OleDbDataAdapter(query, connection);
-            //    adapter.Fill(dataTable);
-
-            //    foreach (DataRow row in dataTable.Rows)
-            //    {
-            //        RadioListaUslug.Items.Add(row["nazwa"]);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Błąd pobierania danych: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    if (adapter != null) adapter.Dispose();
-            //    if (connection != null) connection.Close();
-            //}
-            #endregion
+            }
 
         }
 
