@@ -39,6 +39,8 @@ namespace SerwisRowerowy
 
         private void btnDodajNaprawe_Click(object sender, EventArgs e)
         {
+
+
             string marka = txtMarka.Text;
             string model = txtModel.Text;
             string nSeryjny = txtNrSeryjny.Text;
@@ -48,6 +50,7 @@ namespace SerwisRowerowy
             int idRoweru;
             string opis = txtOpisNaprawy.Text;
 
+            
 
 
             if (dgvKlienci.SelectedRows.Count > 0)
@@ -184,6 +187,8 @@ namespace SerwisRowerowy
             Connector connector = new Connector();
             connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
 
+            dgvKlienci.DataSource = null;
+            dgvRowery.DataSource = null;
         }
 
         private void btnDodajNowyRower_Click(object sender, EventArgs e)

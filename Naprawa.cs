@@ -383,6 +383,7 @@ namespace SerwisRowerowy
             int CenaZaUslugi = 0;
             int CenaZaCzesci = 0;
             int CenaCalkowita = 0;
+            int CzyDarmowySerwis = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -422,7 +423,7 @@ namespace SerwisRowerowy
 
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = new SqlCommand("Select * from naprawy", connection);
-                adapter.UpdateCommand = new SqlCommand("UPDATE naprawy SET koszt_czesci = @koszt_czesci, koszt_uslugi = @koszt_uslugi, koszt_calkowity = @koszt_calkowity WHERE Id_naprawy = @id_naprawy", connection);
+                adapter.UpdateCommand = new SqlCommand("UPDATE naprawy SET koszt_czesci = @koszt_czesci, koszt_uslugi = @koszt_uslugi, koszt_calkowity = @koszt_calkowity, czy_darmowy_serwis = @czy_darmowy_serwis WHERE Id_naprawy = @id_naprawy", connection);
                 adapter.UpdateCommand.Parameters.AddWithValue("@id_naprawy", _id_naprawy);
 
 
@@ -436,9 +437,21 @@ namespace SerwisRowerowy
                         row["koszt_czesci"] = CenaZaCzesci;
                         row["koszt_uslugi"] = CenaZaUslugi;
                         row["koszt_calkowity"] = CenaCalkowita;
+                        if (checkDarmowyPrzeglad.Checked)
+                        {
+                            CzyDarmowySerwis = 1;
+                            row["czy_darmowy_serwis"] = CzyDarmowySerwis;
+
+                        }
+                        else
+                        {
+                            CzyDarmowySerwis = 0;
+                            row["czy_darmowy_serwis"] = CzyDarmowySerwis;
+                        }
                         adapter.UpdateCommand.Parameters.AddWithValue("@koszt_czesci", CenaZaCzesci);
                         adapter.UpdateCommand.Parameters.AddWithValue("@koszt_uslugi", CenaZaUslugi);
                         adapter.UpdateCommand.Parameters.AddWithValue("@koszt_calkowity", CenaCalkowita);
+                        adapter.UpdateCommand.Parameters.AddWithValue("@czy_darmowy_serwis", CzyDarmowySerwis);
                         break;
 
                     }
@@ -450,6 +463,43 @@ namespace SerwisRowerowy
 
 
             }
+            if (checkDarmowyPrzeglad.Checked)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    #region Prawidłowy UPDATE używając adaptera
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand("Select * from klienci", connection);
+                    adapter.UpdateCommand = new SqlCommand("UPDATE klienci SET darmowy_przeglad = @darmowy_przeglad WHERE id_klienta = @id_klienta", connection);
+                    adapter.UpdateCommand.Parameters.AddWithValue("@id_klienta", _id_klienta);
+
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if ((int)row["id_klienta"] == _id_klienta)
+                        {
+                            row["darmowy_przeglad"] = 0;
+                            
+                            adapter.UpdateCommand.Parameters.AddWithValue("@darmowy_przeglad", 0);
+                            break;
+
+                        }
+                    }
+
+
+                    adapter.Update(dt);
+                    #endregion
+
+
+                }
+            }
+            
+
             this.Close();
 
 
