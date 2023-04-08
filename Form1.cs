@@ -545,6 +545,68 @@ namespace SerwisRowerowy
             
         }
 
+        private void btnDodajCzesc_Click(object sender, EventArgs e)
+        {
+            
 
+            // 1. Sprawdź, czy wartość w kontrolce NumericUpDown jest większa od 0
+            if (numUpDownCzesciIlosc.Value == 0)
+            {
+                MessageBox.Show("Wartość w polu 'Ilość' musi być większa od 0.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 2. Utwórz połączenie z bazą danych
+            SqlConnection conn = new SqlConnection($"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True");
+            conn.Open();
+
+            // 3. Sprawdź, czy w tabeli czesci istnieje już rekord o takich samych wartościach w kolumnach nazwa, numer_katalogowy i producent
+            string queryCheckIfExists = "SELECT COUNT(*) FROM czesci WHERE nazwa = @nazwa AND numer_katalogowy = @numer_katalogowy AND producent = @producent";
+            SqlCommand cmdCheckIfExists = new SqlCommand(queryCheckIfExists, conn);
+            cmdCheckIfExists.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
+            cmdCheckIfExists.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
+            cmdCheckIfExists.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
+            int count = (int)cmdCheckIfExists.ExecuteScalar();
+
+            if (count == 0)
+            {
+                // 4a. Utwórz zapytanie SQL do wstawiania nowego rekordu
+                string queryInsert = "INSERT INTO czesci (nazwa, numer_katalogowy, producent, ilosc, cena) VALUES (@nazwa, @numer_katalogowy, @producent, @ilosc, @cena)";
+
+                // 5a. Utwórz obiekt SqlCommand i ustaw wartości parametrów z TextBoxów i kontrolki NumericUpDown
+                SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
+                cmdInsert.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
+                cmdInsert.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
+                cmdInsert.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
+                cmdInsert.Parameters.AddWithValue("@ilosc", numUpDownCzesciIlosc.Value);
+                cmdInsert.Parameters.AddWithValue("@cena", txtCzesciCena.Text);
+
+                // 6a. Wykonaj zapytanie SQL i zamknij połączenie
+                cmdInsert.ExecuteNonQuery();
+                conn.Close();
+
+                // 7a. Wyświetl komunikat o dodaniu rekordu
+                MessageBox.Show("Dodano nową część do bazy danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // 4b. Utwórz zapytanie SQL do aktualizacji ilości dla istniejącego rekordu
+                string queryUpdate = "UPDATE czesci SET ilosc = ilosc + @ilosc WHERE nazwa = @nazwa AND numer_katalogowy = @numer_katalogowy AND producent = @producent";
+
+                // 5b. Utwórz obiekt SqlCommand i ustaw wartości parametrów z TextBoxów i kontrolki NumericUpDown
+                SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
+                cmdUpdate.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
+                cmdUpdate.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
+                cmdUpdate.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
+                cmdUpdate.Parameters.AddWithValue("@ilosc", numUpDownCzesciIlosc.Value);
+
+                // 6b. Wykonaj zapytanie SQL i zamknij połączenie
+                cmdUpdate.ExecuteNonQuery();
+                conn.Close();
+
+                // 7b. Wyświetl komunikat o zaktualizowaniu ilości dla istniejącej części
+                MessageBox.Show("Zaktualizowano ilość części w bazie danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
