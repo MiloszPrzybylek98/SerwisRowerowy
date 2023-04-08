@@ -69,7 +69,7 @@ namespace SerwisRowerowy
             }
         }
 
-        public DataTable PobierzCzesci()
+        public DataTable PobierzCzesciPowyzejZera()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -77,6 +77,21 @@ namespace SerwisRowerowy
                 #region Ładny SELECT adapter
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = new SqlCommand($"SELECT * FROM czesci WHERE ilosc > 0", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+                #endregion
+
+            }
+        }
+        public DataTable PobierzCzesci()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT * FROM czesci", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 return dt;

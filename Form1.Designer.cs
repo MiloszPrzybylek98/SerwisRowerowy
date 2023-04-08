@@ -32,6 +32,10 @@
             System.Windows.Forms.Label label10;
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupNowaCzesc = new System.Windows.Forms.GroupBox();
+            this.numCenaCzesci = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numNowaCzescIlosc = new System.Windows.Forms.NumericUpDown();
+            this.btnDodajNowaCzesc = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtCzesciProducent = new System.Windows.Forms.TextBox();
@@ -41,7 +45,6 @@
             this.txtCzesciNazwa = new System.Windows.Forms.TextBox();
             this.groupCzesci = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnUsunCzesc = new System.Windows.Forms.Button();
             this.numUpDownCzesciIlosc = new System.Windows.Forms.NumericUpDown();
             this.btnDodajCzesc = new System.Windows.Forms.Button();
             this.dgvCzesci = new System.Windows.Forms.DataGridView();
@@ -84,14 +87,12 @@
             this.txtImieKl = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btnDodajNowaCzesc = new System.Windows.Forms.Button();
-            this.numNowaCzescIlosc = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numCenaCzesci = new System.Windows.Forms.NumericUpDown();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.groupNowaCzesc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).BeginInit();
             this.groupCzesci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownCzesciIlosc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
@@ -106,8 +107,6 @@
             this.GroupDaneRoweru.SuspendLayout();
             this.GroupDaneKl.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -135,7 +134,7 @@
             this.tabPage2.Controls.Add(this.dgvCzesci);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(875, 603);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Części";
@@ -161,6 +160,39 @@
             this.groupNowaCzesc.TabStop = false;
             this.groupNowaCzesc.Text = "Dodawanie nowej części";
             // 
+            // numCenaCzesci
+            // 
+            this.numCenaCzesci.Location = new System.Drawing.Point(152, 73);
+            this.numCenaCzesci.Name = "numCenaCzesci";
+            this.numCenaCzesci.Size = new System.Drawing.Size(120, 20);
+            this.numCenaCzesci.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(250, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Ilość części";
+            // 
+            // numNowaCzescIlosc
+            // 
+            this.numNowaCzescIlosc.Location = new System.Drawing.Point(259, 36);
+            this.numNowaCzescIlosc.Name = "numNowaCzescIlosc";
+            this.numNowaCzescIlosc.Size = new System.Drawing.Size(120, 20);
+            this.numNowaCzescIlosc.TabIndex = 5;
+            // 
+            // btnDodajNowaCzesc
+            // 
+            this.btnDodajNowaCzesc.Location = new System.Drawing.Point(253, 105);
+            this.btnDodajNowaCzesc.Name = "btnDodajNowaCzesc";
+            this.btnDodajNowaCzesc.Size = new System.Drawing.Size(90, 23);
+            this.btnDodajNowaCzesc.TabIndex = 5;
+            this.btnDodajNowaCzesc.Text = "Dodaj części";
+            this.btnDodajNowaCzesc.UseVisualStyleBackColor = true;
+            this.btnDodajNowaCzesc.Click += new System.EventHandler(this.btnDodajNowaCzesc_Click);
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -184,7 +216,7 @@
             // txtCzesciProducent
             // 
             this.txtCzesciProducent.Location = new System.Drawing.Point(152, 36);
-            this.txtCzesciProducent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCzesciProducent.Margin = new System.Windows.Forms.Padding(2);
             this.txtCzesciProducent.Name = "txtCzesciProducent";
             this.txtCzesciProducent.Size = new System.Drawing.Size(76, 20);
             this.txtCzesciProducent.TabIndex = 4;
@@ -202,7 +234,7 @@
             // txtCzesciNrKatalogowy
             // 
             this.txtCzesciNrKatalogowy.Location = new System.Drawing.Point(5, 75);
-            this.txtCzesciNrKatalogowy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCzesciNrKatalogowy.Margin = new System.Windows.Forms.Padding(2);
             this.txtCzesciNrKatalogowy.Name = "txtCzesciNrKatalogowy";
             this.txtCzesciNrKatalogowy.Size = new System.Drawing.Size(76, 20);
             this.txtCzesciNrKatalogowy.TabIndex = 2;
@@ -220,7 +252,7 @@
             // txtCzesciNazwa
             // 
             this.txtCzesciNazwa.Location = new System.Drawing.Point(5, 36);
-            this.txtCzesciNazwa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCzesciNazwa.Margin = new System.Windows.Forms.Padding(2);
             this.txtCzesciNazwa.Name = "txtCzesciNazwa";
             this.txtCzesciNazwa.Size = new System.Drawing.Size(76, 20);
             this.txtCzesciNazwa.TabIndex = 0;
@@ -228,7 +260,6 @@
             // groupCzesci
             // 
             this.groupCzesci.Controls.Add(this.label15);
-            this.groupCzesci.Controls.Add(this.btnUsunCzesc);
             this.groupCzesci.Controls.Add(this.numUpDownCzesciIlosc);
             this.groupCzesci.Controls.Add(this.btnDodajCzesc);
             this.groupCzesci.Location = new System.Drawing.Point(18, 338);
@@ -247,19 +278,14 @@
             this.label15.TabIndex = 4;
             this.label15.Text = "Ilość części";
             // 
-            // btnUsunCzesc
-            // 
-            this.btnUsunCzesc.Location = new System.Drawing.Point(134, 87);
-            this.btnUsunCzesc.Name = "btnUsunCzesc";
-            this.btnUsunCzesc.Size = new System.Drawing.Size(90, 23);
-            this.btnUsunCzesc.TabIndex = 1;
-            this.btnUsunCzesc.Text = "Usun części";
-            this.btnUsunCzesc.UseVisualStyleBackColor = true;
-            this.btnUsunCzesc.Click += new System.EventHandler(this.btnUsunCzesc_Click);
-            // 
             // numUpDownCzesciIlosc
             // 
             this.numUpDownCzesciIlosc.Location = new System.Drawing.Point(6, 47);
+            this.numUpDownCzesciIlosc.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numUpDownCzesciIlosc.Name = "numUpDownCzesciIlosc";
             this.numUpDownCzesciIlosc.Size = new System.Drawing.Size(120, 20);
             this.numUpDownCzesciIlosc.TabIndex = 3;
@@ -302,7 +328,7 @@
             this.tabPage1.Controls.Add(this.dgvObecneNaprawy);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(875, 603);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Naprawy";
@@ -583,7 +609,7 @@
             // txtKolor
             // 
             this.txtKolor.Location = new System.Drawing.Point(8, 204);
-            this.txtKolor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtKolor.Margin = new System.Windows.Forms.Padding(2);
             this.txtKolor.Name = "txtKolor";
             this.txtKolor.Size = new System.Drawing.Size(113, 20);
             this.txtKolor.TabIndex = 12;
@@ -601,7 +627,7 @@
             // txtNrSeryjny
             // 
             this.txtNrSeryjny.Location = new System.Drawing.Point(8, 151);
-            this.txtNrSeryjny.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNrSeryjny.Margin = new System.Windows.Forms.Padding(2);
             this.txtNrSeryjny.Name = "txtNrSeryjny";
             this.txtNrSeryjny.Size = new System.Drawing.Size(113, 20);
             this.txtNrSeryjny.TabIndex = 10;
@@ -629,7 +655,7 @@
             // txtMarka
             // 
             this.txtMarka.Location = new System.Drawing.Point(8, 49);
-            this.txtMarka.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMarka.Margin = new System.Windows.Forms.Padding(2);
             this.txtMarka.Name = "txtMarka";
             this.txtMarka.Size = new System.Drawing.Size(113, 20);
             this.txtMarka.TabIndex = 6;
@@ -637,7 +663,7 @@
             // txtModel
             // 
             this.txtModel.Location = new System.Drawing.Point(8, 98);
-            this.txtModel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtModel.Margin = new System.Windows.Forms.Padding(2);
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(113, 20);
             this.txtModel.TabIndex = 8;
@@ -671,7 +697,7 @@
             // txtNumerTelKl
             // 
             this.txtNumerTelKl.Location = new System.Drawing.Point(8, 151);
-            this.txtNumerTelKl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNumerTelKl.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumerTelKl.Name = "txtNumerTelKl";
             this.txtNumerTelKl.Size = new System.Drawing.Size(113, 20);
             this.txtNumerTelKl.TabIndex = 4;
@@ -689,7 +715,7 @@
             // txtNazwiskoKl
             // 
             this.txtNazwiskoKl.Location = new System.Drawing.Point(8, 98);
-            this.txtNazwiskoKl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNazwiskoKl.Margin = new System.Windows.Forms.Padding(2);
             this.txtNazwiskoKl.Name = "txtNazwiskoKl";
             this.txtNazwiskoKl.Size = new System.Drawing.Size(113, 20);
             this.txtNazwiskoKl.TabIndex = 2;
@@ -707,7 +733,7 @@
             // txtImieKl
             // 
             this.txtImieKl.Location = new System.Drawing.Point(8, 49);
-            this.txtImieKl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtImieKl.Margin = new System.Windows.Forms.Padding(2);
             this.txtImieKl.Name = "txtImieKl";
             this.txtImieKl.Size = new System.Drawing.Size(113, 20);
             this.txtImieKl.TabIndex = 0;
@@ -733,39 +759,6 @@
             this.tabControl1.Size = new System.Drawing.Size(883, 629);
             this.tabControl1.TabIndex = 0;
             // 
-            // btnDodajNowaCzesc
-            // 
-            this.btnDodajNowaCzesc.Location = new System.Drawing.Point(253, 105);
-            this.btnDodajNowaCzesc.Name = "btnDodajNowaCzesc";
-            this.btnDodajNowaCzesc.Size = new System.Drawing.Size(90, 23);
-            this.btnDodajNowaCzesc.TabIndex = 5;
-            this.btnDodajNowaCzesc.Text = "Dodaj części";
-            this.btnDodajNowaCzesc.UseVisualStyleBackColor = true;
-            this.btnDodajNowaCzesc.Click += new System.EventHandler(this.btnDodajNowaCzesc_Click);
-            // 
-            // numNowaCzescIlosc
-            // 
-            this.numNowaCzescIlosc.Location = new System.Drawing.Point(259, 36);
-            this.numNowaCzescIlosc.Name = "numNowaCzescIlosc";
-            this.numNowaCzescIlosc.Size = new System.Drawing.Size(120, 20);
-            this.numNowaCzescIlosc.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(250, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Ilość części";
-            // 
-            // numCenaCzesci
-            // 
-            this.numCenaCzesci.Location = new System.Drawing.Point(152, 73);
-            this.numCenaCzesci.Name = "numCenaCzesci";
-            this.numCenaCzesci.Size = new System.Drawing.Size(120, 20);
-            this.numCenaCzesci.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -778,6 +771,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupNowaCzesc.ResumeLayout(false);
             this.groupNowaCzesc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).EndInit();
             this.groupCzesci.ResumeLayout(false);
             this.groupCzesci.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownCzesciIlosc)).EndInit();
@@ -799,8 +794,6 @@
             this.GroupDaneKl.ResumeLayout(false);
             this.GroupDaneKl.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -818,7 +811,6 @@
         private System.Windows.Forms.TextBox txtCzesciNazwa;
         private System.Windows.Forms.GroupBox groupCzesci;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnUsunCzesc;
         private System.Windows.Forms.NumericUpDown numUpDownCzesciIlosc;
         private System.Windows.Forms.Button btnDodajCzesc;
         private System.Windows.Forms.DataGridView dgvCzesci;

@@ -52,7 +52,7 @@ namespace SerwisRowerowy
 
 
             Connector connector = new Connector();
-            dgvCzesci.DataSource= connector.PobierzCzesci();
+            dgvCzesci.DataSource= connector.PobierzCzesciPowyzejZera();
 
 
             dgvCzesci.CurrentCell = null;
@@ -259,7 +259,7 @@ namespace SerwisRowerowy
                     {
 
 
-                        #region Prawidłowy UPDATE używając adaptera
+                        #region 
 
                         SqlDataAdapter adapter = new SqlDataAdapter();
                         adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
@@ -299,7 +299,7 @@ namespace SerwisRowerowy
 
                     }
                     Connector connector = new Connector();
-                    dgvCzesci.DataSource = connector.PobierzCzesci();
+                    dgvCzesci.DataSource = connector.PobierzCzesciPowyzejZera();
 
                     dgvCzesci.CurrentCell = null;
                     dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -361,7 +361,7 @@ namespace SerwisRowerowy
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                #region Prawidłowy UPDATE używając adaptera
+                #region 
 
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = new SqlCommand("Select * from naprawy", connection);
@@ -410,7 +410,7 @@ namespace SerwisRowerowy
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
 
-                    #region Prawidłowy UPDATE używając adaptera
+                    #region UPDATE KLIENCI
 
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     adapter.SelectCommand = new SqlCommand("Select * from klienci", connection);
@@ -713,7 +713,7 @@ namespace SerwisRowerowy
 
                         }
                         Connector connector = new Connector();
-                        dgvCzesci.DataSource = connector.PobierzCzesci();
+                        dgvCzesci.DataSource = connector.PobierzCzesciPowyzejZera();
 
 
                     }
@@ -785,7 +785,7 @@ namespace SerwisRowerowy
 
                         }
                         Connector connector = new Connector();
-                        dgvCzesci.DataSource = connector.PobierzCzesci();
+                        dgvCzesci.DataSource = connector.PobierzCzesciPowyzejZera();
 
                     }
                     using (SqlConnection connection2 = new SqlConnection(connectionString))

@@ -358,18 +358,7 @@ namespace SerwisRowerowy
             
         }
 
-        private void btnUsunCzesc_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Część?", "Potwierdź usunięcie Części", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
 
-            }
-            else
-            {
-
-            }
-        }
 
         private void btnRozliczNaprawe_Click(object sender, EventArgs e)
         {
@@ -571,68 +560,58 @@ namespace SerwisRowerowy
 
         private void btnDodajCzesc_Click(object sender, EventArgs e)
         {
-            
+            DataRow selectedrow = ((DataRowView)dgvCzesci.SelectedRows[0].DataBoundItem).Row;
+            string strID = selectedrow[0].ToString();
+            int id_czesci = int.Parse(strID);
 
+            int iloscCzesci = (int)numUpDownCzesciIlosc.Value;
+            int DocelowaIloscCzesci;
 
-            if (numUpDownCzesciIlosc.Value == 0)
+            if(iloscCzesci > 0)
             {
-                MessageBox.Show("Wartość w polu 'Ilość' musi być większa od 0.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    #region UPDATE STAN MAGAZYNOWY CZESCI
+
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
+                    adapter.UpdateCommand = new SqlCommand("UPDATE czesci SET ilosc = @ilosc WHERE id_czesci = @id_czesci", connection);
+                    adapter.UpdateCommand.Parameters.AddWithValue("@id_czesci", id_czesci);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if ((int)row["id_czesci"] == id_czesci)
+                        {
+                            DocelowaIloscCzesci = (int)row["ilosc"] + iloscCzesci;
+                            row["ilosc"] = DocelowaIloscCzesci;
+                            adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", DocelowaIloscCzesci);
+                            break;
+
+                        }
+                    }
 
 
-            SqlConnection conn = new SqlConnection($"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True");
-            conn.Open();
+                    adapter.Update(dt);
+                    #endregion
 
 
-            string queryCheckIfExists = "SELECT COUNT(*) FROM czesci WHERE nazwa = @nazwa AND numer_katalogowy = @numer_katalogowy AND producent = @producent";
-            SqlCommand cmdCheckIfExists = new SqlCommand(queryCheckIfExists, conn);
-            cmdCheckIfExists.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
-            cmdCheckIfExists.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
-            cmdCheckIfExists.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
-            int count = (int)cmdCheckIfExists.ExecuteScalar();
+                }
 
-            if (count == 0)
-            {
-                // 4a. Utwórz zapytanie SQL do wstawiania nowego rekordu
-                string queryInsert = "INSERT INTO czesci (nazwa, numer_katalogowy, producent, ilosc, cena) VALUES (@nazwa, @numer_katalogowy, @producent, @ilosc, @cena)";
+                Connector connector = new Connector();
+                dgvCzesci.DataSource =  connector.PobierzCzesci();
 
-                // 5a. Utwórz obiekt SqlCommand i ustaw wartości parametrów z TextBoxów i kontrolki NumericUpDown
-                SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
-                cmdInsert.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
-                cmdInsert.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
-                cmdInsert.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
-                cmdInsert.Parameters.AddWithValue("@ilosc", numUpDownCzesciIlosc.Value);
-                cmdInsert.Parameters.AddWithValue("@cena", (int)numCenaCzesci.Value);
-
-                // 6a. Wykonaj zapytanie SQL i zamknij połączenie
-                cmdInsert.ExecuteNonQuery();
-                conn.Close();
-
-                // 7a. Wyświetl komunikat o dodaniu rekordu
-                MessageBox.Show("Dodano nową część do bazy danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                numUpDownCzesciIlosc.Value = 0;
             }
             else
             {
-                // 4b. Utwórz zapytanie SQL do aktualizacji ilości dla istniejącego rekordu
-                string queryUpdate = "UPDATE czesci SET ilosc = ilosc + @ilosc WHERE nazwa = @nazwa AND numer_katalogowy = @numer_katalogowy AND producent = @producent";
-
-                // 5b. Utwórz obiekt SqlCommand i ustaw wartości parametrów z TextBoxów i kontrolki NumericUpDown
-                SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
-                cmdUpdate.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
-                cmdUpdate.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
-                cmdUpdate.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
-                cmdUpdate.Parameters.AddWithValue("@ilosc", numUpDownCzesciIlosc.Value);
-
-                // 6b. Wykonaj zapytanie SQL i zamknij połączenie
-                cmdUpdate.ExecuteNonQuery();
-                conn.Close();
-
-                // 7b. Wyświetl komunikat o zaktualizowaniu ilości dla istniejącej części
-                MessageBox.Show("Zaktualizowano ilość części w bazie danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Podaj liczbę części większą od 0");
             }
 
-            
         }
 
         private void btnDodajNowaCzesc_Click(object sender, EventArgs e)
