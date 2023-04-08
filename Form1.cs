@@ -316,17 +316,43 @@ namespace SerwisRowerowy
 
 
             Connector connector = new Connector();
-            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
-            connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
+            //connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = $"SELECT n.*, k.imie, k.nazwisko, r.marka, r.kolor FROM naprawy n JOIN klienci k ON n.klient_id = k.id_klienta JOIN rowery r ON n.rower_id = r.id_roweru WHERE czy_aktywna = 1";
+                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dgvObecneNaprawy.DataSource = dt;
+
+
+
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = $"SELECT n.*, k.imie, k.nazwisko, r.marka, r.kolor FROM naprawy n JOIN klienci k ON n.klient_id = k.id_klienta JOIN rowery r ON n.rower_id = r.id_roweru WHERE czy_aktywna = 0";
+                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dgvZakonczoneNaprawy.DataSource = dt;
+
+
+
+            }
+
+            //connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
             dgvObecneNaprawy.CurrentCell = null;
             dgvObecneNaprawy.Columns["id_naprawy"].Visible = false;
             dgvObecneNaprawy.Columns["klient_id"].Visible = false;
             dgvObecneNaprawy.Columns["rower_id"].Visible = false;
             dgvObecneNaprawy.Columns["uwaga"].Visible = false;
+            dgvObecneNaprawy.Columns["czy_aktywna"].Visible = false;
             dgvZakonczoneNaprawy.Columns["id_naprawy"].Visible = false;
             dgvZakonczoneNaprawy.Columns["klient_id"].Visible = false;
             dgvZakonczoneNaprawy.Columns["rower_id"].Visible = false;
             dgvZakonczoneNaprawy.Columns["uwaga"].Visible = false;
+            dgvZakonczoneNaprawy.Columns["czy_aktywna"].Visible = false;
             dgvObecneNaprawy.ClearSelection();
 
             
