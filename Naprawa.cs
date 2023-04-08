@@ -555,7 +555,7 @@ namespace SerwisRowerowy
         {
             try
             {
-                DataTable dtCzesci = new DataTable();
+                DataTable dtWorekNaCzesci = new DataTable();
                 int iloscZWorka = 0;
                 int IleDoUsuniecia = (int)numIleCzesci.Value;
                 
@@ -583,13 +583,13 @@ namespace SerwisRowerowy
                         adapter.SelectCommand = new SqlCommand("Select * from worek_na_czesci ", connection);
 
 
-                        adapter.Fill(dtCzesci);
+                        adapter.Fill(dtWorekNaCzesci);
 
 
                         #endregion
                     }
 
-                    foreach (DataRow row in dtCzesci.Rows)
+                    foreach (DataRow row in dtWorekNaCzesci.Rows)
                     {
                         if((int)row["czescId"] == idCzesci  && (int)row["naprawaId"] == _id_naprawy)
                         {
@@ -604,6 +604,7 @@ namespace SerwisRowerowy
                     }
                     if (IleDoUsuniecia == iloscZWorka) //tu dajemy delete i update
                     {
+                        
                         using (SqlConnection connection = new SqlConnection(connectionString))
                         {
 
@@ -626,14 +627,14 @@ namespace SerwisRowerowy
                                 }
                             }
 
-
+                            
                             adapter.Update(dt);
                             #endregion
 
                         }
                         using (SqlConnection connection = new SqlConnection(connectionString)) // to rozkminic jutro jaka tu ma byc matematyka
                         {
-                            int ileMaByc = 0;
+                            int ileMaByc;
 
                             #region Prawidłowy UPDATE używając adaptera
 
@@ -641,7 +642,7 @@ namespace SerwisRowerowy
                             adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
                             adapter.UpdateCommand = new SqlCommand("UPDATE czesci set ilosc =  @ilosc WHERE id_czesci = @id_czesci", connection);
                             adapter.UpdateCommand.Parameters.AddWithValue("@id_czesci", idCzesci);
-                            adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileMaByc);
+                            
 
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
@@ -651,10 +652,15 @@ namespace SerwisRowerowy
                                 if ((int)row["id_czesci"] == idCzesci)
                                 {
                                     ileMaByc = (int)row["ilosc"] + IleDoUsuniecia;
+                                    row["ilosc"] = ileMaByc;
+                                    adapter.UpdateCommand.Parameters.AddWithValue("@ilosc", ileMaByc);
+
                                     break;
 
                                 }
                             }
+                            
+
                             adapter.Update(dt);
                             #endregion
 
