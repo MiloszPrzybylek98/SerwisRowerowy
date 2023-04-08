@@ -148,7 +148,7 @@ namespace SerwisRowerowy
 
                 DataRow newRow = dt.NewRow();
                 newRow["data_serwisu"] = DateTime.Now;
-                newRow["rodzaj_serwisu"] = "przeglad";
+                newRow["czy_darmowy_serwis"] = 0;
                 newRow["klient_id"] = idKlienta;
                 newRow["rower_id"] = idRoweru;
                 newRow["uwaga"] = opis;

@@ -78,12 +78,14 @@ namespace SerwisRowerowy
                     if (Czy_darmowy == "True")
                     {
                         lblDarmowyPrzeglad.Visible = true;
-                        radioPrzegladDarmowy.Enabled = true;
+                        checkDarmowyPrzeglad.Enabled = true;
+                        checkDarmowyPrzeglad.Checked = false;
                     }
                     else
                     {
                         lblDarmowyPrzeglad.Visible = false;
-                        radioPrzegladDarmowy.Enabled = false;
+                        checkDarmowyPrzeglad.Enabled = false;
+                        checkDarmowyPrzeglad.Checked = false;
                     }
                 }
             }
@@ -366,43 +368,17 @@ namespace SerwisRowerowy
         }
 
         private void btnZapiszNaprawe_Click(object sender, EventArgs e)
-        {
-            // Tworzenie nowej tabeli o nazwie "wybrane_uslugi" z kolumnami "nazwa_uslugi" i "cena"
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("naprawaId", typeof(int));
-            //dt.Columns.Add("uslugaId", typeof(int));
+        {   //zmienne pomocnicze
+            //_id_naprawy = id_naprawy;
+            //_id_klienta = id_klienta;
+            //_id_roweru = id_roweru;
+            
+            //TO DO
+            //zapisanie dodanych uslug
+            //zapisanie dodanych czesci
+            //zapisanie czy klient zuzył darmowy przeglad
+            //
 
-            //foreach (var item in listUslugi.SelectedItems)
-            //{
-
-            //    DataRow row = dt.NewRow();
-
-            //    row["naprawaId"] = _id_naprawy;
-            //    row["uslugaId"] = item.ToString();
-            //}
-
-
-
-
- 
-
-
-            // Aktualizacja bazy danych za pomocą adaptera SqlDataAdapter
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    string insertQuery = "INSERT INTO Worek_na_uslugi (naprawaId, uslugaId) VALUES (@id_naprawy, @id_uslugi)";
-            //    SqlDataAdapter adapter = new SqlDataAdapter(insertQuery, connection);
-
-            //    // Dodanie parametrów do adaptera
-            //    adapter.InsertCommand.Parameters.Add("@nazwa_uslugi", SqlDbType.NVarChar, 50, "nazwa_uslugi");
-            //    adapter.InsertCommand.Parameters.Add("@cena", SqlDbType.Decimal, 0, "cena");
-
-            //    // Ustawienie właściwości SqlCommandBuilder dla adaptera
-            //    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-
-            //    // Aktualizacja danych w bazie danych
-            //    adapter.Update(dt);
-            //}
 
         }
 

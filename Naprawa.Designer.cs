@@ -39,7 +39,6 @@
             this.lblMarka = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblOpisNaprawy = new System.Windows.Forms.Label();
-            this.radioPrzegladDarmowy = new System.Windows.Forms.RadioButton();
             this.dgvCzesci = new System.Windows.Forms.DataGridView();
             this.dgvCzesciWorek = new System.Windows.Forms.DataGridView();
             this.groupCzesci = new System.Windows.Forms.GroupBox();
@@ -56,6 +55,7 @@
             this.groupUslugi = new System.Windows.Forms.GroupBox();
             this.dgvUslugiWorek = new System.Windows.Forms.DataGridView();
             this.lblDarmowyPrzeglad = new System.Windows.Forms.Label();
+            this.checkDarmowyPrzeglad = new System.Windows.Forms.CheckBox();
             this.GroupDaneNaprawy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesci)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCzesciWorek)).BeginInit();
@@ -179,17 +179,6 @@
             this.lblOpisNaprawy.Size = new System.Drawing.Size(19, 13);
             this.lblOpisNaprawy.TabIndex = 2;
             this.lblOpisNaprawy.Text = "00";
-            // 
-            // radioPrzegladDarmowy
-            // 
-            this.radioPrzegladDarmowy.AutoSize = true;
-            this.radioPrzegladDarmowy.Location = new System.Drawing.Point(21, 154);
-            this.radioPrzegladDarmowy.Name = "radioPrzegladDarmowy";
-            this.radioPrzegladDarmowy.Size = new System.Drawing.Size(112, 17);
-            this.radioPrzegladDarmowy.TabIndex = 12;
-            this.radioPrzegladDarmowy.TabStop = true;
-            this.radioPrzegladDarmowy.Text = "Darmowy przegląd";
-            this.radioPrzegladDarmowy.UseVisualStyleBackColor = true;
             // 
             // dgvCzesci
             // 
@@ -386,16 +375,26 @@
             this.lblDarmowyPrzeglad.TabIndex = 26;
             this.lblDarmowyPrzeglad.Text = "Klient posiada darmowy przegląd";
             // 
+            // checkDarmowyPrzeglad
+            // 
+            this.checkDarmowyPrzeglad.AutoSize = true;
+            this.checkDarmowyPrzeglad.Location = new System.Drawing.Point(16, 162);
+            this.checkDarmowyPrzeglad.Name = "checkDarmowyPrzeglad";
+            this.checkDarmowyPrzeglad.Size = new System.Drawing.Size(114, 17);
+            this.checkDarmowyPrzeglad.TabIndex = 27;
+            this.checkDarmowyPrzeglad.Text = "Darmowy Przegląd";
+            this.checkDarmowyPrzeglad.UseVisualStyleBackColor = true;
+            // 
             // Naprawa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(842, 652);
+            this.Controls.Add(this.checkDarmowyPrzeglad);
             this.Controls.Add(this.lblDarmowyPrzeglad);
             this.Controls.Add(this.groupUslugi);
             this.Controls.Add(this.btnZapiszNaprawe);
             this.Controls.Add(this.groupCzesci);
-            this.Controls.Add(this.radioPrzegladDarmowy);
             this.Controls.Add(this.GroupDaneNaprawy);
             this.Name = "Naprawa";
             this.Text = "Naprawa";
@@ -428,7 +427,6 @@
         private System.Windows.Forms.Label lblMarka;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblOpisNaprawy;
-        private System.Windows.Forms.RadioButton radioPrzegladDarmowy;
         private System.Windows.Forms.DataGridView dgvCzesci;
         private System.Windows.Forms.DataGridView dgvCzesciWorek;
         private System.Windows.Forms.GroupBox groupCzesci;
@@ -445,5 +443,6 @@
         private System.Windows.Forms.GroupBox groupUslugi;
         private System.Windows.Forms.DataGridView dgvUslugiWorek;
         private System.Windows.Forms.Label lblDarmowyPrzeglad;
+        private System.Windows.Forms.CheckBox checkDarmowyPrzeglad;
     }
 }
