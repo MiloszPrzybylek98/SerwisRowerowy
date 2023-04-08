@@ -44,7 +44,7 @@ namespace SerwisRowerowy
                 string strID = selectedrow[0].ToString();
                 idKlienta = int.Parse(strID);
             }
-            else
+            else if (txtImieKl.Text != string.Empty && txtNazwiskoKl.Text != string.Empty && txtNumerTelKl.Text != string.Empty)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -82,6 +82,11 @@ namespace SerwisRowerowy
                 }
 
             }
+            else
+            {
+                MessageBox.Show("Wprowadz poprawne dane klienta lub wybierz z listy");
+                return;
+            }
 
             if (dgvRowery.SelectedRows.Count > 0)
             {
@@ -89,7 +94,7 @@ namespace SerwisRowerowy
                 string strID = selectedrow[0].ToString();
                 idRoweru = int.Parse(strID);
             }
-            else
+            else if(txtMarka.Text != string.Empty && txtMarka.Text != string.Empty && txtModel.Text != string.Empty && txtNrSeryjny.Text != string.Empty)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -124,6 +129,11 @@ namespace SerwisRowerowy
 
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Wprowadz poprawne dane roweru lub wybierz z listy");
+                return;
             }
 
 
@@ -172,6 +182,7 @@ namespace SerwisRowerowy
             Connector connector = new Connector();
             dgvObecneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(1);
             dgvZakonczoneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(0);
+            btnNowaNaprawa.Enabled = true;
 
             dgvKlienci.DataSource = null;
             dgvRowery.DataSource = null;
@@ -203,6 +214,7 @@ namespace SerwisRowerowy
             dgvKlienci.CurrentCell = null;
             dgvKlienci.Columns["id_klienta"].Visible = false;
             btnDodajNaprawe.Enabled = true;
+            btnNowaNaprawa.Enabled = false;
 
             
 
@@ -591,7 +603,7 @@ namespace SerwisRowerowy
                 cmdInsert.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
                 cmdInsert.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
                 cmdInsert.Parameters.AddWithValue("@ilosc", numUpDownCzesciIlosc.Value);
-                cmdInsert.Parameters.AddWithValue("@cena", txtCzesciCena.Text);
+                cmdInsert.Parameters.AddWithValue("@cena", (int)numCenaCzesci.Value);
 
                 // 6a. Wykonaj zapytanie SQL i zamknij połączenie
                 cmdInsert.ExecuteNonQuery();
@@ -620,6 +632,77 @@ namespace SerwisRowerowy
                 MessageBox.Show("Zaktualizowano ilość części w bazie danych.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+            
+        }
+
+        private void btnDodajNowaCzesc_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                if (txtCzesciNazwa.Text != string.Empty && txtCzesciNrKatalogowy.Text != string.Empty && txtCzesciProducent.Text != string.Empty && numCenaCzesci.Value > 0 && numNowaCzescIlosc.Value > 0 )
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+
+
+                        #region Prawidłowy INSERT używając adaptera
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand("Select * from czesci", connection);
+                        adapter.InsertCommand = new SqlCommand("INSERT INTO czesci(nazwa, numer_katalogowy, producent, cena, ilosc) VALUES(@nazwa, @numer_katalogowy, @producent, @cena, @ilosc)", connection);
+                        adapter.InsertCommand.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
+                        adapter.InsertCommand.Parameters.AddWithValue("@numer_katalogowy", txtCzesciNrKatalogowy.Text);
+                        adapter.InsertCommand.Parameters.AddWithValue("@producent", txtCzesciProducent.Text);
+                        adapter.InsertCommand.Parameters.AddWithValue("@cena", (int)numCenaCzesci.Value);
+                        adapter.InsertCommand.Parameters.AddWithValue("@ilosc", (int)numNowaCzescIlosc.Value);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        DataRow dr = dt.NewRow();
+                        dr["nazwa"] = txtCzesciNazwa.Text;
+                        dr["numer_katalogowy"] = txtCzesciNrKatalogowy.Text;
+                        dr["producent"] = txtCzesciProducent.Text;
+                        dr["cena"] = (int)numCenaCzesci.Value;
+                        dr["ilosc"] = (int)numNowaCzescIlosc.Value;
+                        dt.Rows.Add(dr);
+                        adapter.Update(dt);
+                        #endregion
+
+
+                    }
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+
+                        #region Ładny SELECT adapter
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand($"SELECT * FROM czesci", connection);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgvCzesci.DataSource = dt;
+                        #endregion
+
+                    }
+
+                    txtCzesciNazwa.Text = string.Empty;
+                    txtCzesciNrKatalogowy.Text = string.Empty;
+                    txtCzesciProducent.Text = string.Empty;
+                    numCenaCzesci.Value = 0;
+                    numNowaCzescIlosc.Value = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Popraw dane nowej części i spróbuj dodać ponownie");
+                }
+                
+
+
+            }
+            catch (Exception)
+            {
+
+                
+            }
             
         }
     }

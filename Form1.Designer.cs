@@ -33,7 +33,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupNowaCzesc = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.txtCzesciCena = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtCzesciProducent = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -85,6 +84,10 @@
             this.txtImieKl = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnDodajNowaCzesc = new System.Windows.Forms.Button();
+            this.numNowaCzescIlosc = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numCenaCzesci = new System.Windows.Forms.NumericUpDown();
             label9 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
@@ -103,6 +106,8 @@
             this.GroupDaneRoweru.SuspendLayout();
             this.GroupDaneKl.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -138,8 +143,11 @@
             // 
             // groupNowaCzesc
             // 
+            this.groupNowaCzesc.Controls.Add(this.numCenaCzesci);
+            this.groupNowaCzesc.Controls.Add(this.label6);
+            this.groupNowaCzesc.Controls.Add(this.numNowaCzescIlosc);
+            this.groupNowaCzesc.Controls.Add(this.btnDodajNowaCzesc);
             this.groupNowaCzesc.Controls.Add(this.label19);
-            this.groupNowaCzesc.Controls.Add(this.txtCzesciCena);
             this.groupNowaCzesc.Controls.Add(this.label18);
             this.groupNowaCzesc.Controls.Add(this.txtCzesciProducent);
             this.groupNowaCzesc.Controls.Add(this.label17);
@@ -162,14 +170,6 @@
             this.label19.Size = new System.Drawing.Size(32, 13);
             this.label19.TabIndex = 7;
             this.label19.Text = "Cena";
-            // 
-            // txtCzesciCena
-            // 
-            this.txtCzesciCena.Location = new System.Drawing.Point(152, 75);
-            this.txtCzesciCena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtCzesciCena.Name = "txtCzesciCena";
-            this.txtCzesciCena.Size = new System.Drawing.Size(76, 20);
-            this.txtCzesciCena.TabIndex = 6;
             // 
             // label18
             // 
@@ -733,6 +733,39 @@
             this.tabControl1.Size = new System.Drawing.Size(883, 629);
             this.tabControl1.TabIndex = 0;
             // 
+            // btnDodajNowaCzesc
+            // 
+            this.btnDodajNowaCzesc.Location = new System.Drawing.Point(253, 105);
+            this.btnDodajNowaCzesc.Name = "btnDodajNowaCzesc";
+            this.btnDodajNowaCzesc.Size = new System.Drawing.Size(90, 23);
+            this.btnDodajNowaCzesc.TabIndex = 5;
+            this.btnDodajNowaCzesc.Text = "Dodaj części";
+            this.btnDodajNowaCzesc.UseVisualStyleBackColor = true;
+            this.btnDodajNowaCzesc.Click += new System.EventHandler(this.btnDodajNowaCzesc_Click);
+            // 
+            // numNowaCzescIlosc
+            // 
+            this.numNowaCzescIlosc.Location = new System.Drawing.Point(259, 36);
+            this.numNowaCzescIlosc.Name = "numNowaCzescIlosc";
+            this.numNowaCzescIlosc.Size = new System.Drawing.Size(120, 20);
+            this.numNowaCzescIlosc.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(250, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Ilość części";
+            // 
+            // numCenaCzesci
+            // 
+            this.numCenaCzesci.Location = new System.Drawing.Point(152, 73);
+            this.numCenaCzesci.Name = "numCenaCzesci";
+            this.numCenaCzesci.Size = new System.Drawing.Size(120, 20);
+            this.numCenaCzesci.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -766,6 +799,8 @@
             this.GroupDaneKl.ResumeLayout(false);
             this.GroupDaneKl.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numNowaCzescIlosc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCenaCzesci)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -775,7 +810,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupNowaCzesc;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtCzesciCena;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtCzesciProducent;
         private System.Windows.Forms.Label label17;
@@ -827,6 +861,10 @@
         private System.Windows.Forms.TextBox txtImieKl;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button btnDodajNowaCzesc;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numNowaCzescIlosc;
+        private System.Windows.Forms.NumericUpDown numCenaCzesci;
     }
 }
 
