@@ -50,9 +50,10 @@ namespace SerwisRowerowy
             string kolorRoweru;
             string NrSerRoweru;
 
-            string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
-            Connector connector = new Connector();           
-            dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+
+            Connector connector = new Connector();
+            dgvCzesci.DataSource= connector.PobierzCzesci();
+
 
             dgvCzesci.CurrentCell = null;
             dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -172,7 +173,7 @@ namespace SerwisRowerowy
 
             if (tekst.Length > 0)
             {
-                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM czesci WHERE (nazwa LIKE @nazwa) OR (numer_katalogowy LIKE @numer_katalogowy) OR (producent LIKE @producent)";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
@@ -188,7 +189,7 @@ namespace SerwisRowerowy
             }
             else
             {
-                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
+
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM czesci";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
@@ -298,7 +299,7 @@ namespace SerwisRowerowy
 
                     }
                     Connector connector = new Connector();
-                    dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+                    dgvCzesci.DataSource = connector.PobierzCzesci();
 
                     dgvCzesci.CurrentCell = null;
                     dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -318,16 +319,7 @@ namespace SerwisRowerowy
         }
 
         private void btnZapiszNaprawe_Click(object sender, EventArgs e)
-        {   //zmienne pomocnicze
-            //_id_naprawy = id_naprawy;
-            //_id_klienta = id_klienta;
-            //_id_roweru = id_roweru;
-
-            //TO DO
-            //zapisanie dodanych uslug
-            //zapisanie dodanych czesci
-            //zapisanie czy klient zuzył darmowy przeglad
-            //
+        {   
             DataTable dtCenaCzesci = new DataTable();
             DataTable dtCenaUslug = new DataTable();
             int CenaZaUslugi = 0;
@@ -462,7 +454,7 @@ namespace SerwisRowerowy
 
         private void btnDodajUslugi_Click(object sender, EventArgs e)
         {
-            if(dgvListaUslug.SelectedRows.Count > 0) // tutaj jest cos pojebane, złe id jest
+            if(dgvListaUslug.SelectedRows.Count > 0)
             {
                 DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row;
                 string strID = selectedrow[0].ToString();
@@ -721,7 +713,7 @@ namespace SerwisRowerowy
 
                         }
                         Connector connector = new Connector();
-                        dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+                        dgvCzesci.DataSource = connector.PobierzCzesci();
 
 
                     }
@@ -793,7 +785,7 @@ namespace SerwisRowerowy
 
                         }
                         Connector connector = new Connector();
-                        dgvCzesci.DataSource = connector.PobiezWszystkieDaneZTabeliDoDt("czesci");
+                        dgvCzesci.DataSource = connector.PobierzCzesci();
 
                     }
                     using (SqlConnection connection2 = new SqlConnection(connectionString))

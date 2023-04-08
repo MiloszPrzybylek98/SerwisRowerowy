@@ -53,6 +53,39 @@ namespace SerwisRowerowy
         }
 
 
+        public DataTable UzupelnijDgvZNaprawami(int CzyAktywna)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT n.*, k.imie, k.nazwisko, r.marka, r.kolor FROM naprawy n JOIN klienci k ON n.klient_id = k.id_klienta JOIN rowery r ON n.rower_id = r.id_roweru WHERE czy_aktywna = @czy_aktywna", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@czy_aktywna", CzyAktywna);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+
+
+
+            }
+        }
+
+        public DataTable PobierzCzesci()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                #region Ładny SELECT adapter
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand($"SELECT * FROM czesci WHERE ilosc > 0", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+                #endregion
+
+            }
+        }
+
+
         public void DodanieNowejNaprawy()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

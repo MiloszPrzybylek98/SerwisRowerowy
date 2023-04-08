@@ -22,21 +22,6 @@ namespace SerwisRowerowy
             InitializeComponent();
         }
 
-        private void btnUsunPracownika_Click(object sender, EventArgs e)
-        {
-
-            
-            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć Pracownika?", "Potwierdź usunięcie Pracownika", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {  
-                
-            }
-            else
-            {
-
-            }
-        }
-
         private void btnDodajNaprawe_Click(object sender, EventArgs e)
         {
 
@@ -185,7 +170,8 @@ namespace SerwisRowerowy
             btnDodajNaprawe.Enabled = false;
 
             Connector connector = new Connector();
-            connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
+            dgvObecneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(1);
+            dgvZakonczoneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(0);
 
             dgvKlienci.DataSource = null;
             dgvRowery.DataSource = null;
@@ -228,7 +214,6 @@ namespace SerwisRowerowy
 
             if (tekst.Length >0)
             {
-                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM klienci WHERE (imie LIKE @Imie) OR (nazwisko LIKE @Nazwisko) OR (telefon LIKE @telefon)";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
@@ -244,7 +229,6 @@ namespace SerwisRowerowy
             }
             else
             {
-                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM klienci";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
@@ -280,8 +264,6 @@ namespace SerwisRowerowy
                 DataGridViewRow row = dgvKlienci.SelectedRows[0];
 
 
-
-                string connectionString = $"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connectionString);
                 string selectCommand = "SELECT * FROM rowery WHERE klient_id = @klient_id";
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand, connection);
@@ -309,39 +291,17 @@ namespace SerwisRowerowy
 
             groupWyszukiwanieKlienta.Enabled = false;
             GroupDaneRoweru.Enabled = false;
-            
-            
 
-            
+
+
+
 
 
             Connector connector = new Connector();
-            //connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string selectQuery = $"SELECT n.*, k.imie, k.nazwisko, r.marka, r.kolor FROM naprawy n JOIN klienci k ON n.klient_id = k.id_klienta JOIN rowery r ON n.rower_id = r.id_roweru WHERE czy_aktywna = 1";
-                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dgvObecneNaprawy.DataSource = dt;
+            dgvObecneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(1);
+            dgvZakonczoneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(0);
 
 
-
-            }
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string selectQuery = $"SELECT n.*, k.imie, k.nazwisko, r.marka, r.kolor FROM naprawy n JOIN klienci k ON n.klient_id = k.id_klienta JOIN rowery r ON n.rower_id = r.id_roweru WHERE czy_aktywna = 0";
-                SqlDataAdapter adapter = new SqlDataAdapter(selectQuery, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dgvZakonczoneNaprawy.DataSource = dt;
-
-
-
-            }
-
-            //connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
             dgvObecneNaprawy.CurrentCell = null;
             dgvObecneNaprawy.Columns["id_naprawy"].Visible = false;
             dgvObecneNaprawy.Columns["klient_id"].Visible = false;
@@ -444,12 +404,10 @@ namespace SerwisRowerowy
                         adapter.Update(dt);
                     }
 
+
                     Connector connector = new Connector();
-                    connector.PobierzDoDgvZWarunkiem(dgvObecneNaprawy, "*", "naprawy", "czy_aktywna", "1");
-                    connector.PobierzDoDgvZWarunkiem(dgvZakonczoneNaprawy, "*", "naprawy", "czy_aktywna", "0");
-
-
-
+                    dgvObecneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(1);
+                    dgvZakonczoneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(0);
 
 
                 }
@@ -461,7 +419,7 @@ namespace SerwisRowerowy
                 {
                     connection.Open();
 
-                    // pobierz koszt całkowity naprawy dla danego klienta
+
                     string query = "SELECT koszt_calkowity FROM naprawy WHERE klient_id = @KlientID";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@KlientID", klientID);
@@ -476,21 +434,17 @@ namespace SerwisRowerowy
 
                         if (koszt_finalny > 1000)
                         {
-                            // zmień wartość pola "darmowy_przeglad" na 1 dla danego klienta
+
                             query = "UPDATE klienci SET darmowy_przeglad = 1 WHERE id_klienta = @KlientID";
                             command = new SqlCommand(query, connection);
                             command.Parameters.AddWithValue("@KlientID", klientID);
                             command.ExecuteNonQuery();
                         }
-                        //else
-                        //{
-                        //    // obsłuż błąd - koszt całkowity nie przekracza 1000
-                        //    MessageBox.Show("Koszt całkowity naprawy nie przekracza 1000.");
-                        //}
+
                     }
                     else
                     {
-                        // obsłuż błąd - nie znaleziono kosztu całkowitego dla danego klienta
+
                         MessageBox.Show("Nie można pobrać kosztu całkowitego dla wybranego klienta.");
                     }
                 }
@@ -607,18 +561,18 @@ namespace SerwisRowerowy
         {
             
 
-            // 1. Sprawdź, czy wartość w kontrolce NumericUpDown jest większa od 0
+
             if (numUpDownCzesciIlosc.Value == 0)
             {
                 MessageBox.Show("Wartość w polu 'Ilość' musi być większa od 0.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // 2. Utwórz połączenie z bazą danych
+
             SqlConnection conn = new SqlConnection($"Data Source={Environment.MachineName};Initial Catalog=serwis_rowerowy;Integrated Security=True");
             conn.Open();
 
-            // 3. Sprawdź, czy w tabeli czesci istnieje już rekord o takich samych wartościach w kolumnach nazwa, numer_katalogowy i producent
+
             string queryCheckIfExists = "SELECT COUNT(*) FROM czesci WHERE nazwa = @nazwa AND numer_katalogowy = @numer_katalogowy AND producent = @producent";
             SqlCommand cmdCheckIfExists = new SqlCommand(queryCheckIfExists, conn);
             cmdCheckIfExists.Parameters.AddWithValue("@nazwa", txtCzesciNazwa.Text);
