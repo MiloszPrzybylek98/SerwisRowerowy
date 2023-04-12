@@ -216,6 +216,7 @@ namespace SerwisRowerowy
 
                 dgvKlienci.CurrentCell = null;
                 dgvKlienci.Columns["id_klienta"].Visible = false;
+                dgvKlienci.CurrentCell = null;
                 btnDodajNaprawe.Enabled = true;
                 btnNowaNaprawa.Enabled = false;
             }
@@ -341,6 +342,7 @@ namespace SerwisRowerowy
 
 
                 connector.PobiezWszystkieDaneZTabeli(dgvCzesci, "czesci");
+                
 
                 dgvCzesci.CurrentCell = null;
                 dgvCzesci.Columns["id_czesci"].Visible = false;
@@ -531,6 +533,14 @@ namespace SerwisRowerowy
 
                     Naprawa naprawa = new Naprawa(id_naprawy, (int)id_klienta, (int)id_roweru);
                     naprawa.ShowDialog();
+
+                    Connector connector = new Connector();
+                    dgvObecneNaprawy.DataSource = connector.UzupelnijDgvZNaprawami(1);
+                    dgvObecneNaprawy.CurrentCell = null;
+
+                    lblKosztCzesci.Text = "Koszt częsci: " ;
+                    lblKosztRobocizny.Text = "Koszt robocizny: " ;
+                    lblKosztCalkowity.Text = "Koszt całkowity: ";
 
 
                 }
