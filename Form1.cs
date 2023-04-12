@@ -184,6 +184,18 @@ namespace SerwisRowerowy
                 dgvKlienci.DataSource = null;
                 dgvRowery.DataSource = null;
 
+                btnCzyszczenieOkienek.Enabled = false;
+
+                txtImieKl.Clear();
+                txtNazwiskoKl.Clear();
+                txtOpisNaprawy.Clear();
+                txtNumerTelKl.Clear();
+                txtNrSeryjny.Clear();
+                txtModel.Clear();
+                txtKolor.Clear();
+                txtMarka.Clear();
+
+
             }
             catch (Exception ex)
             {
@@ -196,6 +208,12 @@ namespace SerwisRowerowy
 
             GroupDaneRoweru.Visible = true;
             btnDodajNowyRower.Visible = false;
+
+            if(txtImieKl.Text.Length > 0 )
+            {
+
+            }
+            
 
         }
 
