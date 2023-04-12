@@ -196,6 +196,14 @@ namespace SerwisRowerowy
                 txtMarka.Clear();
 
 
+
+                
+                GroupDaneKl.Visible = false;
+                GroupDaneRoweru.Visible = false;
+                txtOpisNaprawy.Visible = false;
+                label8.Visible = false;
+
+
             }
             catch (Exception ex)
             {
@@ -209,9 +217,9 @@ namespace SerwisRowerowy
             GroupDaneRoweru.Visible = true;
             btnDodajNowyRower.Visible = false;
 
-            if(txtImieKl.Text.Length > 0 )
+            if(txtImieKl.Text.Length > 0 && txtNazwiskoKl.Text.Length > 0 && txtNumerTelKl.Text.Length > 0)
             {
-
+                dgvKlienci.CurrentCell = null;
             }
             
 
@@ -222,7 +230,8 @@ namespace SerwisRowerowy
             try
             {
                 GroupDaneKl.Enabled = true;
-
+                txtOpisNaprawy.Visible = true;
+                label8.Visible = true;
                 groupWyszukiwanieKlienta.Enabled = true;
                 GroupDaneRoweru.Enabled = true;
                 btnDodajNowyRower.Visible = true;
@@ -237,6 +246,7 @@ namespace SerwisRowerowy
                 dgvKlienci.CurrentCell = null;
                 btnDodajNaprawe.Enabled = true;
                 btnNowaNaprawa.Enabled = false;
+                btnCzyszczenieOkienek.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -334,7 +344,8 @@ namespace SerwisRowerowy
             try
             {
                 GroupDaneKl.Enabled = false;
-
+                label8.Visible = false;
+                txtOpisNaprawy.Visible = false;
                 groupWyszukiwanieKlienta.Enabled = false;
                 GroupDaneRoweru.Enabled = false;
 
