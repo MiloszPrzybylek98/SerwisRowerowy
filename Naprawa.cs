@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Reflection.Emit;
 using static System.Net.Mime.MediaTypeNames;
 using System.Data.Common;
+using System.Data.SqlTypes;
 
 namespace SerwisRowerowy
 {
@@ -45,6 +46,8 @@ namespace SerwisRowerowy
                 string uwaga;
                 string imieKlienta;
                 string nazwiskoKlienta;
+                string darmowy_przeglad;
+                
 
                 string markaRoweru;
                 string modelRoweru;
@@ -111,6 +114,9 @@ namespace SerwisRowerowy
                     // dane o kliencie dla danej naprawy
                     imieKlienta = dt.Rows[0].Field<string>("imie");
                     nazwiskoKlienta = dt.Rows[0].Field<string>("nazwisko");
+                    darmowy_przeglad = dt.Rows[0]["darmowy_przeglad"].ToString();
+
+
 
                     // dane o rowerze dla danej naprawy
                     markaRoweru = dt.Rows[0].Field<string>("marka");
@@ -119,18 +125,32 @@ namespace SerwisRowerowy
                     NrSerRoweru = dt.Rows[0].Field<string>("numer_seryjny");
 
                 }
-
+                
                 lblOpisNaprawy.Text = uwaga;
                 lblMarka.Text = markaRoweru;
                 lblModel.Text = modelRoweru;
                 lblKolor.Text = kolorRoweru;
                 lblNrSeryjny.Text = NrSerRoweru;
 
+                if(darmowy_przeglad == "True")
+                {
+                    lblDarmowyPrzeglad.Visible = true;
+                    checkDarmowyPrzeglad.Checked= true;
+                    checkDarmowyPrzeglad.Enabled = true;
+                }
+                else
+                {
+                    lblDarmowyPrzeglad.Visible = false;
+                    checkDarmowyPrzeglad.Checked = false;
+                    checkDarmowyPrzeglad.Enabled = false;
+                }
+
 
                 connector.PobiezWszystkieDaneZTabeli(dgvListaUslug, "uslugi");
                 dgvListaUslug.CurrentCell = null;
                 dgvListaUslug.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dgvListaUslug.Columns["id_uslugi"].Visible = false;
+                
 
 
 
@@ -221,7 +241,7 @@ namespace SerwisRowerowy
         {
             try
             {
-                if (dgvCzesci.SelectedRows.Count > 0) // dodac tu, że jeśli już mamy dodana ta czesc to update i jeśli już brak jej w magazynie to nie pokazujemy w częściach
+                if (dgvCzesci.SelectedRows.Count > 0) 
                 {
                     DataRow selectedrow = ((DataRowView)dgvCzesci.SelectedRows[0].DataBoundItem).Row;
                     string strID = selectedrow[0].ToString();
