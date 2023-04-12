@@ -759,30 +759,7 @@ namespace SerwisRowerowy
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (tabControl1.SelectedIndex != 0)
-            //{
-            //    DialogResult result = MessageBox.Show("Czy na pewno chcesz zrezygnować z naprawy?", "Potwierdź aby zrezygnować", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    if (result == DialogResult.Yes)
-            //    {
-            //        return;
-            //    }
 
-
-            //    dgvKlienci.DataSource = null;
-            //    dgvRowery.DataSource = null;
-
-
-            //    btnCzyszczenieOkienek.Enabled = false;
-
-            //    txtImieKl.Clear();
-            //    txtNazwiskoKl.Clear();
-            //    txtOpisNaprawy.Clear();
-            //    txtNumerTelKl.Clear();
-            //    txtNrSeryjny.Clear();
-            //    txtModel.Clear();
-            //    txtKolor.Clear();
-            //    txtMarka.Clear();
-            //}
         }
     }
 }

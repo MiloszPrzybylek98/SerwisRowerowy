@@ -563,7 +563,7 @@ namespace SerwisRowerowy
             {
                 if (dgvUslugiWorek.SelectedRows.Count > 0)
                 {
-                    DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row; // tu tez bedzie jakis blad z id
+                    DataRow selectedrow = ((DataRowView)dgvListaUslug.SelectedRows[0].DataBoundItem).Row; 
                     string strID = selectedrow[0].ToString();
                     int idUslugi = int.Parse(strID);
 
